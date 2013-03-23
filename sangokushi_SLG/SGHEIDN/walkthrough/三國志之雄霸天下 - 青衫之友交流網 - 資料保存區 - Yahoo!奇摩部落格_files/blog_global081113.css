@@ -1,0 +1,676 @@
+/*universal style reset*/
+body {font-family:"Arial","MingLiU","PMingLiU"; font-size:80%;margin:0 0 16px 0;padding:0;background:white; }
+fieldset{border-width:0;padding:0;margin:0;}
+input,select,option,textarea{font-family:"Arial","MingLiU","PMingLiU";}
+h1,h2,h3,h4,h5,h6,th,blockquote,p,ul,li,form,fieldset{margin:0;padding:0;font-size:100%;font-weight:normal;list-style:none;}
+th,td{text-align:left;font-weight:normal;}
+b,i,cite,ins,small,big,tr,td,table,tbody,abbr,s,del,address,dfn,kdb,code,var,{font-size:100%;font-style:normal;font-weight:normal;text-decoration:none;} q {quotes:"" "";}
+em{font-size:100%;font-weight:normal;text-decoration:none;}
+strong{font-size:100%;font-style:normal;text-decoration:none;}
+table {border-collapse:collapse; width:100%;}
+p,span{word-break:break-all;}
+a img{border:none;}
+a{color:#0000bb;}
+a:visited{color:#3987C6;}
+a:hover{color:red}
+a:active{color:red}
+
+/*three col layout*/
+.thrcol {width:100%;behavior:expression(this.style.width=(document.body.clientWidth<920)?"900px":"auto");}
+.thrcol[class] {min-width:930px;behavior:none;}
+.ycnt3col {zoom:1;margin:0 10px;}
+.ycnt3col:after {content:".";height:0;visibility:hidden;display:block;clear:both;}
+
+.thrcol .yc3main {width:100%;float:left; margin-left:-160px;}
+.thrcol .yc3mainbd {margin-left:160px;}
+.thrcol .yc3pri {width:100%;float:right;margin-right:-160px;}
+.thrcol .yc3pribd {margin-right:160px;}
+.thrcol .yc3subbd {width:150px;float:right;}
+.thrcol .yc3sec {width:150px;}
+.thrcol .yc3sub{z-index:1;}
+.thrcol .yc3pri,.thrcol .yc3main{z-index:10;}
+
+/*two col layout*/
+.twocolga #yhtw_mastfoot, .twocoldr #yhtw_mastfoot {width:750px;margin:0 auto;}
+.twocolga, .twocoldr {behavior:expression(this.style.width=(document.body.clientWidth<760)?"750px":"auto");}
+.twocolga[class], .twocoldr[class]{min-width:750px;behavior:none;}
+.twocolga .ycnt3col,.twocoldr .ycnt3col {zoom:1;width:750px;text-align:left;margin:0 auto;}
+
+        /*main on left*/
+.twocolga .yc3main {width:100%;float:left; margin-left:-160px;}
+.twocolga .yc3mainbd {margin-left:160px;}
+.twocolga .yc3pri {width:100%;}
+.twocolga .yc3subbd {width:150px;float:right;}
+.twocolga .yc3sec {display:none;} /*in case there's content*/
+
+        /*main on right*/
+.twocoldr .yc3main {width:100%;float:right; margin-right:-160px;}
+.twocoldr .yc3mainbd {margin-right:160px;}
+.twocoldr .yc3pri {width:100%;}
+.twocoldr .yc3subbd {width:150px;}
+.twocoldr .yc3sec {display:none;} /*in case there's content*/
+
+/*shared rounded corner for all modules*/
+.ycntmod {width:100%;position:relative;margin-bottom:10px;overflow:hidden;}
+.ycntmod .rctop {zoom:1;background:url(../yimg/mod_nw.gif) left top no-repeat;margin-right:5px;}
+.ycntmod .rctop div {background:url(../yimg/mod_ne.gif) right top no-repeat;height:5px;font-size:0;position:relative;right:-5px;}
+.ycntmod .rcbtm {zoom:1;background:url(../yimg/mod_sw.gif) left bottom no-repeat;margin-right:5px;}
+.ycntmod .rcbtm div {background:url(../yimg/mod_se.gif) right bottom no-repeat;height:5px;font-size:0;position:relative;right:-5px;}
+.ycntmod .rcl {padding-left:5px;background:url(../yimg/mod_left.gif) repeat-y;}
+.ycntmod .rcr {zoom:1;padding-right:5px;background:url(../yimg/mod_right.gif) right repeat-y;}
+.ycntmod .text {position:relative;word-break:break-all;}
+.yc3pribd .ycntmod{overflow:visible;}
+.yc3pribd .ycntmod .yblogcnt{overflow:hidden;}
+
+/*common module setting*/
+.ycntmod .mhd {height:30px;}
+.ycntmod .mhd h3 {font-size:120%;padding:8px 0 0 8px;} /*side columns*/
+.ycntmod .mbd {padding:5px;}
+
+        /*pagination*/
+.ycntmod .mft, .ycntmod .pagination {text-align:center; font-family:verdana;padding:5px 0;}
+.ycntmod .mft strong, .ycntmod .pagination strong {font-weight:normal;margin: 0 3px;}
+.ycntmod .mft a, .ycntmod .pagination a {margin: 0 3px;}
+
+        /*list*/
+.ycntmod .mbd ul.list {padding-left:5px;}
+.ycntmod .mbd ul.list li {background:url(http://tw.yimg.com/i/tw/blog/bullet.gif) left .6em no-repeat;padding-left:10px;margin-bottom:5px;_margin-bottom:3px;_line-height:1.3em;color:#666;}
+.ycntmod .mbd ul.list li a{margin-right:5px;}
+.ycntmod .mbd ul.list li.more {margin:10px 0 0 10px;text-align:right;background:url(http://tw.yimg.com/i/tw/blog/arrow_more.gif) 45px center no-repeat;}
+.ycntmod .mbd ul.list li.more a {margin:0;}
+
+span.prev {background:url(http://tw.yimg.com/i/tw/blog/arrow_page_prev.gif) left center no-repeat;padding-left:10px;}
+span.next {background:url(http://tw.yimg.com/i/tw/blog/arrow_page_next.gif) right center no-repeat;padding-right:10px;}
+
+/*shared float clear*/
+#yblogtitle .thd,#yblogtitle .tft,
+.yblogcnt .blgtitlebar,.yblogcnt .blgfolderbar, .yblogcnt .msgcontent,#yarticle .more, #yartsum .more, #yphtlist .more,
+.actbtns,.yvstrcmnt, .ycmntreply,#ysbscrblist .actionbar, #ycmntlist .actionbar,#yphtsingle .mhd{zoom:1;}
+#yblogtitle .thd:after,#yblogtitle .tft:after,.yblogcnt .blgtitlebar:after,.yblogcnt .blgfolderbar:after, .yblogcnt .msgcontent:after,
+#yarticle .more:after, #yartsum .more:after, #yphtlist .more:after,.actbtns:after,
+.yvstrcmnt:after, .ycmntreply:after,#ysbscrblist .actionbar:after, #ycmntlist .actionbar:after,#yphtsingle .mhd:after
+{content:".";height:0;visibility:hidden;display:block;clear:both;}
+
+/*M blog title*/
+#yblogtitle .mbd {background:#cfc;}
+#yblogtitle .thd, #yblogtitle .tft {zoom:1;}
+#yblogtitle .thd h1 {display:inline;font-size:120%;}
+#yblogtitle .thd, #yblogtitle .tbd {margin-bottom:5px;}
+#yblogtitle .tbd p {display:inline;line-height:1.5em;}
+#yblogtitle .tft {text-align:right;padding-bottom:5px;position:relative;}
+#yblogtitle .tft div {float:right;margin-left:5px;}
+
+div.edit, div.leavemsg{display:inline;margin-left:5px;}
+
+* html div.edit a{display:inline-block;background:url(http://tw.yimg.com/i/tw/blog/btn_edit.gif) left top no-repeat;width:13px;height:13px;overflow:hidden;_margin-bottom:-3px;}
+* html div.edit a span {display:block;font-size:0;padding-left:15px;}
+
+div.edit[class] a {background:url(http://tw.yimg.com/i/tw/blog/btn_edit.gif) left center no-repeat;padding-left:15px;}
+div.edit[class] a span{display:none;}
+
+
+#yblogtitle .tft div a span{display:none;}
+div.btncompose a{display:block;width:76px;height:22px;overflow:hidden;background:url(http://tw.yimg.com/i/tw/blog/btn_postblog.gif) no-repeat;}
+div.btnphoto a{display:block;width:76px;height:22px;overflow:hidden;background:url(http://tw.yimg.com/i/tw/blog/btn_ulimg.gif) no-repeat}
+div.btnsetup a{display:block;width:92px;height:22px;overflow:hidden;background:url(http://tw.yimg.com/i/tw/blog/yimg/btn_setupblog.gif) no-repeat}
+div#btnsbsrb a,div#btnsbsrb_nologin a{display:block;width:89px;height:22px;overflow:hidden;background:url(http://tw.yimg.com/i/tw/blog/btn_subscribe.gif) no-repeat;}
+
+#ypopsub {position:absolute;visibility:hidden;width:600px;height:auto;background:#fff;border:1px solid black;}
+#ypopsub iframe {display:none;}
+
+#ypopsub .popclose {text-align:right;margin-bottom:10px;background:#f3f3f3;}
+#ypopsub #closeme {line-height:1.8em;padding:5px;cursor:hand;cursor:pointer;}
+#yblgsubpop {width:95%;margin:0 10px;}
+#yblgsubpop .mhd{background:#B7EDF1;}
+#yblgsubpop .mhd h3{font-weight:bold;}
+#yblgsubpop .rcbd{padding:0 5px;border:1px solid #ccc;border-width:0 1px;}
+#yblgsubpop .mbd h3 {background:#DBF6F8;padding:5px 10px;}
+#yblgsubpop table, #yblgsubpop th,#yblgsubpop td {border:1px solid #e6e6e6;line-height:1.5em;}
+#yblgsubpop th {background:#f3f3f3;padding:5px;text-align:right;vertical-align:middle;}
+#yblgsubpop td {padding:5px;vertical-align:top;}
+input#blog_id,input#remark {width:300px;}
+#yblgsubpop b {padding-left:5px;color:#f00;font-weight:normal;}
+#yblgsubpop p {text-align:center;padding:10px 0;}
+
+.invisible .newcat {display:none;}
+.visible .newcat {display:block;}
+
+/*module profile*/
+#ymodprf .mbd {padding:0 0 5px 0;text-align:center;}
+#ymodprf #yprf {text-align:center;}
+#ymodprf #yprflg {margin:5px auto;}
+#ymodprf #yprfsm a img {display:inline;width:40px;margin:0 1px 5px;}
+#ymodprf .nickname {padding-bottom:5px;}
+#ymodprf .horos {padding-bottom:5px;}
+
+div.btnulprfphoto,  div.btneditprf {text-align:center; width:102px; margin:0 auto;}
+div.btnulprfphoto {margin-bottom:5px;}
+div.btnulprfphoto a {display:block;height:22px;background:url(http://tw.yimg.com/i/tw/blog/btn_profileimg.gif) center top no-repeat;}
+div.btneditprf a {display:block;height:22px;background:url(http://tw.yimg.com/i/tw/blog/btn_profile.gif) center top no-repeat;}
+div.btnulprfphoto a span, div.btneditprf a span {display:none;}
+
+/*module calendar*/
+#ymodcal .selyr{width:45%;float:left;padding:5px 0 0 3px;}
+#ymodcal .selmn{float:right;text-align:right;padding:5px 3px 0;}
+#ymodcal .mhd a {text-decoration:none;font-weight:bold;}
+#ymodcal .mhd span a{font-size:70%;font-weight:normal;}
+#ymodcal .mbd td strong{font-weight:bold;text-decoration:underline;}
+#ymodcal .mhd .text .selyr, #ymodcal .mhd .text .selmn {position:relative;}
+
+/*div.prevbtn, div.nextbtn {display:inline;}
+#ymodcal div.prevbtn a {background:url(http://tw.yimg.com/i/tw/blog/arrow_prev.gif) left center no-repeat;}
+#ymodcal div.nextbtn a {background:url(http://tw.yimg.com/i/tw/blog/arrow_next.gif) right center no-repeat;}*/
+
+#ymodcal .mbd {padding:5px 0;}
+#ymodcal table {font-size:88%;background:transparent;}
+#ymodcal th,#ymodcal td {text-align:center;}
+#ymodcal th {font-weight:bold;}
+#ymodcal form {xposition:relative;}
+
+/*module message board*/
+#ymodmsgbd .mhd h3{font-weight:normal;}
+
+/*module album*/
+#ymodalbm .mhd h3{font-weight:normal;}
+
+/*module rss feed*/
+/*#ymodrss,#rssfeed,#rssmyy {float:left;}*/
+#ymodrss .mhd{height:auto;}
+#ymodrss .mhd .text{padding:5px;}
+#ymodrss .mhd span {display:block;position:relative;margin-left:1px;margin-right:1px;}
+#ymodrss .mhd span a {display:block;text-indent:-5000px;background:none;}
+#rssmyy {zoom:1;padding:2;margin:0;width:62px;height:17px;background:url(http://tw.yimg.com/i/tw/my/cm/addtomyyahoo3.gif) left center no-repeat;overflow:hidden;text-decoration:none;float:left;}
+#rssfeed {zoom:1;padding:2;margin:0;width:28px;height:17px;background:url(http://tw.yimg.com/i/tw/blog/rss.gif) left center no-repeat;overflow:hidden;text-decoration:none;float:left;}
+#rssfaq {zoom:1;padding:2;margin:0;width:13px;height:17px;background:url(http://tw.yimg.com/i/tw/blog/rss_faq.gif) left center no-repeat;overflow:hidden;text-decoration:none;}
+
+/*module statistics*/
+#ymodstats li {line-height:1.5em;}
+
+/*module latest update*/
+#ymodupdate .mbd .date{background:url(http://tw.yimg.com/i/tw/blog/update_img.gif) left center no-repeat;padding-left:20px;font-size:86%;font-family:verdana; }
+
+/*blog profile page*/
+#ybloginfo .mhd h3{float:left;font-weight:bold;}
+#ybloginfo .reportbtns{float:right;margin:5px;}
+#ybloginfo .mbd{padding:5px 0;}
+table#bloginfo, table#usrinfo{border:1px solid #ccc;border-width:1px 0 0 1px;}
+table#bloginfo th, table#bloginfo td, table#usrinfo th, table#usrinfo td {border:1px solid #ccc; border-width:0 1px 1px 0;padding:10px;}
+table#bloginfo th {background:#f3f3f3;width:9em;}
+table#usrinfo th {text-align:right;background:#f3f3f3;width:5em;}
+
+#yusrinfo .mhd h3{font-weight:bold;}
+#yusrintro .mhd h3{font-weight:bold;}
+#yusrintro .mbd {border:1px solid #ccc;padding:0;}
+#yusrintro .mbd p {padding:5px;}
+
+/*article content module*/
+#yarticle .yblogcnt {zoom:1;border-bottom:1px dotted #ccc;padding:5px 0 10px 0;}
+.yblogcnt .blgtitlebar {margin-bottom:10px;zoom:1;}
+.yblogcnt .blgtitlebar h2 {font-size:126%;font-weight:bold;}
+.yblogcnt .blgtitlebar h2 a {padding-right:5px;}
+#yarticle .yblogcnt p{line-height:1.5em;padding-bottom:1em;}
+
+/*single article page */
+#ypartsingle #yarticle .yblogcnt {border-bottom:none;}
+
+/*manage buttons*/
+.yblogcnt .mngbtns {float:right;}
+.yblogcnt .mngbtns div {float:left;margin-left:5px;padding:0 5px;}
+.yblogcnt .mngbtns div a {color:#000;text-decoration:none;}
+.yblogcnt .mngbtns div a:hover {color:#f00;}
+
+div.btnblgedit,div.btnblgdel,div.btnblgreport {border:2px solid #999;border-color:#ccc #999 #999 #ccc;}
+div.btnblgedit {background:#e0e0c2;}
+div.btnblgdel, div.btnblgreport {background:#ffc4e1;}
+
+/*folder bar*/
+.yblogcnt .blgfolderbar {margin:20px 0 10px;zoom:1;}
+.yblogcnt .blgfolderbar .folder {float:left;}
+.yblogcnt .blgfolderbar .date {text-align:right;font:normal 80% verdana;margin-top:1px;}
+.yblogcnt .msgcontent b,.yblogcnt .msgcontent strong{font-weight:bold;}
+.yblogcnt .msgcontent {margin-bottom:5px;zoom:1;}
+.yblogcnt .msgcontent .artimg img{display:block; max-width:500px; margin-bottom:20px;}
+.yblogcnt .msgcontent .artthumb {float:left;margin: 0 5px 10px 0;}
+
+/*more*/
+#yarticle .more, #yartsum .more, #yphtlist .more {zoom:1;padding:5px 0;}
+#yarticle .more a , #yartsum .more a, #yphtlist .more a {float:right;padding-left:12px;background:url(http://tw.yimg.com/i/tw/blog/arrow_more.gif) left center no-repeat;}
+
+/*make coomment bar*/
+.actbtns {zoom:1;margin-bottom:5px;}
+.actbtns div {float:right;margin-left:5px;}
+.actbtns div span {display:none;}
+div.btncomment a {display:block;height:18px;width:68px;background:url(http://tw.yimg.com/i/tw/blog/reply_btn.gif) no-repeat;}
+div.btntrackback a {display:block;height:18px;width:68px;background:url(http://tw.yimg.com/i/tw/blog/btn_trackback.gif) no-repeat;}
+
+/*show comment bar*/
+.showcmnt {text-align:right;}
+.showcmnt span {padding-right:5px;border-right:1px solid #000;font-family:verdana; font-size:90%;
+        behavior:expression(
+                void(this.runtimeStyle.behavior="none") ||
+                void(   (this.parentNode.lastChild==this)? this.style.border="none" : void(0))
+        );
+}
+.showcmnt span:last-child {border:none;behavior:none;}
+.showcmnt span a {font-size:110%;padding:0 2px;}
+
+/*prev and next article*/
+.browsebtns {text-align:right; margin:10px 0;}
+.browsebtns span {margin-left:5px;font-size:120%;}
+span.prevart {background:url(http://tw.yimg.com/i/tw/blog/arrow_page_prev.gif) left center no-repeat;padding-left:10px;}
+span.nextart {background:url(http://tw.yimg.com/i/tw/blog/arrow_page_next.gif) right center no-repeat;padding-right:10px;}
+
+/*photo album table*/
+table.displayalbum {border-bottom:1px dotted #ccc;margin-bottom:5px;}
+table.displayalbum td {text-align:center;padding:8px 0;}
+table.displayalbum a img {display:block;margin:0 auto 5px auto;}
+
+/*joint blog broadcast*/
+#yjntlist .mbd {padding-top:0;}
+table.jointlist td {border-bottom:1px dotted #ccc;border-right:1px solid #ccc;padding:5px;width:50%;
+        behavior:expression(
+                void(this.runtimeStyle.behavior="none") ||
+                void((this.parentNode.lastChild==this)? this.style.borderRight="none" : void(0)) ||
+                void((this.parentNode.rowIndex==1)? this.style.borderBottom="none" : void(0))
+        );
+}
+table.jointlist tr+tr>td {border-bottom:none;behavior:none;}
+table.jointlist td+td {border-right:none;behavior:none;}
+#yjntlist h2 {font:bold 120% verdana;margin-bottom:5px;}
+#yjntlist .date {font:normal 90% verdana;text-align:right;margin-bottom:5px;}
+#yjntlist p {margin-bottom:5px;}
+#yjntlist .user {float:right;padding-left:15px;background:transparent url(http://tw.yimg.com/i/tw/blog/user.gif) left center no-repeat;}
+#yjntlist .noContent{margin:10px 0;}
+
+/* toggling */
+.toggle_item {overflow: hidden;}
+.toggle_item.visible .cmntbd {display: block; }
+.toggle_item.invisible .cmntbd {display: none; }
+.toggle_item.visible a.norgie {background: url(http://tw.yimg.com/i/tw/blog/norgie_close.gif) left center no-repeat;_background-position:left top; padding-left:15px;}
+.toggle_item.invisible a.norgie {background: url(http://tw.yimg.com/i/tw/blog/norgie_open.gif) left center no-repeat;_background-position:left top; padding-left:15px;}
+.toggle_item .hide {display: none; }
+
+.toggle_item .cmnthd {line-height:2em;border-bottom:1px dotted #ccc;}
+.toggle_item .cmnthd a {margin-right:2px;}
+
+/*comment list and trackback list*/
+.yvstrcmnt {padding:10px 0;zoom:1;border-bottom:1px dotted #ccc;}
+.yvstrcmnt .vstrthumb {float:left;padding-right:5px;}
+.yvstrcmnthd {font-family:verdana;margin-bottom:5px;}
+.yvstrcmnthd div{display:inline;}
+div.btncmntdel{float:right;background:#ffc4e1;border:2px solid #999;border-color:#ccc #999 #999 #ccc;margin-left:5px;padding:0 5px;}
+div.btncmntdel a{text-decoration:none;padding:0;_xposition:relative;_xtop:2px;}
+
+.yvstrcmnthd a,.yvstrcmnthd cite {font-style:normal;padding:0 2px;}
+
+.reportbtns span {zoom:1;xposition:relative;background:#ffc4e1;border:2px solid #999;border-top-color:#ccc;border-left-color:#ccc;margin-left:2px;padding:0 5px;}
+.reportbtns span a {text-decoration:none;_xposition:relative;_xtop:2px;_margin:2px 0 -2px 0;white-space:nowrap;}
+
+#yartcmt .yvstrcmntbd,#yarttrk .yvstrcmntbd {margin-left:45px;}
+div.btncmntre {float:right;border:2px solid #999;border-color:#ccc #999 #999 #ccc;background:#e0e0c2;padding:0 5px;}
+div.btncmntre a {text-decoration:none;padding:0;}
+
+.ycmntreply {margin-top:5px;padding:5px;border:1px solid #ccc;zoom:1;}
+
+
+/*M msgboard*/
+#ymsgboard .mhd q, #yarticle .mhd q{display:block;float:right;position:relative;padding:0 5px;margin-right:5px;background:#d4d0c8;border:2px solid #000; border-color: #fff #000 #000 #fff;font-size:120%;margin-top:5px;_margin-top:4px;}
+#ymsgboard .mhd q a, #yarticle .mhd q a{text-decoration:none;_position:relative;_top:2px;}
+
+.yvstrcmnthd .cmntmsginfo {float:right;width:42%;}
+.yvstrcmnthd .date {float:right;font-size:90%;padding:3px 5px 0 0;margin-left:5px;_font-size:86%;white-space:nowrap;}
+.cmntmsginfo img {float:right;margin-top:2px;}
+
+.yvstrcmntbd .vstrthumblg {float:left;margin:0 5px 5px 0;}
+#ymsgboard .ycmntreply,#ymngmsg .ycmntreply{margin-left:100px;clear:left;}
+
+/*M manage msgboard*/
+#ymngmsg .mhd q {display:block;position:relative;float:right;padding:6px 5px 0 0;_padding-top:5px;}
+#ymngmsg .mhd span a{text-decoration:none;_margin:2px 0 -2px 0;}
+span.btnmsgdel, span.btnmsgcnl {border:2px solid #999;border-color:#ccc #999 #999 #ccc;padding:0 5px;}
+span.btnmsgdel {background:#ffc4e1;}
+span.btnmsgcnl {background:#e0e0c2;}
+#ymngmsg .mbd {padding:0;}
+#ymngmsg .actionbar {text-align:right;background:#f3f3f3;padding:5px 0;height:1.8em;}
+#ymngmsg .actionbar span, #yphtgallery .makeselect span, #ysbscrblist .makeselect span {padding:0 5px;cursor:hand;cursor:pointer;text-decoration:underline; border-left:1px solid #000;
+        behavior:expression(
+                void(this.runtimeStyle.behavior="none") ||
+                void(   (this.parentNode.firstChild==this) ? this.style.border="none" : void(0) )
+        );
+}
+#ymngmsg .actionbar span:first-child, #yphtgallery .makeselect span:first-child, #ysbscrblist .makeselect span:first-child{border:none;}
+#ymngmsg .yvstrcmnt {padding:10px 5px;}
+#ymngmsg .btncmntre {margin-left:5px;}
+#ymngmsg .cmntmsginfo label {float:right;}
+
+/*M subscription list*/
+#ysbscrblist table#datatable th {text-align:center;}
+#ysbscrblist .mhd h3 {float:left;margin-right:10px;}
+#ysbscrblist .mhd select {float:left;margin-top:5px;}
+#ysbscrblist .mhd a.rss{float:right;margin:10px 10px 0;}
+#ysbscrblist .actionbar{zoom:1;position:relative;text-align:right;height:1.8em;padding:10px 0 5px 0;}
+#ysbscrblist .actionbar .makeselect, #yphtgallery .actionbar .makeselect {float:left;}
+#ysbscrblist .mbd .text,#yphtgallery .mbd .text{z-index:10;zoom:1;}
+#ysbscrblist .mft .text,#yphtgallery .mft .text{z-index:1;}
+
+
+        /*menubutton and others*/
+.menubutton {background:#e6e6e6 url(http://tw.yimg.com/i/tw/blog/downplain_1.gif) 100% 50% no-repeat;_background-position:95% 50%;      border:2px solid #999;border-top-color:#ccc;border-left-color:#ccc;margin-right:5px;}
+.menubutton button {border:none; background:transparent; padding-right:12px;_padding-right:6px;_position:relative;_top:2px;}
+span.delbtn, span.blbtn, span.replybtn {background:#ffc4e1;border:2px solid #999;border-top-color:#ccc;border-left-color:#ccc;}
+span.replybtn{background:#ccc;border-top-color:#EEE;border-left-color:#EEE;}
+span.delbtn button, span.blbtn button {border:none;background:transparent;_position:relative;_top:2px;cursor:pointer;cursor:hand;}
+span.replybtn button{border:none;background:transparent;cursor:pointer;cursor:hand;}
+        /*buttonmenu*/
+.buttonmenu {xfloat:left;border:1px solid #C1C1C1;width:150px;background:#f6f6f6;position:absolute;top:0;visibility:hidden;}
+.buttonmenu strong {display:none;}
+.buttonmenu ul{border:1px solid #666;padding:5px;}
+.buttonmenu li {display:block;width:auto;cursor:hand;cursor:pointer;padding:5px;}
+.buttonmenu li:hover,.buttonmenu li.hover{border:1px solid #c1c1c1;background:#e6e6e6;}
+
+table#datatable {margin:5px 0;_margin:10px 0;border:1px solid #ccc;border-width:1px 0 0 1px;}
+table#datatable th {text-align:left;background:#e6e6e6;padding:5px;border-right:1px solid #ccc; border-bottom:1px solid #ccc;}
+table#datatable td {vertical-align:top;text-align:left;padding:10px;border-right:1px solid #ccc; border-bottom:1px solid #ccc;}
+table#datatable .c1 {width:20px;}
+table#datatable .c2 {width:100px;}
+table#datatable .c4 {width:100px;}
+
+#ysbscrblist .user {padding-left:15px;background:transparent url(http://tw.yimg.com/i/tw/blog/user.gif) left center no-repeat;}
+
+/*comment list management
+#ycmntlist form {_position:relative;}
+*/
+#ycmntlist legend {display:none;}
+#ycmntlist .mbd{padding:5px 0;}
+#ycmntlist .listhd ul {font-size:120%;margin:10px 0 0 8px;}
+#ycmntlist .listhd li {display:inline;margin-right:2px;line-height:1.5em;}
+#ycmntlist .listhd li a {text-decoration:none;background:#efc;}
+#ycmntlist .listhd li strong,.listhd li a {padding:8px 10px 5px 10px;_padding-bottom:1px;border:1px solid #ccc;border-bottom:none;background:#fff;}
+#ycmntlist .listhd li strong {padding:9px 10px 3px 10px;_padding-bottom:1px;border-bottom:1px solid #fff;}
+
+.listbd {border:1px solid #ccc;background:#fff;}
+
+#ycmntlist .actionbar {padding:10px 5px;text-align:right;_position:relative;zoom:1;}
+#ycmntlist .takeaction {float:left;_padding:3px 0;}
+#ycmntlist .takeaction[class] {position:relative;top:2px;}
+#ycmntlist .takeaction span {margin-left:5px;}
+
+.actionbar em{font-style:normal;font-weight:bold;font-family:verdana; color:#f00;padding:0 2px;}
+
+#ycmntlist table#datatable{border-width:1px 0 0 0;margin:0;}
+#ycmntlist th, #ycmntlist td{behavior:expression(void(this.runtimeStyle.behavior="none") || void((this.parentNode.lastChild==this)? this.style.borderRight="none" : void(0))    );}
+#ycmntlist th+th+th+th, #ycmntlist td+td+td{border-right:none;behavior:none;}
+#ycmntlist th span{text-decoration:underline;cursor:pointer;cursor:hand;}
+#ycmntlist h4{font-size:122%;margin:0 0 5px 0;}
+#ycmntlist h4 a{text-decoration:none;}
+#ycmntlist h4 a:hover{text-decoration:underline;}
+#ycmntlist .private{background:url(../yimg/private_ico.gif) no-repeat; vertical-align:middle;padding:0 10px;display:-mozinline-block;display:-moz-inline-box;display:inline-block;height:1em;}
+#ycmntlist td .takeaction{float:none;text-align:right;padding:10px 0 0;}
+#ycmntlist .reply,#ymsgboard .reply{clear:both;display:block;background:#eee;margin:10px 0 0 20px;padding:10px;}
+
+
+/*photo gallery*/
+#yphtgallery .mhd q, #yphtsingle .mhd q {display:block;float:right;position:relative;padding:0 5px;margin-right:5px;background:#d4d0c8;border:2px solid #000; border-color: #fff #000 #000 #fff;font-size:120%;margin-top:5px;_margin-top:4px;}
+#yphtgallery .mhd q a, #yphtsingle .mhd q a {text-decoration:none;_position:relative;_top:2px;}
+#yphtgallery .mhd h3 {float:left;margin-right:10px;}
+#yphtgallery .mhd select {margin-top:5px;float:left;}
+#yphtgallery .mhd a.rss{float:right;margin:10px 10px 0;}
+#yphtgallery .mbd{padding:0;}
+#yphtgallery .actionbar {text-align:right;zoom:1;position:relative;height:1.8em;background:#f3f3f3;padding:10px 5px 5px 0;}/*zoom for drop down positioning*/
+#yphtgallery table#datatable,#yphtgallery table#datatable td {border:none;text-align:center;margin:0;}
+#yphtgallery table#datatable td img,#yphtgallery table#datatable td label{display:block;margin:0 auto;}
+#yphtgallery td input{width:100%;cursor:hand;cursor:pointer;}
+
+#yphtgallery .takeaction button, #yphtsingle .takeaction button, #ysbscrblist .takeaction button, #ycmntlist .actionbar button{cursor:hand;cursor:pointer;}
+span.pubbtn, span.editbtn {background:#e0e0c2;border:2px solid #999;border-top-color:#ccc;border-left-color:#ccc;}
+span.pubbtn button, span.editbtn button {border:none;background:transparent;_position:relative;_top:2px;}
+
+/*photo single*/
+#yphtsingle .mhd {zoom:1;}
+#yphtsingle .mbd {padding:5px 0;}
+#yphtsingle h2 {font-size:126%;}
+#yphtsingle h2 a {padding:0 5px;}
+#yphtsingle .date {text-align:right; padding-right:5px; font-family:verdana;}
+#yphtsingle .actionbar {text-align:right;padding:10px 5px 5px 0;position:relative;zoom:1;}
+#yphtsingle .phtcontent {text-align:center;margin:10px 0;}
+.phtcontent img {display:block;margin:0 auto 5px auto;}
+#yphtsingle .browsebtns {padding-right:5px;}
+#yphtsingle #yartcmt  {padding:0 5px;}
+
+/*photo slideshow*/
+#slideshow_ctnr {text-align:center;}
+#slideshow_img {margin: 10px auto 5px auto;}
+#slideshow_ctnr td{ font-size:80%;}
+#slideshow_ctnr button{font-size:11px;height:2.5em; width:3em;}
+
+#yphtsingle table {width:auto;}
+
+/*leave a message reply message */
+#yleavemsg .rcbtm,#yreplymsg .rcbtm{_position:relative;}
+#yleavemsg .mbd {padding:5px 0;}
+#yleavemsg legend {display:none;}
+#yleavemsg th, #yreplymsg th{vertical-align:top;background:#f3f3f3;width:6em;text-align:right;}
+#yleavemsg table, #yreplymsg table {border:1px solid #ccc;border-width:1px 0 0 1px;}
+#yleavemsg th,#yleavemsg td,#yreplymsg th,#yreplymsg td {border:1px solid #ccc; border-width:0 1px 1px 0;padding:10px;}
+#yleavemsg #post_public, #yleavemsg #post_hidden, #yreplymsg #post_public, #yreplymsg #post_hidden{margin-right:5px;}
+#yleavemsg .validate_img{display:block;}
+
+/*reply msg*/
+#yreplymsg .mbd {padding:0;}
+#yreplymsg .yvstrcmnt {border:1px solid #ccc;border-bottom:none;padding:10px 5px;}
+
+/*rte module*/
+#rtemodule {xbackground:#eee;margin:5px 0;padding-bottom:10px;}
+#rtemodule .privacy {padding:8px 10px;}
+#rtemodule .privacy input {_position:relative;}
+#ypost th{white-space:nowrap;}
+
+/*rteContainer*/
+.rteContainer{width:99.5%;border:1px solid #b3b3b3;margin-bottom:5px;}
+.rteContainer[class] {float:left;}
+#rteToolbar{float:left;width:99.8%;background:#d7d7d7 url(http://us.i1.yimg.com/us.yimg.com/i/us/cmty/toolbar_gradient.gif) repeat-x top;border-left:solid 1px #fff;border-top:solid 1px #fff;}
+#rteToolbar .btn, #rteToolbar .over,#rteToolbar .down,#rteToolbar .sep {display:block;float:left;}
+#rteToolbar .btn{padding:3px;}
+#rteToolbar .over{padding:2px; border:1px solid #fff; border-color:#fff #b3b3b3 #b3b3b3 #fff;}
+#rteToolbar .down{padding:2px;border:1px solid #fff;border-color:#b3b3b3 #fff #fff #b3b3b3;}
+#rteToolbar .sep{border:1px solid #fff;border-color:#bbb #fff #fff #bbb;height:20px;margin-top:3px;}
+#rteToolbar img {display:block;}
+#rteClrPlt,#rteSmiley,#rteFlush, #rteList {border:#737373 solid 1px;position:absolute;visibility:hidden;top:0;}
+#rteClrPlt {width:170px;height:168px;}
+#rteSmiley {width:120px;height:190px;}
+#rteFlush{background:#fff;width:110px;}
+#rteList {background:#fff;width:130px;}
+#rte{clear:both;width:100%;}
+#rteEdit{height:150px;width:99.5%;}
+#rteCnt{height:150px;width:100%;_width:98%;}
+#postrte #caption {margin-bottom:10px;vertical-align:middle;}
+#rteNote {text-align:right;float:right;line-height:1.5em;_position:relative;}
+#postrte .action{clear:both;text-align:center;}
+
+/*Added by Alex 2006.06 */
+/*hide heading text or content*/
+.hidecont{display:-mozinline-block;display:-moz-inline-box;display:inline-block;width:0;height:0;position:relative;overflow:hidden;font-size:0;text-indent:-5000px;line-height:0;*text-indent:0px;_background/**/:transparent;}
+/*Multi-column, self clear floated parent containers*/
+.multi-col{zoom:1;clear:both;}
+.multi-col:after{content:".";clear:both;display:block;height:0px;visibility:hidden;}
+
+/*Generic Image Button*/
+a.btn
+{
+        vertical-align:middle;
+        display:-mozinline-block;
+        display:-moz-inline-box;
+        display:inline-block;
+        width:89px;
+        height:22px;
+        position:relative;
+        overflow:hidden;
+        font-size:0;
+        text-indent:-5000px;
+
+        line-height:0;
+        margin:2px;
+        background:url(../yimg/button.gif) no-repeat;
+        cursor:pointer;
+        cursor:hand;
+        *text-indent:0px;
+
+        _background/**/:transparent;
+        _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=button.gif, sizingMethod='crop');
+
+}
+
+/*Search inside blog: cnt_searchin.html, mod_search_photo.html */
+#ysearchin .mhd h3 span{margin:0 5px;font-size:107%;}
+#ysearchin hr{border:0;border-top:1px dashed #CCC;height:0px;}
+#ysearchin .pricol{float:left;}
+#ysearchin .seccol{float:right;}
+#ysearchin .pricol em{font-size:122%;font-weight:bold;font-style:normal;margin:0 5px 0 0;}
+#ysearchin .pricol strong{color:red;font-weight:bold;}
+#ysearchin ul.list-photo{zoom:1;margin:5px 0 15px;}
+#ysearchin .list-photo li{float:left;text-align:center;width:24%;height:170px;margin:0;overflow:hidden;}
+#ysearchin .list-photo li.firstcol{clear:both;}
+#ysearchin .list-photo li h4{font-size:122%;margin:5px 0;}
+#ysearchin cite{display:block;clear:both;text-align:right;font-style:normal;}
+#ysearchin q{color:red;}
+#ysearchin .list-photo li.firstcol{clear:both;}
+
+#ysearchin dl.list-article{clear:both;margin:10px 0 0 10px;}
+#ysearchin .list-article dt .pricol{font-size:122%;}
+#ysearchin .list-article dt .seccol{font-size:85%;color:#666;padding:5px 0 0;}
+#ysearchin .list-article dd{margin:10px 0 10px 1em;}
+#ysearchin .list-article dd img{float:left;margin:0 10px 0 0;}
+#ysearchin .lock_art{background:url(../yimg/private_ico.gif) 100% 30% no-repeat;padding:0 15px 0 0;}
+#ysearchin .lock_photo{background:url(../yimg/private_ico.gif) 0 30% no-repeat;padding:0 0 0 15px;}
+#ysearchin b{color:red;font-weight:normal;}
+#ysearchin a b{color:red;text-decoration:underline;font-weight:normal;}
+
+#ymodsearch .textfield{width:80px;}
+#ymodsearch .submit{width:40px;}
+#ymodsearch label{font-size:85%;}
+
+#ymodlogin .textfield{width:80px;}
+#ymodlogin label{display:block;font-size:92%;padding:0 0 5px 0;}
+#ymodlogin label.submit{text-align:right;font-size:100%;}
+#ymodlogin input.submit{width:40px;}
+#ymodlogin ul{margin:10px 0;}
+#ymodlogin li{line-height:2em;font-size:92%;}
+
+.modlogo{margin-top:10px;}
+.modlogo img{vertical-align:middle;margin-right:5px;}
+.modlogo a,.modlogo a:link,.modlogo a:hover,.modlogo a:visited{text-decoration:none;font-weight:bold;color:black;font-size:92%;}
+
+/*Blast*/
+#yblast{zoom:1;position:relative;margin:-25px 0 0;}
+#yblast .text,#yblast .bg{overflow:hidden;padding:10px 30px;width:480px;height:35px;}
+#yblast .text{zoom:1;margin:-55px 0 0;}
+#yblast a.edit{background:url(http://tw.yimg.com/i/tw/blog/btn_edit.gif);width:13px;height:13px;}
+#yblast .bg1{background:url(../yimg/blast_bg1.gif) no-repeat;}
+#yblast .bg2{background:url(../yimg/blast_bg2.gif) no-repeat;}
+#yblast .bg3{background:url(../yimg/blast_bg3.gif) no-repeat;}
+#yblast .bg4{background:url(../yimg/blast_bg4.gif) no-repeat;}
+#yblast .bg5{background:url(../yimg/blast_bg5.gif) no-repeat;}
+#yblast .bg6{background:url(../yimg/blast_bg6.gif) no-repeat;}
+#yblast .bg7{background:url(../yimg/blast_bg6.gif) no-repeat;}
+
+/*pageing*/
+ul.paging {text-align:center;padding:10px 0 20px 0;}
+ul.paging li {display:inline;margin:0 3px 0;font-family:Arial, Helvetica, sans-serif;border:none;}
+ul.paging li a{background:none;}
+ul.paging li.prev a{font-size:114%;padding:0 10px 0 0;background:url(../yimg/paging_prev.gif) 100% 10% no-repeat;}
+ul.paging li.next a{font-size:114%;padding:0 0 0 10px;background:url(../yimg/paging_next.gif) 0 10% no-repeat;}
+
+/*Photo batch edit*/
+#yphotoeditb .photo_item{background:url(../yimg/dotted_h_mindex.gif) repeat-x;}
+#yphotoeditb .no1{background:none;}
+#yphotoeditb .photo{float:left;margin:5px 40px;}
+#yphotoeditb .textfield{width:200px;}
+#yphotoeditb ul{float:left;padding:15px 0 0;}
+#yphotoeditb li{margin:5px 0;}
+#yphotoeditb .actionbar{text-align:center;background:#EEE;padding:5px;margin:20px 0 0;}
+
+/*hide heading text or content*/
+.hidecont{display:-mozinline-block;display:-moz-inline-box;display:inline-block;width:0;height:0;position:relative;overflow:hidden;font-size:0;text-indent:-5000px;line-height:0;*text-indent:0px;_background/**/:transparent;}
+/*Show border for debug use*/
+.showborder{border:1px dotted red;}
+/*Multi-column, self clear floated parent containers*/
+.multi-col{zoom:1;clear:both;}
+.multi-col:after{content:".";clear:both;display:block;height:0px;visibility:hidden;}
+/*Generic Image Button*/
+a.btn
+{
+        vertical-align:middle;
+        display:-mozinline-block;
+        display:-moz-inline-box;
+        display:inline-block;
+        width:89px;
+        height:22px;
+        position:relative;
+        overflow:hidden;
+        font-size:0;
+        text-indent:-5000px;
+
+        line-height:0;
+        margin:2px;
+        background:url(../yimg/button.gif) no-repeat;
+        cursor:pointer;
+        cursor:hand;
+        *text-indent:0px;
+
+        _background/**/:transparent;
+        _filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src=button.gif, sizingMethod='crop');
+
+}
+
+/* info button */
+a.infobtn{background:url(http://tw.yimg.com/i/tw/blog/info.gif) left top no-repeat;width:15px;height:18px;}
+
+/* Reply message preview */
+#ypreviewmsg .yvstrcmnt{border-bottom:none;}
+
+/* RSS Feed Button */
+a.rss{width:28px;height:13px;background:url(http://tw.yimg.com/i/tw/blog/rss.gif) left top no-repeat;}
+
+/* Image Checker */
+.imagecheck .all_field{border:1px solid #e6e6e6;padding:5px;margin:10px 0 0;}
+.imagecheck .inputtext{display:block;margin:5px 0;}
+.imagecheck .textfield{width:7em;}
+.imagecheck .form_btn{ display:block; text-align:center; padding:20px 0 0;}
+
+.info_error{font-size:122%;color:red;font-weight:bold;padding:0 0 10px 25px;background:url(../yimg/icon_announce.gif) 5px 2px no-repeat;}
+
+/**/
+#foldermenu{z-index:10;position:absolute;}
+span.private_mesg{color:#FF6633;}
+.yvstrcmnt ol li,.msgcontent ol li{list-style:decimal;text-indent:2em;}
+.yvstrcmnt ul li,.msgcontent ul li{list-style:disc;text-indent:2em;}
+
+/*customization CSS*/
+
+/*Links*/
+a,a:link,a:visited{color:#4B97AD;}
+a:hover{color:#88D0E6;}
+
+/*Master header*/
+#yhtw_masthead{color:#666;background:#c5c5c5;}
+#yhtw_masthead a,#yhtw_masthead a:link,#yhtw_masthead a:visited,#yhtw_masthead a:hover{color:#fff;}
+
+/*Background*/
+body{background:#f6f6f6}
+
+/*Nav module header*/
+.yc3sec .mhd, .yc3subbd .mhd{background:#e3e3e3;color:#6A8F9A;}
+
+/*Nav module body*/
+.yc3sec .mbd, .yc3subbd .mbd, .yc3sec .mft, .yc3subbd .mft{background:#f6f6f6;color:#666;}
+
+/*Background color for main content header*/
+.yc3pribd .mhd{background:#cdcdcd;color:#333;}
+/*Background color for main content body*/
+.yc3pribd .mbd, .yc3pribd .mft, #yreplymsg table, #ysbscrblist table, #ybloginfo table, #yusrinfo table, #yusrintro p{background:#fff;color:#666}
+
+#calendar .bd td strong {color:#333;}
+
+/*Blog title*/
+#yblogtitle .mbd,#yblogtitle .mft{background-color:#A4A4A4;color:#666;}
+#yblogtitle h1{color:#333;}

@@ -1,0 +1,119 @@
+/*** social sharing***/
+#bigcontainer .wsharing{
+  width:160px;
+  _width:170px;
+  font-size:10pt;
+  position:relative;
+  text-align:left;
+  line-height:100%;
+  letter-spacing:0pt;
+  z-index:2;
+}
+#body_show #bigcontainer .wsharing{
+  margin:0px auto;
+}
+#bigcontainer .wsharing.bottom{
+  float:right;    
+  margin:40px 0px 0px 0px;
+}
+#bigcontainer .wsharing a{
+  color:#069;
+  letter-spacing:0pt;
+  background:none;
+}
+#bigcontainer .wsharing a:hover{
+  color:#f30;
+}
+#bigcontainer .wsharing .endrc{
+  width:20px;
+  height:25px;
+  background:url(http://l.yimg.com/f/i/tw/wretch/social/univshar_btn_175.gif) right top no-repeat;
+  display:block;
+  float:right;
+}
+#bigcontainer .wsharing .hd{
+  height:25px;
+  cursor:pointer;
+  padding:0px 0px 0px 0px;
+  background:url(http://l.yimg.com/f/i/tw/wretch/social/univshar_btn_175.gif) no-repeat;
+}
+#bigcontainer .wsharing .hd h5{
+  padding-left:10px;
+  background:none;
+  border:none;
+  font-weight:bold;
+  color:#023398;
+  margin:0px;
+  margin-top:4px;  
+  display:block;
+  font-size:12px;
+  float:left;
+  width:30px;
+}
+#bigcontainer .wsharing .shortcut a{
+  display:block;
+  margin-left:7px;
+  width:16px;
+  height:16px;
+  float:left;
+  text-indent:-5000px;
+  text-align:left;
+  overflow:hidden;
+  background:url(http://l.yimg.com/f/i/tw/wretch/social/univshar_ico.gif) no-repeat;
+  margin-top:4px;  
+}
+#bigcontainer .wsharing .bd{
+  width:175px;
+  position:absolute;
+  top:25px;
+  left:0px;
+  display:none;
+  text-align:left;
+}
+#body_show .wsharing .bd{
+  top:10px;
+  *top:25px;
+  *left:-40px;
+}
+#bigcontainer .wsharing .bd ul{
+  width:175px;
+  padding:6px 0;
+  background:url(http://l.yimg.com/f/i/tw/wretch/social/univshar_bg_175.gif) no-repeat;
+  height:145px;
+}
+#bigcontainer .wsharing .bd li{
+  margin:0 3px 0 3px;
+  padding:0 0 6px 18px;
+  list-style:none;
+  background:url(http://l.yimg.com/f/i/tw/wretch/social/univshar_ico.gif) no-repeat;
+  line-height:none;
+}
+#bigcontainer .wsharing li.plurk,
+#bigcontainer .wsharing a.plurk{
+  background-position:0 -26px;
+}
+
+#bigcontainer .wsharing li.yim,
+#bigcontainer .wsharing a.yim{
+  background-position:0 -156px;
+}
+/*
+
+.wsharing li.yahoo,
+.wsharing a.yahoo{
+  background-position:0 -52px;
+}
+.wsharing li.myshare,
+.wsharing a.myshare{
+  background-position:0 -78px;
+}
+.wsharing li.udn,
+.wsharing a.udn{
+  background-position:0 -104px;
+}
+.wsharing li.funp,
+.wsharing a.funp{
+  background-position:0 -130px;
+}
+
+*/

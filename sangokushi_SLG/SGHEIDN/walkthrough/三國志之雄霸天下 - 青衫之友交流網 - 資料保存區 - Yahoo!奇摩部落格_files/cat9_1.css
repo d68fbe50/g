@@ -1,0 +1,31 @@
+/*customization CSS*/
+
+/*Links*/
+a,a:link,a:visited{color:#4B97AD;}
+a:hover{color:#88D0E6;}
+
+/*Master header*/
+#yhtw_masthead{color:#666; background:#c5c5c5;filter:alpha(opacity=100); opacity:1; moz-opacity:1;}
+#yhtw_masthead a,#yhtw_masthead a:link,#yhtw_masthead a:visited,#yhtw_masthead a:hover{color:#fff;}
+
+/*Background*/
+body{ background:#f6f6f6}
+
+/*Nav module header*/
+.yc3sec .mhd, .yc3subbd .mhd, .yc3sec .mhd a, .yc3subbd .mhd a,.yc3sec .mhd a:link, .yc3subbd .mhd a:link,.yc3sec .mhd a:visited, .yc3subbd .mhd a:visited{ background:#e3e3e3; color:#6A8F9A;}
+
+.yc3sec .mhd a, .yc3subbd .mhd a,.yc3sec .mhd a:link, .yc3subbd .mhd a:link,.yc3sec .mhd a:visited, .yc3subbd .mhd a:visited{ background:none;}
+
+/*Nav module body*/
+.yc3sec .mbd, .yc3subbd .mbd, .yc3sec .mft, .yc3subbd .mft{ background:#f6f6f6; color:#666;}
+
+/*Main content header*/
+.yc3pribd .mhd{ background:#cdcdcd; color:#333;}
+/*Main content body*/
+.yc3pribd .mbd, .yc3pribd .mft, #yreplymsg table, #ysbscrblist table, #ybloginfo table, #yusrinfo table, #yusrintro p{ background:#fff; color:#666}
+
+#ymodcal .mbd td strong {color:#333;}
+
+/*Blog title*/
+#yblogtitle .mbd,#yblogtitle .mft{background-color:#A4A4A4; color:#666;}
+#yblogtitle h1{color:#333;}

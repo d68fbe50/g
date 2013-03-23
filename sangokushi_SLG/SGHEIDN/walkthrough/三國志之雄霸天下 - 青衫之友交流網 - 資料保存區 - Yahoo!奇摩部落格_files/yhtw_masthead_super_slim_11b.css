@@ -1,0 +1,45 @@
+/*masthead and mastfoot styles*/
+#yhtw_masthead{background:#9c9c9c; min-height:30px; _height:30px; font-family:"MingLiU","PMingLiU"; padding:0 10px; margin-bottom:20px;}
+#xyhtw_masthead{min-width:700px;
+behavior:expression(this.style.width=(document.documentElement.offsetWidth>700)?"auto":"700px");}
+
+#yhtw_masthead[id] {position:relative;*position:static;behavior:none;z-index:999;}
+#yhtw_masthead .mhlogo{height:30px;height/**/:auto;display:inline;float:left;}
+#yhtw_masthead .mhuser{height:30px;height/**/:auto;display:inline;border-left:solid 1px #dedede;padding:6px 0 4px 4px;float:left;}
+#yhtw_masthead .mhuser p{display:inline;}
+#yhtw_masthead .mhuser q{quotes:"" "";}
+#yhtw_masthead .mhuser div{display:inline;color:white;font-size:12px;}
+#yhtw_masthead .mhuser div a, #xyhtw_masthead .mhuser div b{color:white;}
+#yhtw_masthead .mhlogo img{border:solid 0px white;height:30px;vertical-align:middle;position:relative;}
+#yhtw_masthead .mhlogo a{text-decoration:none;font-weight:bold;color:white;}
+#yhtw_masthead .mhsch{float:right;position:relative;margin-top:7px;*z-index:999;}
+#yhtw_masthead .mhsch div{color:#fff;text-align:right;font-size:12px;width:22em;}
+#yhtw_masthead .mhsch a{color:#fff;margin:0 1px;}
+#yhtw_masthead .mhsch b{color:#fff;margin:0 1px;font-weight:normal;}
+#yhtw_masthead .masthead_function{font-size:12px;position:relative;}
+#yhtw_masthead .masthead_function strong{font-weight:normal;color:#fff;text-decoration:underline;cursor:pointer;cursor:hand;padding-bottom:5px;}
+#yhtw_masthead .masthead_function span {display:none;position:absolute;top:1em;left:0;text-align:left;background:white;border:solid 1px #dedede;}
+#yhtw_masthead span:hover.masthead_function span{display:block;}
+#yhtw_masthead .masthead_function span a{color:#0000bb !important;display:block;min-width:5.5em;padding:5px 4px 3px 4px;text-decoration:none;border-bottom:solid 1px #f0f0f0;}
+#yhtw_masthead .masthead_function span a:hover{background:#FFFFCC;text-decoration:underline;}
+	/*ie patch*/
+#yhtw_masthead .masthead_function span.block{display:block;}
+#yhtw_masthead .masthead_function{behavior:expression(void((window.ie_css_masthead_function_fix!=null) ? ie_css_masthead_function_fix(this):0	));}
+
+#yhtw_mastfoot{clear:both;border-top:1px solid #c7c7c7;color:#777;font-size:12px;font-family:"MingLiU","PMingLiU"; font-family/**/:/**/"Arial","MingLiU","PMingLiU";padding:5px 0;text-align:left;margin:0 auto;zoom:1;}
+#yhtw_mastfoot:after {content:".";display:block;height:0;visibility:hidden;clear:both;}
+#yhtw_mastfoot a{color:#0000bb}
+#yhtw_mastfoot a:hover{color:red;}
+#yhtw_mastfoot .cp{float:left;}
+#yhtw_mastfoot .ln{float:right;}
+#yhtw_mastfoot .ln a
+{
+	padding:0 0 0 5px;padding/**/:/**/0 1px 0 5px;border-left:1px solid #aaa;
+	behavior:expression(
+	this.runtimeStyle.behavior =  this.className =  (this.parentNode.all.tags(this.tagName)[0] == this)?"first-child":"null"
+	);
+}
+#yhtw_mastfoot .ln a:first-child{border-left:0;}
+#yhtw_mastfoot .ln a.first-child{border-left:0;}
+#yhtw_mastfoot .cb{clear:both;}
+#yhtw_mastfoot .other{clear:both;margin-top:1em;}
