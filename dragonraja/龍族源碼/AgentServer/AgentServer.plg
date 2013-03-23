@@ -1,0 +1,89 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AgentServer - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15.tmp" with contents
+[
+/nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/AgentServer.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\SRC\AgentServer\AgentServer.cpp"
+"D:\SRC\AgentServer\CUseMoney.cpp"
+"D:\SRC\AgentServer\DrServerManager.cpp"
+"D:\SRC\AgentServer\LocalizingMgr.cpp"
+"D:\SRC\AgentServer\main.cpp"
+"D:\SRC\AgentServer\monitor.cpp"
+"D:\SRC\AgentServer\mylog.cpp"
+"D:\SRC\AgentServer\packed.cpp"
+"D:\SRC\AgentServer\RecvMsgFromServer.cpp"
+"D:\SRC\AgentServer\RecvMsgFromUser.cpp"
+"D:\SRC\AgentServer\RMProc.cpp"
+"D:\SRC\AgentServer\ServerMonitor.cpp"
+"D:\SRC\AgentServer\servertable.cpp"
+"D:\SRC\AgentServer\ServerTable2.cpp"
+"D:\SRC\AgentServer\struct.cpp"
+"D:\SRC\AgentServer\usertable.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP15.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP16.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib Ws2_32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/AgentServer103p_040407.pdb" /map:"..\Exe\AgentServer103p_040407.map" /debug /machine:I386 /nodefaultlib:"libc.lib" /out:"..\Exe\AgentServer103p_040407.exe" /pdbtype:sept /MAPINFO:EXPORTS /MAPINFO:LINES 
+.\Debug\AgentServer.obj
+.\Debug\CUseMoney.obj
+.\Debug\DrServerManager.obj
+.\Debug\LocalizingMgr.obj
+.\Debug\main.obj
+.\Debug\monitor.obj
+.\Debug\mylog.obj
+.\Debug\packed.obj
+.\Debug\RecvMsgFromServer.obj
+.\Debug\RecvMsgFromUser.obj
+.\Debug\RMProc.obj
+.\Debug\ServerMonitor.obj
+.\Debug\servertable.obj
+.\Debug\ServerTable2.obj
+.\Debug\struct.obj
+.\Debug\usertable.obj
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP16.tmp"
+<h3>Output Window</h3>
+Compiling...
+AgentServer.cpp
+CUseMoney.cpp
+DrServerManager.cpp
+LocalizingMgr.cpp
+main.cpp
+d:\src\agentserver\main.cpp(68) : warning C4800: 'unsigned int' : forcing value to bool 'true' or 'false' (performance warning)
+monitor.cpp
+mylog.cpp
+packed.cpp
+RecvMsgFromServer.cpp
+RecvMsgFromUser.cpp
+RMProc.cpp
+ServerMonitor.cpp
+servertable.cpp
+d:\src\agentserver\servertable.cpp(1661) : warning C4101: 'szSendMsg' : unreferenced local variable
+d:\src\agentserver\servertable.cpp(1784) : warning C4101: 'sDummyExternalIP' : unreferenced local variable
+d:\src\agentserver\servertable.cpp(1787) : warning C4101: 'wDummyExternalPort' : unreferenced local variable
+d:\src\agentserver\servertable.cpp(1993) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+d:\src\agentserver\servertable.cpp(1998) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+d:\src\agentserver\servertable.cpp(2018) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+ServerTable2.cpp
+struct.cpp
+usertable.cpp
+d:\src\agentserver\usertable.cpp(505) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+d:\src\agentserver\usertable.cpp(519) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+d:\src\agentserver\usertable.cpp(531) : warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+Linking...
+LINK : LNK6006: program database D:\SRC\AgentServer\Debug\AgentServer103p_040407.pdb missing; performing full link
+nafxcwd.lib(nolib.obj) : warning LNK4098: defaultlib "nafxcw.lib" conflicts with use of other libs; use /NODEFAULTLIB:library
+
+
+
+<h3>Results</h3>
+AgentServer103p_040407.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

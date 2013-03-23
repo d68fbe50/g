@@ -1,0 +1,180 @@
+;@==================================@
+;@==================================@
+;@                                  @                        
+;@            Script Header         @                        
+;@                                  @                        
+;@==================================@
+;@==================================@ 
+
+; variable list (range: 0 - 800)  천상천제전 스크립트 데이타.
+
+variable ;===========================
+
+
+	yes						0
+	;						1 //예약..	sRECALL_SCRP_NO			
+	;						2  예약..	sRECALL_CURTIME			
+	;						3 예약..	sRECALL_AFTTIME			
+	RECALL_SCRIPT_COUNT     			4 ;예약..	sRECALL_SCRIPT_COUNT	
+	ran						5
+	m_nPcMoney					6 ; 플레이어가 가지고 있는 돈의 양..
+	m_NationCode					7 ; 특정 국가 코드
+
+	; 1008 CSB AddCode
+	KillDualCount					10 ; 타국의 듀얼을죽인 횟수
+	; CSB AddCode End
+
+	GhostLv					64; 고스트 등급(Max 4)
+	Qcount						65; 임무 완료수(Max 24)
+	iFlag					66	;플레그 초기값0으로 지정
+
+	
+
+end
+
+
+; function list (range: 0 - 100)
+function  ;==========================
+
+	D			s      	0	; 대화시작
+	Darea			s      	1	; 대화시작
+	Devery			s      	2	; 대화시작
+	AddItem			iii	3	; 맵상에 Item을 생성위치시킨다.(위치값:맵 절대 좌표 )
+	AddNpc			iii	4	; 맵상에 NPC를 생성위치시킨다.(위치값:맵 타일 좌표 )
+	MapName			s   	5	; 서버가 관여하는 Map의 이름..
+	MapMove			sii	6	; 이동할 서버의 IP, port ( ex: MapMove( 203,245,22,78, 6666 ) )
+	IsLevel			i	7
+	InitMonsterGen		iii	8	; InitMonsterGen( maptilex, maptiley, sprno ) 
+	CallSmallMenu		ii	9	; CallSmallMenu( storelist, smallmenu ) or CallSmallMenu(Type,1000+Menu_No)
+	WeatherOn		null	10	; 날씨에 관해 BroadCast한다. 
+	WeatherOff		null	11	; 날씨에 관해 BroadCast하지 않는다.  
+	RecallScrpStart		ii	12	; RecallScrpStart( count, delaytime( 1/100초단위 )
+	RecallScrpEnd		null 	13	; RecallScrpEnd()
+	MaxNPC			i	14	; 발생할수 있는 최대 NPC의 수를 정한다. 
+	LoadItemValueOneMaul 	i	15	; 마을의 각 아이템의 가격을 읽어들인다. 
+	random			ii	16	; 랜덤...
+	EventMsg		s	17	; 이벤트 관련 메시지 보내기
+
+	IsItemHavePC		ii	18	; lhs 이벤트 관련 아이템가지고 있는지 체크하기 장비창에서만 가능(장비번호,장비위치번호)
+						;#define WT_WEAPON					0
+						;#define WT_SHIELD					1
+						;#define WT_HELMET					2
+						;#define WT_ARMOR					3
+						;#define WT_NECK					4
+						;#define WT_SHOES					5
+						;#define WT_UNIQUE1					6
+						;#define WT_UNIQUE2					7
+						;#define WT_POTION					8
+
+	IsClassPC		i	19	; lhs 이벤트 관련 클래스 체크하기
+	SetQuestNumStep		ii	20	; lhs 이벤트 관련 퀘스트 N번째를 M값으로 셋팅
+	CmpQuestNumStep		ii	21	; lhs 이벤트 관련 퀘스트 N번째를 M까지 진행하였는가? 2는 M보다큰값 1은 M과 같은값 0은 M보다 작은값
+	QuestComplete		i	22	; lhs 이벤트 완수...(290 은 축포입니다.)
+	QuestTeleport		iii	23	; lhs 이벤트 같은 맵에서 텔레포트하기 
+	IsJobPC			i	24	; lhs 이벤트 관련 직업을 선택하였는가?	
+	IsInvHavePC		i	25	; lhs 인벤토리,장착,퀵창에 해당아이템이 있는가?
+	SetItemInvPC		iii	26	; lhs 인벤토리에 아이템 넣어주기 및 아이템 교체 시키기(바꿀아이템,추가될 아이템,듀레이션)
+	IsSkillHavePC		i	27	; lhs 해당번호 스킬이 있는가
+	SetSkillPC		ii	28	; lhs 스킬추가
+
+	QuestSound		i	29	; lhs 퀘스트용 사운드
+						;CCD_START_QUEST						15000	
+						;CCD_END_QUEST							15001
+						;CCD_QUEST_SALUTE  	   				        15002	
+						;CCD_QUEST_GETSKILL						15003
+						;CCD_QUEST_GETITEM						15004
+						;CCD_QUEST_MONSTER						15005
+						;CCD_START_QUEST_BBS						15006
+						;CCD_END_QUEST_BBS						15007
+						;CCD_COMPLETE_QUEST						15008		
+
+
+	AddFightMap		i	30	; YGI 전투맵 팀 등록
+	IsStartFightMap		null	31	; YGI 전투맵 시작 판단
+	IsFullFightMapTeam	i	32	; YGI 전투맵에서 팀원이 꽉 찼는지 아닌지 판단
+	DeleteFightMap		null	33	; YGI 전투맵에서 팀 해제
+	CheckNation		i	34	; LHS 국가코드 확인 3=바이서스 4=자이펀
+
+	ReturnSealStoneBreakable	null	35	;KHS sYes==1 전투가능 sYes==0 전투불가
+	MessageBox		s	36	; YGI 클라이언트에 메시지 박스 띄우기
+	SendSound		ii	37	; YGI 특정 사운드 출력하기 type 0: 자기 자신 1: 주변사람까지, 2:맵, 3:국가, 4:ALL
+	GenMonSpec		null	38	; 과장님 예비
+	GetGender		null	39	; 캐릭터 성별 알아오기
+	SaveItemAtDb		i	40	; 특정 아이템 특정 디비에 저장하기
+	CheckMoney		i	41	; 돈을 알아본다. 특정 값보다 많으면 yes = 1, 같으면 yes = 0, 적으면 yes = -1
+	SubtractMoney		i	42	; 적당량의 돈을 뺀다.	
+	GetGuild		null	43	; 길드 번호를 가져온다.
+	SendEffect		ii	44	; effect 보여주기 타입 0 : 자기 자신만, 1: 주변사람
+	CallMenu		i	45	; 클라이언트에 define된 번호로 메뉴를 호출한다. 
+	GetNationByMap		s	46	; 특정 맵의 국가 코드를 가져온다. 값은 m_NationCode에 들어가게 된다. 3:바이서스, 4:자이펀, 6:일스
+	CalcFriendShip		ii	47	; 특정 국가에 대한 적대감을 가감한다. (인자는 국가코드, +- 적대수치 )
+	CompFriendShip		ii	48	; 특정 국가에 대한 적대감 비교를 한다. (인자는 국가코드, 비교 적대감 ) 리턴값은 적대감이 더 클경우 yes = 1, 같을 경우 = 0, 더 적을 경우 -1, 국가 코드 잘 못 넣었을 경우
+	CompLadderScore		i	49	; 특정 캐릭터의 래더 점수를 비교한다. ( 래더 점수가 더 크면 양의 수가 나오고 같으면 0, 적으면 - 값이 나온다, 즉, yes := ch->ladderscore - input_score 이다.
+
+
+ 	CheckLoadingPoint      	null    50      ; 국가전 부대 로딩포인트
+	CheckDefence		null	51	; 국가전 전쟁터 방어국 판단
+        FameDown		i	52	; 캐릭터의 페임을 주어진 만큼 감소시킨다.
+	FameUp			i	53	; 캐릭터의 페임을 주어진만큼 증가시킨다.
+	FameCheck		i	54	; 캐릭터의 페임과 주어진 값을 비교해서 주어진값보다 크면 1, 작으면 0을 반환 
+	CanGoBonus		null	55	; 국가전 전쟁터의 비밀지역에 들어갈 수 있는지 확인
+
+	sGetLevel		null	56	; 특정 캐릭터의 레벨 수치를 가져온다.
+	sGetClass		null	57	; 특정 캐릭터의 클래스 번호를 가져온다.
+	sGetAbil		i	58	; 특정 캐릭터의 특정 어빌리티 수치를 가져온다.
+	sCheckParty		s	59	; 특정 유저가 동료로 있는지 확인
+	sGetNat			null	60	; 특정 유저의 국가 번호 반환
+	sGetSpell		null	61	; 특정 유저의 마법 계열을 가져온다 위자드 = 0, 프리스트 = 1
+
+	sCheckPartyCount	null	62	; 현재 파티를 맺은 동료의 수를 얻어옴
+	sCheckLastMagic		null	63	; 유저가 마지막으로 사용한 마법 번호를 얻어옴
+	sSetTimer		iiiis	64	; 타이머용 아직 사용안함
+	sGetTactic		i	65	; 특정 택틱의 수치를 얻어옴
+	sCheckTacticPoint	ii	66	; 전체 택틱중 체크 i1 = 0:작은지/1:같은지/2:큰지  |  i2 = 택틱 포인트
+	sIsDual			null	67	; 듀얼인지 아닌지 체크 듀얼 아님 = 0 / 듀얼임  = 1 (yes 변수에 저장)
+	sStopTimer		null	68	; 타이머 종료
+	sCallCustomSmallMenu	iiiii	69	; 커스텀 스몰 메뉴
+	sSetRareItemInvPc	iiiii	70	;레어 아이템 인벤토리에 넣기(아이템 번호,레어 등급 Min 값,레어 등급 Max 값, 레어 속성 수,내구도) 등급 Min(10)~Max(10), 레어 속성 max(2), 내구도(0) 아이템의 기본 값
+
+	; CSB AddCode End
+
+	LocalWarMode		null	71	; 전쟁모드 켠사람 안켠사람
+	FameCheck2		ii	72	; 가상명성치, 실제명성치의 계산
+	FameUp2			ii	73	;
+	FameDown2		ii	74	;
+	LocalWarPointUp		ii	75	; 국지전 점수 변경
+	LocalWarPointDown	ii	76	;
+	CheckEventLocalWarStatus	null	77	; 이벤트 국지전의 상태를 얻어온다
+	CheckEventLocalWarStep	null	78	; 이벤트 국지전의 스텝(이벤트 번호)를 가져온다
+	CheckEventJoin		i	79	; 주어진 이벤트 번호에의해 이벤트에 참여했는지를 확인 , 리턴값 0: 참여안함, 1: 참여함
+	ClearEventJoin		i	80	; 주어진 이벤트 번호를 클리어 한다 리턴값: 없음	
+	SetOXSelect		i	81	; 100 = O, 200 = X
+
+	GotoGuildHouse		null	82	
+	IsMyGuildHouse		i	83	; i ( 이벤트 번호 )
+	CheckAllSealStoneBroked	i	84	; 해당맵의 결계석이 다깨졌는지 확인 리턴값 0: 아직남아있음 1: 다깨졌음
+	SetFame			i	85	; 페임 절대수치 세팅
+	CheckQuestMode		null	86	; 퀘스트모드 or 스크립트 모드 를 리턴값 yes로 저장, ( 0=스크립트 모드, 1=퀘스트 모드)
+	MoveDungeon		sii	87	; 던전 이동 (리턴값없음)
+	DualCheck		i	88	; 듀얼 등급 체크 i=듀얼등급 (결과 1: 0  0: X)
+	
+	ResetCombatSkill	null	89	; 전투스킬 초기화, 전투스킬초기화
+	SpellMapMove		ssii	90	; 주문으로 맵이동, (주문,맵이름,맵좌표x,맵좌표y), yes=0 실패, yes=1성공
+	ShowStateMessage	siii	91	; 색에 맞는 글자를 보여준다. (메시지, R,G,B )	
+	CheckItemMulti		ii		92 	; 다수의 아이템 확인 (아이템번호, 갯수)  yes값 작다 =0, 같다 =1, 크다 =2
+	DeleteItemMulti		ii		93	; 다수의 아이템 삭제 (아이템번호, 갯수)  yes값 실패 =0, 성공 =1
+	ScriptTimer			isii	94	; 타이머를 설정하여 타이머가 끝이 나면 강제 맵이동한다.(타이머 설정 시간, 맵파일명,x,y) //설정 시간이 0이면 타이머 해제
+	ScriptCounter		iiii	95	; 카운터가 발동되고 끝나면 Complete라고 뜬다 (번호, 종류, 갯수, 플레그) 종류: 0=ncp,1=아이템,2=안정해따. 플러그: 0=멈춤,1=시작,2=갯수랑 일치? 0=실패, 1=성공
+	UpRareInEquip		iiiii	96	; 장착노말아이템을 레어로 올려 인벤토리에 올린다. (위치, 멀티, min, max, isHigh ) yes 0=실패 1=성공 2=노말아템이아니다, 인벤에 자리없다.
+									; IsItemHavePC에 위치정보 나온다.
+	BossTimerCheck		iiiiii	97	; 보스방으로 들어간다. (npc번호,x,y, 인원제한, 타이머시간, 제약시간) yes 0=인원초과, 1=제약시간안에 있다. 그외= 현재 타이머의 시간	
+	NationBelong		null	98	; 설원전쟁터에서 전쟁참가국가를 리턴한다 ( 1:바이서스,2:자이펀)
+	IsGetMagic			i	99	; 마법을  배웠으면 1, 아니면 0 
+	DualClassCheck		ii	100 ; 선행클래스 후행 클래스 선행클래스가 5이상이면 선행클래스는 무시한다. 0.전사 1,도둑 2. 궁 수 3. 마법사 4.  성직자
+	UpDualClassItem		i	101	;Flag 0: 현재상태.... 1: 업데이트..... 두얼아이템이 없는 사림은 주고 있는 사람은 단계를 올린다. syes값은 현재 유저의 상태를 말함
+	ShowLearnDualMagic	null	102	;현재캐릭터가 배울수 있는 듀얼마법배우는 책이 화면에 표시된다.
+	LogDualQuest		iisi	103	;듀얼퀘스트에 관한 로그를 출력한다. 
+						;로그위치 "./changelog/DualQuestLog.txt"로그내용 [chName=%s, QuestNum=%d, Qcount=%d, Msg=%s, Start=%d]
+end
+
+

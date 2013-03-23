@@ -1,0 +1,107 @@
+;HUN TEST SCRIPT HEADER
+
+variable
+
+yes					0		; 스크립트 처리 결과를 리턴할 저장용 변수
+
+talknpc					100		; npc 와의 대화 모드
+killnpc					101		; npc 사냥 모드
+buyitem					102		; 아이템 구매
+selitem					103		; 아이템 판매
+hupitem					104		; 아이템 줍기
+hdnitem					105		; 아이템 버리기
+useitem					106		; 아이템 사용하기
+login					107		; 게임 로그인
+buyboxitem				108		; 박스 아이템 구매
+selboxitem				109		; 박스 아이템 판매
+talknpcmenu				110		; npc 가 메뉴 형태로 질문한것에 대한 답변
+enterbuild				111		; 건물 들어가기
+exitbuild				112		; 건물 나가기
+
+talkno					200		; npc 의 질문에 대한 답변 No
+talkyes					201		; 	"	"	  Yes
+talkquestion				202		; npc 에게 질문하기
+talknext				203		; npc 에게 다음 대사 요청하기
+talkclose				204		; npc 에게 대화 종료 알리기
+
+ran					205		;Added by Finito
+Qcount					206		;Added by Finito
+GhostLv					64		;Added by Finito
+KillDualCount				208		;Added by Finito
+RECALL_SCRIPT_COUNT			4		;added by Finito
+iFlag					210		;Added by Finito
+
+end
+
+function
+	D				s	0	;Added by Finito
+	MapName				s	5	;Added by Finito	
+	MapMove				sii	6	;Added by Finito
+	IsLevel				i	7	;Added by Finito
+	
+	CallSmallMenu			ii	9	;Added by Finito
+	RecallScrpStart			ii	12	;Added by Finito
+	RecallScrpEnd			null	13	;Added by Finito	
+	random				i	16	;Added by Finito
+	EventMsg			s	17	;Added by Finito
+	IsItemHavePC			ii	18	;Added by Finito
+	IsClassPC			i	19	;Added by Finito
+	SetQuestNumStep			ii	20	;Added by Finito
+	CmpQuestNumStep			ii	21	;Added by Finito
+	QuestTeleport			iii	23	;Added by Finito
+	IsJobPC				i	24	;Added by Finito
+	IsInvHavePC			i	25	;Added by Finito
+	SetItemInvPC			iii	26	;Added by Finito
+	QuestSound			i	29	;Added by Finito
+	IsPlayArenaGame			i	31	;Added by Finito
+	CheckNation			i	34	;Added by Finito
+	MessageBox			s	36	;Added by Finito
+	SendSound			ii	37	;Added by Finito
+	GetGuild			null	43	;Added by Finito
+	CallMenu			i	45	;Added by Finito
+	CompFriendShip			ii	48	;Added by Finito
+	CompLadderScore			i	49	;Added by Finito
+	CheckDefence			null	51	;Added by Finito
+	FameDown			i	52	;Added by Finito
+	FameUp				i	53	;Added by Finito
+	FameCheck			i	54	;Added by Finito
+	CanGoBonus			null	55	;Added by Finito
+	sGetLevel			null	56	;Added by Finito
+	sGetClass			null	57	;Added by Finito
+	sGetAbil			i	58	;Added by Finito
+	sGetNat				null	60	;Added by Finito
+	sGetSpell			null	61	;Added by Finito
+	sGetTactic			i	65	;Added by Finito
+	sCheckTacticPoint		ii	66	;Added by Finito
+	sIsDual				null	67	;Added by Finito
+	sCallCustomSmallMenu		iiiii	69	;Added by Finito
+	sSetRareItemInvPc		iiiii	70	;Added by Finito
+	LocalWarMode			null	71	;Added by Finito
+	FameUp2				ii	73	;Added by Finito
+	FameDown2			ii	74	;Added by Finito
+	CheckEventLocalWarStatus	null	77	;Added by Finito
+	SetOXSelect			i	81	;Added by Finito
+	GotoGuildHouse			null	82	;Added by Finito
+	IsMyGuildHouse			i	83	;Added by Finito
+	CheckAllSealStoneBroked		i	84	;Added by Finito
+	CheckQuestMode			null	86	;Added by Finito
+	MoveDungeon			sii	87	;Added by Finito
+	DualCheck			i	88	;Added by Finito
+	ResetCombatSkill		null	89	;Added by Finito
+	SpellMapMove			ssii	90	;Added by Finito
+	CheckItemMulti			ii	92	;Added by Finito
+	DeleteItemMulti			ii	93	;Added by Finito
+	ScriptTimer			isii	94	;Added by Finito
+	ScriptCounter			iiii	95	;Added by Finito
+	UpRareInEquip			iiiii   96	;Added by Finito
+	BossTimerCheck			iiiiiii 97	;Added by Finito
+	NationBelong			null	98	;Added by Finito
+	DualClassCheck			ii	100	;Added by Finito
+	UpDualClassItem			i	101	;Added by Finito
+	ShowLearnDualMagic		null	102	;Added by Finito
+	LogDualQuest			iisi	103	;Added by Finito
+	LogForScript			is	104	;Added by Finito
+	GetItemMallItem			null	108	;Added by Finito
+	MaxNPC				i	109	;Added by Finito
+end
+

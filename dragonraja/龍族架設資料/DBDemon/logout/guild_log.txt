@@ -1,0 +1,39 @@
+###################################################################################################
+character name [る痆件DRGM] - guild_name [档るほ緔]
+<2009-09-22 21:34:23> : [REGIST success] guild_type:TEMP, guild_code:2 (success)
+###################################################################################################
+[GUILD DELETE]
+<2009-09-22 21:50:23> type:Delete because over 20 day , guild_code:1 
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2009-09-22 21:50:23> : [REGIST success] guild_type:REGULAR, guild_code:2 (success)
+###################################################################################################
+character name [る痆件DRGM] - guild_name [档るほ緔]
+<2009-12-06 15:36:13> : [REGIST success] guild_type:TEMP, guild_code:1 (success)
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2009-12-06 15:50:13> : [REGIST success] guild_type:REGULAR, guild_code:1 (success)
+###################################################################################################
+character name [る痆件DRGM] - guild_name [冠るほ挂]
+<2009-12-25 19:58:12> : [REGIST success] guild_type:TEMP, guild_code:1 (success)
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2009-12-25 20:03:12> : [REGIST success] guild_type:REGULAR, guild_code:1 (success)
+###################################################################################################
+character name [る痆件DRGM] - guild_name [冠るほ甐]
+<2009-12-31 08:42:28> : [REGIST success] guild_type:TEMP, guild_code:1 (success)
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2009-12-31 08:47:28> : [REGIST success] guild_type:REGULAR, guild_code:1 (success)
+###################################################################################################
+character name [る痆件DRGM] - guild_name [痆件冠]
+<2010-01-09 17:09:44> : [REGIST success] guild_type:TEMP, guild_code:1 (success)
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2010-01-09 17:09:44> : [REGIST success] guild_type:REGULAR, guild_code:1 (success)
+###################################################################################################
+character name [る痆件DRGM] - guild_name [痆件冠]
+<2010-03-06 12:48:00> : [REGIST success] guild_type:TEMP, guild_code:1 (success)
+###################################################################################################
+character name [UNKNOWN] - guild_name [UNKNOWN]
+<2010-03-06 12:51:00> : [REGIST success] guild_type:REGULAR, guild_code:1 (success)

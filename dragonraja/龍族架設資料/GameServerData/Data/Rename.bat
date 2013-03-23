@@ -1,0 +1,15 @@
+copy 대장간.txt		BLACKSMITH.txt	
+copy 농장.txt		FARM.txt		
+copy 요리점.txt		RESTAURANT.txt	
+copy 약초점.txt		HERBSHOP.txt	
+copy 푸줏간.txt		SHAMBLES.txt	
+copy 양초점.txt		CANDLE.txt		
+copy 의상실.txt		SLOPSHOP.txt	
+copy 연금소.txt		ALCHEMY.txt		
+copy 목공소.txt		WOODWORKING.txt	
+copy 활과화살.txt	BOWCRAFT.txt	
+copy 조선소.txt		SHIPYARD.txt	
+copy 주점.txt		PUB.txt			
+copy 잡화상.txt		STORE.txt		
+copy 마법사.txt		MAGIC_GUILD.txt	
+copy 욕설필터.txt	badword.txt

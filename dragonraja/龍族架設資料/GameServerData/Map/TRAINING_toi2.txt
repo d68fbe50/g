@@ -1,0 +1,2 @@
+# 0:NO Animation  1:왕복  2:반복  3:문열림   4:문열림상태   5:문닫힘   6:문닫힌상태
+# 집을수있다 AnimationType Type   Dir  찍는방법 찍는순서 그림자 Light  Lightxy            DontBox            총그림수		

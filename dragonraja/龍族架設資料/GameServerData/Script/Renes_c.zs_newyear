@@ -1,0 +1,1389 @@
+
+@sys00 ; 처음 서버 Setting하는 함수.
+
+        MaxNPC( 50 )
+        
+        MapName( "Renes_c" )
+        
+end    
+
+
+@sys01 
+end
+@sys02 
+end
+@sys03 
+end
+@sys04 
+end
+@sys05 
+end
+@sys06 
+end
+@sys07 
+end
+@sys08 
+end
+@sys09 
+end
+
+
+
+@Npc00000    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;경비 대원들  
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D("누군가 당신에게 해를 끼친다면 우리에게 신고 하시오.")
+        }
+        if( ran == 1 )
+        {
+        D("레너스시는 너무 넓어서 치안이 힘들죠.")
+        }
+end
+
+@Npc00001
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+
+; 마을회관
+        random( 0, 3 );
+        if( ran == 0 )
+        {
+        D("부귀와 영화의 도시 레너스에 온 것을 환영하오.")
+        }
+        if( ran == 1 )
+        {
+        D("이제 레너스시는 우리 자이펀의 도시야...")
+        }
+        if( ran == 2 )
+        {
+        D("우리 시는 정말로 재정이 튼튼했는데, 지금은 전쟁때문에 군비로 다나가버려...")
+        }
+        CallSmallMenu( 0, 29 ); 마을회관
+end
+
+@Npc00002    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 점성술사
+        random( 0, 3 );
+        if( ran == 0 )
+        {
+        D( "세상에는 보이지 않는 힘이 존재하는데 이를 마나라고 부르지...  " );
+        }
+        if( ran == 1 )
+        {
+        D("마법사의 마법을 배울수 있는 사람은 여기서 마법을 배워야 한다오.")
+        }
+        if( ran == 2 )
+        {
+        D("당신은 마법사의 자질이 보이는 군요.")
+        }
+        CallSmallMenu( 0, 71 ) ; 마법사 길드 , 마법책 인터터페이스 
+end
+
+@Npc00003    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 레티신전
+        D( "당신은 지금 레티 신전에 오셨습니다. 예배에 참석하면 신앙심이 많이 올라갈꺼요." );
+        CallSmallMenu( 0, 75 ); 레티신전
+end
+
+@Npc00004    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 대장간
+        random(0,3)
+        if( ran == 0 )
+        {
+        D( "돈만준다면  철을 이용해서 만들수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+        }
+        if( ran == 1 )
+        {
+        D( "철광석을 얻기 위해서는 곡괭이와 mining 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지.")
+        }
+        if( ran == 2 )
+        {
+        D( "자이펀 군대가 이 곳에 오면서, 우리 대장장이들은 더 바빠졌어.. 또 전쟁을 할 건가봐...")  
+        }
+        CallSmallMenu( 0, 18 ); 대장간
+                
+end
+@Npc00005    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;연금술소
+        random(0,4)
+        if(ran == 0)
+        {
+        D(" 어떤 미친 연금술사는 철로 금을 만들려고 시도했어다더군...  히히히히 그게 바로 나야.")
+        }
+        if(ran == 1)
+        {
+        D(" 포션의 재료는 약초라구. 약초만 있으면 포션을 얼마든지 만들수 있지.")
+        }
+        if(ran == 2)
+        {
+        D(" make Potion 기술은 누구든지 부자로 만들어 주지.")
+        }       
+        if(ran == 3)
+        {
+        D("후세사람들에게 말해주게. 세상은 4가지 원소로 이루어져 있지...")
+        }       
+        CallSmallMenu( 0, 25 ) ; 연금술소
+end
+
+@Npc00006    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 무기점
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "난 대장장이라오. 요즘은 전쟁중이라 무기를 많이 만들어야 한다네..." );
+        }
+        if( ran == 1 )
+        {
+        D( "얼마전 까지 대장장이 하던차라 여러물건을 보실수 있을거요." );
+        }
+        CallSmallMenu( 0, 18 ); 대장간
+end
+
+@Npc00007    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 무기점
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "난 대장장이 그랜드 마스터요 그래서 이세상 무기는 다만들 수 있거든 한번볼텐가?" );
+        }
+        if( ran == 1 )
+        {
+        D( "군대에 보급할 무기들이 엄청나.. 대규모의 전쟁이 있으려나?" );
+        }
+        CallSmallMenu( 0, 18 ); 대장간
+end
+
+@Npc00008   
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 점성술사
+        random( 0, 3 );
+        if( ran == 0 )
+        {
+        D( "세상에는 보이지 않는 힘이 존재하는데, 이를 마나라고 부르지...  " );
+        }
+        if( ran == 1 )
+        {
+        D("마법사의 마법을 배울수 있는 사람은 여기서 마법을 배워야 한다오.")
+        }
+        if( ran == 2 )
+        {
+        D("자이펀이 이곳을 점령했는데, 그럼 바이서스가 가만히 있지 않겠군....")
+        }
+        CallSmallMenu( 0, 71 ) ; 마법사 길드 , 마법책 인터터페이스 
+end
+
+@Npc00009    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 대장간
+        random(0,3)
+        if( ran == 0 )
+        {
+        D( "돈만준다면  철을 이용해서 만들수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+        }
+        if( ran == 1 )
+        {
+        D( "철광석을 얻기 위해서는 곡괭이와 mining 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지.")
+        }
+        if( ran == 2 )
+        {
+        D( "요즘 전쟁준비가 한창이야... 자이펀 군대는 레너스 점령으로 그치지 않을거야...")  
+        }
+        CallSmallMenu( 0, 18 ); 대장간
+end
+
+@Npc00010    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 농장
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( "땅에서 나는 모든 산물은 시무니안의 영광이 깃들어 있지 " );
+        }
+        if( ran == 1)
+        {
+        D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고..." );
+        }     
+        if( ran == 2)
+        {
+        D( "아쉽게도 이곳은 밭이 부족해서 농군으로 살아가긴 힘들겠지만 그만큼 농작물의 가격도 짭짤하지" );
+        }     
+        CallSmallMenu( 0, 19 ); 농장
+end
+
+@Npc00011    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 낚시점
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "호랑이를 잡으려면 호랑이굴로 들어가라는 말이 있지. 고래를 잡기위해선 깊은 바다로 가야해" );
+        }
+        if( ran == 1 )
+        {
+        D( "세월을 낚는게 무슨 뜻인줄 아나?" );
+        }
+        CallSmallMenu( 0, 28 ); 조선소
+end
+
+@Npc00012    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 목공소
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "나무꾼들이 베어온 나무로 무기와 가구, 도구를 만들 수 있습니다." );
+        }
+        if( ran == 1 )
+        {
+        D( "나무는 어딜가나 흔하기 때문에 굶어 죽을이는 없을꺼요. Cutting 기술을 배우는 것은 어떻소?")
+        }
+        CallSmallMenu( 0, 26 ); 목공소
+end
+
+@Npc00013    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 약초점
+        D( "이 약초 냄새가 어떤가? 우린 항상 최고의 약초만을 취급한다네.." );
+	CallSmallMenu( 0, 21 );약초점
+end
+
+@Npc00014    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 테페리
+        D( "필요한 때를 위한 작은 행운을..." );
+        CallSmallMenu( 0, 74 ); 테페리 신전
+end
+
+@Npc00015    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 푸줏간
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( "Butchering Skill이 있으면 죽은 동물에게서 고기와 가죽을 얻을 수 있습니다." );
+        }
+        if( ran == 1 )
+        {
+        D( "요즘 자이펀 군대에 소고기를 보내느라 정신이 없다네...")
+        }
+        if( ran == 2 )
+        {
+        D( "자이펀 군대에 고기를 공급하고 있다네... 맛좀 보시겠소? ")
+        }
+        CallSmallMenu( 0, 22 ) ; 푸줏간
+end
+
+@Npc00016
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 농장
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( "오늘은 별로 장사가 않되는군 돈만 좀 있었다면 건물을 사서 상점을 하나 차릴텐데." );
+        }
+        if( ran == 1 )
+        {
+        D( "다른 사람도 여기서 물건을 사고 팔면 괜찮을 텐데.")
+        }
+        if( ran == 2 )
+        {
+        D( "다른 플레이어와 아이템을 거래해 본적 있소? 그게 더 저렴한 가격에 아이템을 얻을수 있지")
+        }
+        CallSmallMenu( 0, 19 ); 농장
+end
+
+@Npc00017    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;잡화점
+        D( "자 골라 보세요 없는게 없습니다. 다른데서 못 찾은 건 여기서 고르세요." )
+        CallSmallMenu( 0, 60 ) ; 상점
+end
+
+@Npc00018   
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 푸줏간
+        random( 0,3 )
+        if( ran == 0 )
+        {
+        D( "Butchering Skill이 있으면 죽은 동물에게서 고기와 가죽을 얻을 수 있습니다." );
+        }
+        if( ran == 1 )
+        {
+        D( "동물의 시체는 보기 흉해도, 인간에게 좋은 먹거리라오.")
+        }
+        if( ran == 2 )
+        {
+        D( "저쪽에 있는 목장에서 주인없는 소를 잡아서 고기를 얻을수 있거든 .")
+        }
+        CallSmallMenu( 0, 22 ) ; 푸줏간 
+end
+
+@Npc00019
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 초장이
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( " 던젼에서 양초만큼 필요한 도구는 없을 겁니다... " );
+        }
+        if( ran == 1 )
+        {
+        D( " 마을 외부로 나가면 던젼이 있는데 그곳에선 양초가 제몫을 하죠. ")  
+        }
+        if( ran == 2 )
+        {
+        D( "자이펀 군대에 보낼 양초가 아직도 모잘라...")  
+        }
+        CallSmallMenu( 0, 23 ) ; 양초 제작소 
+end
+
+@Npc00020    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 여관
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "여관에 자이펀인들이 많이 묵고 있어.. 지금 전쟁준비가 한창이야..." );
+        }
+        if( ran == 1 )
+        {
+        D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+        }
+        CallSmallMenu( 0, 67 ); 여관
+end
+
+@Npc00021    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 은행
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "어서 오세요 이곳은 레너스 은행입니다. 예금,출금,대출, 경매가 가능하죠 " );
+        }
+        if( ran == 1 )
+        {
+        D( "다른 은행과 연결되 있어서 여기서도 당신의 물건을 찾을수 있을겁니다." );
+        }
+        CallSmallMenu( 0, 13 ); 은행
+end
+
+@Npc00022    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 농장
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( "땅에서 나는 모든 산물은 시무니안의 영광이 깃들어 있지 " );
+        }
+        if( ran == 1)
+        {
+        D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고..." );
+        }     
+        if( ran == 2)
+        {
+        D( "아쉽게도 이곳은 밭이 부족해서 농군으로 살아가긴 힘들겠지만 그만큼 농작물의 가격도 짭짤하지" );
+        }     
+        CallSmallMenu( 0, 19 ); 농장
+end
+
+@Npc00023    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 농장
+        random( 0, 3 )
+        if( ran == 0 )
+        {
+        D( "땅에서 나는 모든 산물은 시무니안의 영광이 깃들어 있지 " );
+        }
+        if( ran == 1)
+        {
+        D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고..." );
+        }     
+        if( ran == 2)
+        {
+        D( "아쉽게도 이곳은 밭이 부족해서 농군으로 살아가긴 힘들겠지만 그만큼 농작물의 가격도 짭짤하지" );
+        }     
+        CallSmallMenu( 0, 19 ); 농장
+end
+
+@Npc00024    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 여관
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요. 하지만 아쉽게도 당분간은 영업을 않한다오" );
+        }
+        if( ran == 1 )
+        {
+        D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+        }
+        CallSmallMenu( 0, 67 ); 여관
+end
+
+@Npc00025    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 옷가계
+        D( "마법사의 로브나 가죽 신발은 여기서만 파는 물건입니다. " );
+        CallSmallMenu( 0, 24 ); 의류점
+end
+
+@Npc00026
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 무기점
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "난 대장장이 그랜드 마스터요 그래서 이세상 무기는 다만들 수 있거든 한번볼텐가?" );
+        }
+        if( ran == 1 )
+        {
+        D( "얼마전 까지 대장장이 하던차라 여러물건을 보실수 있을거요." );
+        }
+        CallSmallMenu( 0, 18 ); 대장간
+end
+
+@Npc00027    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 은행
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "어서 오세요 이곳은 레너스 은행입니다. 예금,출금,대출, 경매가 가능하죠 " );
+        }
+        if( ran == 1 )
+        {
+        D( "다른 은행과 연결되 있어서 여기서도 당신의 물건을 찾을수 있을겁니다." );
+        }
+        CallSmallMenu( 0, 13 ); 은행
+end
+
+@Npc00028   
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 시장, 빵집주인
+        random( 0, 4 )
+        if( ran == 0 )
+        {
+        D("다양한 요리가 준비되어 있습니다. 여긴 시장이라서 다른곳 보다는 저렴하죠 ")
+        }       
+        if( ran == 1)
+        {
+        D("멀리 길을 떠나는 사람이 라면 미리 음식을 준비할 필요가 있지요.")
+        }       
+        if( ran == 2 )
+        {
+        D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+        }
+        if( ran == 3 )
+        {
+        D( "내가 원하는 요리를 직접 재료를 사다가 만든다고 생각해 보세요. " );
+        }
+        CallSmallMenu( 0, 20 ); 빵집
+end
+
+@Npc00029    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 시장, 무기점
+        D( "난 아직 초보라서 멋진 검을 만들지 못하지만 곳 만들 수 있을꺼야" );
+        CallSmallMenu( 0, 18 ); 대장간
+end
+
+@Npc00030    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 주점
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "여기는 술을 마시며 이야기를 나눌 수 있는 곳이지." );
+        }
+        if( ran == 1 )
+        {
+        D( "어떤걸 주문하시겠소. 물론 지금은 맥주밖에 없지만 말이요." );
+        }
+        CallSmallMenu( 0, 57 ) ;주점
+end
+
+@Npc00031    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 잡화점
+        D( "이곳이 처음이죠. 자, 내가 싼가격에 물건을 줄께요. 잘 오신겁니다. " );
+        CallSmallMenu( 0, 60 ); 상점
+end
+
+@Npc00032    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 학술원
+        D( "수준높은 지식을 알길 원하겠지. 인간은 학문을 탐구하고 싶어하기 때문에 다른 동물과 다른법이지." );
+        CallSmallMenu( 0, 72 ); 학술원
+end
+
+@Npc00033    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 여관
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요. 하지만 아쉽게도 당분간은 영업을 않한다오" );
+        }
+        if( ran == 1 )
+        {
+        D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+        }
+        CallSmallMenu( 0, 67 ); 여관
+end
+
+@Npc00034    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 활제작소
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D( "활을 쏘기 위해서는 굉장한 민첩성과 정신력이 필요하지." );
+        }
+        if( ran == 1 )
+        {
+        D( "활을 잘다루는 사람은 10명의 전사를 만나도 두렵지 않을껄..." );
+        }
+        CallSmallMenu( 0, 27 )
+end
+
+@Npc00035    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 에델브로이
+        D("코스모스와 대폭풍의 에델브로이 이름이 당신에게 축복을 내려줄것입니다.")
+        CallSmallMenu( 0, 73 ) ;에델브로이
+end
+
+@Npc00036    
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+; 미니 던젼 주인 
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D("저 위에 있는 던젼은 초보를 위해 내가 지은 던젼이죠 들어가고 싶다면 나에게 돈을 내야 하지만 당분간은 공짜로 들여 보내 주지.")
+        }
+        if( ran == 1 )
+        {
+        D("앞으로 레벨이 높은 사람은 던젼에 들어 갈수 없을 꺼야.")
+        }
+end
+
+@Npc00037
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;병종류를 사고 파는 사람 
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D("레너스 시장에서 장사를 한다고 아무도 뭐라하지 않거든 손수 만든 물건을 파는 것도 좋을 것 같애.")
+        }
+        if( ran == 1 )
+        {
+        D("당신의 직업을 이용해서 돈을 벌 생각은 없소?.")
+        }
+end
+
+@Npc00038
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;병원
+        random( 0, 2 )
+        if( ran == 0 )
+        {
+        D("몸에 이상이 있다고 생각되면 그건 병이 있는겁니다. 치료를 한번 받아 보세요.")
+        }
+        if( ran == 1 )
+        {
+        D("앞으로 레벨이 높은 사람은 던젼에 들어 갈수 없을 꺼야.")
+        }
+        CallSmallMenu( 0, 63 ) ;   
+end
+
+@Npc00039
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+;시장에서 술파는 사람
+        D("날씨도 좋은데 한잔 하시는 게 어떻소? 이곳의 술을 세계에서 제일 으뜸이지.")
+end
+
+@Npc00040
+;길드관리소
+        CheckNation(3); 바이서스이면.
+        if( yes==1)
+        {
+                D( " 이제 이 곳은 바이서스가 아냐..." )
+                goto ENDnation_
+        }
+        D("어서 오시오,, 당신은 어느 길드 소속인가?")
+	CallSmallMenu( 0, 76 ) ;길드관리 인터페이스
+end
+@Npc00041	; 편지 송신자
+	CmpQuestNumStep(53,200)
+	if( yes == 1 )
+	{
+		IsInvHavePC(10077) ; 아이템창안에 편지(10077)를 가지고 있다.
+		if( yes == 1)
+		{
+			MessageBox("빨리 갖다주게. 지금 시장님이 기달리고 있을 거야. 시장님은 지금 레너스시 좌표(315,50)에 있을거야..")
+			goto ENDsim1_
+		}
+		else
+		{
+			MessageBox("편지를 잃어버렸나? 그 편지가 얼마나 중요한 것인데. 자네를 신용할 수가 없군... ")
+			EventMsg("편지를 잃어버려 편지 배달 심부름에 실패했습니다.")
+			SendSound(1213)
+			SetQuestNumStep(53,0)
+			goto ENDsim1_
+		}
+	}
+	else
+	{
+		CmpQuestNumStep(53,0)
+		if(yes == 1)
+		{
+			SendSound(2472)
+			D("이보게, 자네 날 도울 생각 없는가?.")
+			SetQuestNumStep(53,110)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,110)
+		if(yes == 1)
+		{
+			D("레너스시 시장님에게 중대한 편지를 보내야겠는데...")
+			SetQuestNumStep(53,120)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,120)
+		if(yes == 1)
+		{
+			D("보시다시피 나는 이 자릴 뜰 수 없어서 말이네.")
+			SetQuestNumStep(53,130)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,130)
+		if(yes == 1)
+		{
+			D("자네가 나 대신 편지를 전해준다면 아마 시장님이 보상을 할 걸세.")
+			SetQuestNumStep(53,140)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,140)
+		if(yes == 1)
+		{
+			D("마음이 있으면 1분 후에 오게 내가 편지를 준비해 두겠네.")
+			SetQuestNumStep(53,150)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,150)
+		if(yes == 1)
+		{
+			D("아 왔군. 어렵지 않은 거니 그냥 빨리만 가주면 되네.")
+			SetQuestNumStep(53,160)
+			goto ENDsim1_
+		}
+		CmpQuestNumStep(53,160)
+		if(yes == 1)
+		{
+			MessageBox("시장님은 레너스시 좌표(315,50)쯤에 있을 것이네. 편지 여기 있네. 그럼 부탁하네...") ; MessageBox 사용
+			EventMsg("레너스시 시장에게 전해줄 편지를 받았습니다.")
+			SendSound(1217)
+			SetItemInvPC(0,10077,500) ; 편지를 받는다.
+			SetQuestNumStep(53,200)
+			goto ENDsim1_
+		}
+}
+:ENDsim1_
+end
+@Npc00042	; 편지 수신자
+	CmpQuestNumStep(53,200)
+	if( yes == 1 )
+	{
+		IsInvHavePC(10077)
+		if( yes == 1 )
+		{
+			; MessageBox 사용
+			MessageBox("아니 어떻게 자네가? 대신 온 것이군. 정말 고맙게. 자네 수고에 대한 나의 성의이니 받아주게나.")
+			EventMsg("편지 심부름에 대한 보답을 받았습니다.")
+			SendSound(1217)
+			SetItemInvPC(10077,10030,2000) ; 편지를 없애고 돈을 받는다.
+			SetQuestNumStep(53,0)
+			goto ENDsim2_
+		}
+		else
+		{
+			D("레너스시의 할스란으로 부터 편지가 와야하는데 왜 소식이 없지.. 중간에 무슨 일이 생겼는지 불안하군.")
+			goto ENDsim2_
+		}
+	}
+	else
+	{
+	D("레너스시의 할스란으로 부터 편지가 와야하는데 왜 소식이 없지.. 중간에 무슨 일이 생겼는지 불안하군.")
+	goto ENDsim2_
+	}
+:ENDsim2_
+end
+
+@Npc00043	; 보따리 송신자
+	CmpQuestNumStep(54,200)
+	if( yes == 1 )
+	{
+		IsInvHavePC(10080) ; 아이템창안에 보따리를 가지고 있다
+		if( yes == 1)
+		{
+			MessageBox("자네 아직도 떠나지 않고 뭘하는건가? 빨리 레너스시의 좌표(131,378)에 갖다주게...")
+			goto ENDquest1_
+		}
+		else
+		{
+			MessageBox("보따리를 잃어버렸다고? 이런...자네 어떻게 이렇게 성의 없이 이럴 수 있나? 그래도 자네가 잃어버린 물건의 배상은 받아야 하니 압수해도 날 탓하진 말게..조심했어야지.")
+			; SetItemInvPC() ; 잃어버렸을 때 피해를 줄경우
+			SendSound(0511)
+			EventMsg("보따리를 잃어 버려 꾸중을 들었습니다.")
+			SetQuestNumStep(54,0)
+			goto ENDquest1_
+		}
+	}
+	else
+	{
+		CmpQuestNumStep(54,0)
+		if(yes == 1)
+		{
+			SendSound(2472)
+			D("어서오게나! 그렇지 않아도 자네를 기다리고 있었어.")
+			SetQuestNumStep(54,110)
+			goto ENDquest1_
+		}
+
+		CmpQuestNumStep(54,110)
+		if(yes == 1)
+		{
+			D("자네 요즘 일거리 필요하나? 자네만이 해줄 특별한 일이 있는데 어떤가? 해보지 않겠나?")
+			SetQuestNumStep(54,120)
+			goto ENDquest1_
+		}
+
+		CmpQuestNumStep(54,120)
+		if(yes == 1)
+		{
+			D("지금은 내가 마쳐야 할 일이 있으니 할 마음 있으면 한 1분 뒤에 다시 오게.")
+			SetQuestNumStep(54,130)
+			goto ENDquest1_
+		}
+
+		CmpQuestNumStep(54,130)
+		if(yes == 1)
+		{
+			D("오 역시 왔군. 난 자네를 믿고있었어. 그럼 자세히 듣게.")
+			SetQuestNumStep(54,140)
+			goto ENDquest1_
+		}
+
+		CmpQuestNumStep(54,140)
+		if(yes == 1)
+		{
+			D("레너스시의 좌표(131,378)에 있는 사람에게 주문한 물건을 운반해 줘야하네.")
+			SetQuestNumStep(54,150)
+			goto ENDquest1_
+		}
+
+		CmpQuestNumStep(54,150)
+		if(yes == 1)
+		{
+			MessageBox("그 사람이 급하니까 누구를 대신 보내주면 보상을 치르겠다고 하네. 레너스시의 좌표(131,378) 잘 기억하게...")
+			SetQuestNumStep(54,200)
+			SetItemInvPC(0,10080,500)
+			QuestSound(1217)
+			goto ENDquest1_
+		}
+
+	}
+:ENDquest1_	
+end
+@Npc00044    ; New Year
+;////////////////////////
+;///  Happy New Year  ///
+;////////////////////////
+	IsInvHavePC(3051); 떡국을 가지고 있는지 체크
+	if( yes == 0 )
+	{
+		IsInvHavePC(10121)
+		if( yes == 0 )
+		{
+			random( 0, 12 )
+				if( ran == 3 )
+				{
+					D( " 행운을 드립니다~ 복조리와 함께 드립니다. 복조리가 행운을 줄겁니다." )
+					SetItemInvPC(0,10121,100)
+					goto ENDyear_
+				}
+				else
+				{
+			 	random( 0, 6 )
+					if( ran == 0 )
+					{
+						D(" 새해 복 많이 받으세요..")
+					
+					}
+					if( ran == 1 )
+					{
+						D(" 제가 드린 떡국은 다 드셨나요?" )
+					}
+					if( ran == 2 )
+					{
+						D(" 떡국 많이 드시고 복 많이 받으세요~~ " )			
+					}
+					if( ran == 3 )
+					{
+						D(" 떡국 한그릇 더? " )
+					}
+					if( ran == 4 )
+					{
+						D("새해에는 떡국을 드셔야죠... 떡국 한그릇 드셔 보세요...")
+					}
+					if( ran == 5 )
+					{
+						D(" 덕담은 주고 받으셨나요? 새해 복 많이 받으세요..")
+					}
+
+					SetItemInvPC(0,3051,100)
+					goto ENDyear_
+
+				}
+		}
+
+		else
+		{
+			random( 0, 6 )
+				if( ran == 0 )
+				{
+					D(" 새해 복 많이 받으세요..")
+				}
+				if( ran == 1 )
+				{
+					D(" 제가 드린 떡국은 다 드셨나요?" )
+				}
+				if( ran == 2 )
+				{
+					D(" 떡국 많이 드시고 복 많이 받으세요~~ " )			
+				}
+				if( ran == 3 )
+				{
+					D(" 떡국 한그릇 더? " )
+				}
+				if( ran == 4 )
+				{
+					D("새해에는 떡국을 드셔야죠... 떡국 한그릇 드셔 보세요...")
+				}
+				if( ran == 5 )
+				{
+					D(" 덕담은 주고 받으셨나요? 새해 복 많이 받으세요..")
+				}
+				SetItemInvPC(0,3051,100)
+				goto ENDyear_
+
+		}
+
+	}
+	else
+	{
+		D( "떡국은 많이 드셨나요? 배부르시죠?" )
+		goto ENDyear_
+
+	}
+
+
+		
+:ENDyear_
+
+end
+@Npc00045
+        random(0,3) ; 두수 사이의 랜덤수 받아 오기 
+        if( ran == 0 ) 
+        {
+	SendSound(2472)
+        D( "레너스시 좌표(298,356)에 있는 집에 가보게.. 지금 급한 일이 있어 심부름할 사람을 찾고있던데.." )
+        }
+        if( ran == 1 ) 
+        {
+	SendSound(0081)
+        D( "자네.. 약간의 돈을 벌고 싶으면 레너스시 좌표(286,274)에 있는 집에 가보게.. 일을 줄것이야.." )
+        }
+        if( ran == 2 ) 
+        {
+	SendSound(2472)
+        D( "레너스시 좌표(214,252)에는 마법사가 살고 있지.. 그사람은 모르는 것이 없다고 하네.. 다양한 정보를 줄거야.." )
+        }
+end
+
+@Npc00046	;   힌트
+	CmpQuestNumStep(55,0)
+	if(yes == 1)
+	{
+		SendSound(0081)
+		D("흠.. 모험가인가.. 누구로부터 나의 이야기를 들었나보군..")
+		SetQuestNumStep(55,110)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,110)
+	if(yes == 1)
+	{
+		D("여기까지 왔으니 내가 약간의 이야기를해 주지...")
+		SetQuestNumStep(55,120)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,120)
+	if(yes == 1)
+	{
+		D("자네는 이 근처 지역에 많은 비밀 지역이 있다는 것을 알고 있나?")
+		SetQuestNumStep(55,130)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,130)
+	if(yes == 1)
+	{
+		D("과거에 조상들은 몬스터들로부터 피해받지 않는 곳을 여러군데 만들어 놓았지..")
+		SetQuestNumStep(55,140)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,140)
+	if(yes == 1)
+	{
+		D("그런데 우연인지는 몰라도 그 지역에서 많은 몬스터가 나온다는 것을 알게 된거야..")
+		SetQuestNumStep(55,150)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,150)
+	if(yes == 1)
+	{
+		D("어쩔 수 없이 그 지역에 놓아둔 많은 보물들을 놓아둔채 그 지역을 막아놓을 수밖에 없게됐지..")
+		SetQuestNumStep(55,160)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,160)
+	if(yes == 1)
+	{
+		D("레너스시 외부에 비밀 지역이 있다는 이야기를 나도 들었지....")
+		SetQuestNumStep(55,170)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,170)
+	if(yes == 1)
+	{
+		D("그 지역을 가기 위해서는 레너스시 외부에 있는 오크들로부터 오크심장을 구해야해..")
+		SetQuestNumStep(55,180)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,180)
+	if(yes == 1)
+	{
+		D("오크 심장을 가지고 레너스시 외부 좌표(332,81)으로 가보게나..")
+		SetQuestNumStep(55,190)
+		goto ENDquest11_
+	}
+
+	CmpQuestNumStep(55,190)
+	if(yes == 1)
+	{
+		D("하지만 명심해 둬야할게 있네.. 그 지역에는 많은 몬스터가 있기 때문에..조심해야 할것이야..")
+		SetQuestNumStep(55,0)
+		goto ENDquest11_
+	}
+
+:ENDquest11_	
+end
+
+@Npc00047    	; 보따리 수신자
+
+	CmpQuestNumStep(54,200)
+	if( yes == 1 )
+	{
+		IsInvHavePC(10080)
+		if( yes == 1 )
+		{
+			MessageBox("고맙네. 막 물건이 떨어져서 급하던 참이었는데.. 성의의 표시이니 이것을 받게나..")
+			EventMsg("물건 운반에 대한 보답으로 돈을 받았습니다.")
+			SendSound(1217)
+			SetItemInvPC(10080,10030,2000)
+			SetQuestNumStep(54,0)
+			goto ENDquest2_
+		}
+		else
+		{
+			D("정말 큰일이군 레너스시 좌표(286,274) 목공소에서 무기가 와야할 때가 됐는데.. 무슨 일이 생긴건가..")
+			goto ENDquest2_
+		}
+	}
+	else
+	{
+		D("정말 큰일이군 레너스시 좌표(286,274) 목공소에서 무기가 와야할 때가 됐는데.. 무슨 일이 생긴건가..")
+		goto ENDquest2_
+	}
+
+:ENDquest2_
+:ENDnation_
+end
+
+@Npc00048	; 구세군
+	random( 0, 3 )
+	if( ran == 0 )
+	{
+		D("여러분의 자그마한 손길로 우리의 이웃은 따뜻해집니다." )
+	}
+	if( ran == 1 )
+	{
+		D( "딸랑따랑~! 자선남비에 모금을 합시다.." )
+	}
+	if( ran == 2 )
+	{
+		D( "작은 물이 모여 큰 바다를 이루듯 여러분의 작은 베품은 큰 물결의 사랑으로 변합니다." )
+	}
+
+end
+@Npc00049	; 적십자
+	random( 0, 3 )
+	if( ran == 0 )
+	{
+		D("적십자는 어둠을 밝혀주는 등불입니다. 크리스마스에는 적십자 회비를 모금합니다.")
+	}
+	if( ran == 1 )
+	{
+		D( "크리스마스 때에 이곳에서 모여진 성금은 도움을 필요로 하는이들을 위해 골고루 쓰일 것입니다..")
+	}
+	if( ran == 2 )
+	{
+		D( "날씨가 매우 춥군여... 올해를 따뜻하게 마무리할 생각 없나요?" )
+	}
+	CallSmallMenu( 0, 77 ) ;   적십자 회비 인터페이스
+
+end
+
+
+
+
+
+
+@Event00000
+end
+
+
+@Event00001           
+        MapMove( "COLOR", 209,13 )
+end
+
+
+@Event00002           
+        MapMove( "RENES_OUT", 372,369 )
+end
+
+
+@Event00003           
+        MapMove( "Sn_1F", 54,123 )
+end
+
+
+@Event00004   ; 던전 레벨 제한 일시 해제
+;       IsLevel(30)
+;       if( yes == 1)
+;       {       
+        MapMove( "MINI", 25,129 )
+;       }
+;       else
+;       {
+;       EventMsg("당신의 레벨로는 이곳에 들어갈 수 없습니다. Lv.30부터 들어갈 수 있습니다.")
+;       QuestSound(15007)
+;       }
+
+end
+
+@Event00005   
+        MapMove( "Soccer", 15,167 )   
+end
+
+@Event00006
+	MapMove( "Training2", 21, 66 )
+end
+
+@Event00007
+;길드전투맵으로 들어가는 이벤트
+        CmpQuestNumStep(48,2)
+        if( yes == 0)
+        {
+        SetQuestNumStep(48,2)
+        goto ENDEVENT7_              
+        }
+        if( yes == 2)
+        {
+        SetQuestNumStep(48,2)
+        goto ENDEVENT7_              
+        }
+        if( yes == 1)
+        {
+        MapMove( "fight", 131, 34 )
+        goto ENDEVENT7_              
+        }
+;48에 2로 셋팅되면서 길드전투맵에 들어간다      
+:ENDEVENT7_           
+end
+@Event00008           
+end
+@Event00009
+        IsLevel(7)
+        if( yes == 1)
+        {
+        EventMsg("이곳은 초보자의 가이드를 위한 맵입니다. 당신은 초보가 아니군요")
+        QuestSound(15007)
+        }
+        else
+        {           
+        MapMove( "Scholium", 47,169 )
+	}
+end
+
+@Event00010           
+end
+@Event00011           
+end
+@Event00012           
+end
+@Event00013           
+end
+@Event00014
+	MapMove( "desert", 321, 60 )
+	EventMsg("황무지 사냥터로 포탈 이동합니다.")
+	QuestSound(15007)
+end
+@Event00015
+	MapMove( "Renes_out", 313, 173 )
+	EventMsg("오크마을로 포탈 이동합니다.")
+	QuestSound(15007)
+end
+@Event00016
+;;;	MapMove( "Renes_out", 165, 335 )
+	MapMove( "Kal_os", 42, 304 )
+	EventMsg("식인식물 지역으로 포탈 이동합니다.")
+	QuestSound(15007)
+end
+@Event00017	; 에델브로이 포탈
+	MapMove( "Darkdun2", 249, 119 )
+	EventMsg("어둠의 던전으로 포탈 이동합니다.")
+	QuestSound(15007)
+end
+@Event00018	; 테페리 포탈
+	MapMove( "Mini2", 116, 100 )
+	EventMsg("미니던전으로 포탈 이동합니다.")
+	QuestSound(15007)
+end
+@Event00019           
+end

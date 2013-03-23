@@ -1,0 +1,8703 @@
+@sys00	; 처음 서버 Setting하는 함수.
+	MaxNPC( 50 )
+	MapName( "MA-IN" )
+end	
+@sys01 
+end
+@sys02 
+end
+@sys03 
+end
+@sys04 
+end
+@sys05 
+end
+@sys06 
+end
+@sys07 
+end
+@sys08 
+end
+@sys09 
+end
+@Npc00000	
+;	D( " 내가 누구냐교 묻지 마세요..." )
+;사람일 경우 다음 대사 랜덤 
+	
+	random(0,13) ; 두수 사이의 랜덤수 받아 오기 
+	if( ran == 0 ) 
+	{
+	D( "코스모스와 대폭풍의 에델브로이 이름으로" )
+	}
+	if( ran == 1 ) 
+	{
+	D( "인간의 생명력은 매우 짧아... 그러나 에델브로이라면 이것이 가능할지도" )
+	}
+	if( ran == 2 ) 
+	{
+	D( "자신이 두 개중 한 개를 선택해야할 입장이라면 테페리 신전으로 가보세요." )
+	}
+	if( ran == 3 ) 
+	{
+	D( "부활하려면 '코스모스와 대폭풍의 에델브로이 이름으로'라고 외치면 된데.." )
+	}
+	if( ran == 4 ) 
+	{
+	D( "자네 혹시 은행이 어디 있는지 아나?" )
+	}
+	if( ran == 5 ) 
+	{
+	D( "은행은 마을 분수대쯤 있었지 아마." )
+	}
+	if( ran == 6 ) 
+	{
+	D( "은행은 마을 중앙 분수대 근처에 있지 " )   
+	}
+	if( ran == 7 ) 
+	{
+	D( "이곳이 헬턴트 마을 입니다." )
+	}
+	if( ran == 8 ) 
+	{
+	D( "마을 밖으로 나가면 강한 몬스터들이 우굴거리지." )
+	}
+	if( ran == 9 ) 
+	{
+	D( "각 길드에서는 다른 물건을 사고 팔수도 있지." )
+	}
+	if( ran == 10 ) 
+	{
+	D( "북쪽으로 가면 성이 있는데, 그곳은 경비병들이 쫙 깔려 있지.")
+	}
+	if( ran == 11 ) 
+	{
+	D( "마을 밖으로 나가면 던젼이 있는데 아무나 들어 갈수 있 는곳은 아니거든.")
+	}	
+	if( ran == 12 )
+	{
+	D( "죽은 사람은 에델브로이 신전에서 부활시켜준다는 전설이 있었지.." )		
+	}
+	
+end
+@Npc00001
+	random( 0 , 3 )
+	if( ran == 0 )
+	{
+	D( "코스모스와 대폭풍의 에델브로이 신전입니다. " );
+	}
+	if( ran == 1 )
+	{
+        D( "죽은자에게 부활의 권능을 행할수 있는 곳입니다." );
+	}
+	if( ran == 2 )
+	{
+        D( "코스모스와 대폭풍의 에델브로이 이름으로 ." );
+	}
+	CallSmallMenu( 0, 73 )
+end
+@Npc00002	
+;	D( "테페리 신전." );
+	D( "테페리 신전에 온것을 환영하오." );
+	CallSmallMenu( 0, 74 )
+end
+@Npc00003	
+;	D( "레티 신전." );
+	D( "당신은 지금 레티 신전에 오셨습니다. " );
+	CallSmallMenu( 0, 75 )
+end
+@Npc00004	
+; 학술원...
+;	if( RECALL_SCRIPT_COUNT == 0 )
+;	{
+;		D( "수준높은 지식을 알려 주길 원하나 ?" );
+;		RecallScrpStart( 1, 2 )
+;		goto END_
+;	}
+;	if( RECALL_SCRIPT_COUNT == 1 )	
+;	{
+;		RecallScrpEnd();
+;		CallSmallMenu( 3, 60 )
+;	}
+	D( "수준높은 지식을 알려 주길 원하나 ?" );
+	CallSmallMenu( 0, 72 )
+; :END_
+end
+@Npc00005	
+;	D( "수준높은 지식을 알려 주길 원하나?" );
+;	CallSmallMenu( 0, 13 )	 틀렸음
+;의료원
+	D("병에 걸렸다면 이곳에서 치료를 해줄수 있습니다.")
+	CallSmallMenu( 0, 63 ) ;
+; 의료원 인터페이스 호출
+end
+@Npc00006	
+;	if( RECALL_SCRIPT_COUNT == 0 )
+;	{
+;		D( "수준높은 지식을 알려 주길 원하나 ?" );
+;		RecallScrpStart( 1, 2 )
+;		goto END_
+;	}
+;	if( RECALL_SCRIPT_COUNT == 1 )	
+;	{
+;		RecallScrpEnd();
+;		CallSmallMenu( 3, 60 )
+;	}
+
+;이곳은 마을 회관
+;//레벨 99이하인 사람들만 직업 스킬에 대한 도움을 받을 수 있다.
+	CmpQuestNumStep(52,2000) ;
+	if(yes == 1)
+	{	
+	D("헬턴트에서 할 수 있는 일에 대해 알려드리죠")
+;	마을 회관 인터페이스 호출
+	CallSmallMenu( 0, 29 )	
+	}
+	else
+	{	
+		CmpQuestNumStep(52,0)
+		if( yes == 1)
+		{
+		;농부
+		IsJobPC(1)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,190)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 당신은 농부인가...?")
+				SetQuestNumStep(51,101)
+				QuestSound(15000)
+					EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,101)
+				if( yes == 1)
+				{
+				D(" 그렇다면, 자네는 이제부터 헬턴트 마을의 식량을 책임져야 하네.")
+				SetQuestNumStep(51,102)
+				goto END6_
+				}
+				CmpQuestNumStep(51,102)
+				if( yes == 1)
+				{
+				D("자네가 농부라면, 농장에 가서 농사일을 배울 수가 있지.")
+				SetQuestNumStep(51,103)
+				goto END6_
+				}
+				CmpQuestNumStep(51,103)
+				if( yes == 1)
+				{
+				D(" 농장에 가서 농사 기술을 배우고 오게나.")
+				SetQuestNumStep(51,104)
+				goto END6_
+				}
+				CmpQuestNumStep(51,104)
+				if( yes == 1)
+				{
+				D("대지와 회상의 시무니안의 축복이 내린다면, 농사일도 그리 어려운 것만은 아니야.")
+				SetQuestNumStep(51,105)
+				goto END6_
+				}
+				CmpQuestNumStep(51,105)
+				if( yes == 1)
+				{
+				D("우선 내가 농장앞으로 보내줄테니 잘 배워오게나. ▲』")
+				SetQuestNumStep(51,106)
+				goto END6_
+				}
+				CmpQuestNumStep(51,106)
+				if( yes == 1)
+				{
+				QuestTeleport(1,185,67)
+				SetQuestNumStep(51,110)
+				goto END6_
+				}
+				CmpQuestNumStep(51,109)
+				if( yes == 2)
+				{
+				D("농장(185,65) 주인한테 가라보라고 얘기 한거 같은데.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,190)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,191)
+			goto END6_
+			}
+			CmpQuestNumStep(51,191)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;광부
+		IsJobPC(2)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,290)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네는 광부로군.")
+				SetQuestNumStep(51,201)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,201)
+				if( yes == 1)
+				{
+				D(" 모든 무기나 연장을 만드는데는 광석이 빠질수 없지.")
+				SetQuestNumStep(51,202)
+				goto END6_
+				}
+				CmpQuestNumStep(51,202)
+				if( yes == 1)
+				{
+				D("자네는 광부의 기술을 모르는 것 같군,  광부의 기술은 대장간 주인에게 가서 배울 수가 있어.")
+				SetQuestNumStep(51,203)
+				goto END6_
+				}
+				CmpQuestNumStep(51,203)
+				if( yes == 1)
+				{
+				D("흔히, 지하에서 광물을 캐는 일은 드워프를 따라갈 자가없다고 하지.")
+				SetQuestNumStep(51,204)
+				goto END6_
+				}
+				CmpQuestNumStep(51,204)
+				if( yes == 1)
+				{
+				D("하지만 유피넬과 헬카네스 양자의 축복을 모두 받는 인간이라면, 드워프도 문제 될게 없지.")
+				SetQuestNumStep(51,205)
+				goto END6_
+				}
+				CmpQuestNumStep(51,205)
+				if( yes == 1)
+				{
+				D("우선 내가 대장간 앞으로 보내줄테니, 대장간 주인에게 말을 잘 해보게나. ▲』")
+				SetQuestNumStep(51,206)
+				goto END6_
+				}
+				CmpQuestNumStep(51,206)
+				if( yes == 1)
+				{
+				QuestTeleport(1,210,170)
+				SetQuestNumStep(51,210)
+				goto END6_
+				}
+				CmpQuestNumStep(51,209)
+				if( yes == 2)
+				{
+				D("대장간에 내가 보내 주지 않았나. 대장간 주인과 이야기를 마치고 오게나.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,290)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,291)
+			goto END6_
+			}
+			CmpQuestNumStep(51,291)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;어부
+		IsJobPC(3)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,390)
+			if( yes == 0)
+			{	
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네는 어부로군.")
+				SetQuestNumStep(51,301)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,301)
+				if( yes == 1)
+				{
+				D("어부가 없다면 우리는 DHA가 들어 있는 생선을 먹지 못 할거야.")
+				SetQuestNumStep(51,302)
+				goto END6_
+				}
+				CmpQuestNumStep(51,302)
+				if( yes == 1)
+				{
+				D("혹시 또 아나? 황금 보석을 물고 있는 물고기를 잡을 수 있을지.")
+				SetQuestNumStep(51,303)
+				goto END6_
+				}
+				CmpQuestNumStep(51,303)
+				if( yes == 1)
+				{
+				D("아무튼 어부는 휴다인 강가에 있는 어부에게서 기술을 배워야 하네.")
+				SetQuestNumStep(51,304)
+				goto END6_
+				}
+				CmpQuestNumStep(51,304)
+				if( yes == 1)
+				{
+				D("내가 휴다인 강의 어부가 있는 곳으로 보내주지.▲』")
+				SetQuestNumStep(51,305)
+				goto END6_
+				}
+				CmpQuestNumStep(51,305)
+				if( yes == 1)
+				{
+				MapMove( "Source", 248,14 )
+				SetQuestNumStep(51,310)
+				goto END6_
+				}
+				CmpQuestNumStep(51,309)
+				if( yes == 2)
+				{
+				D("내가 휴다인 강의 어부 있는 곳으로 가보라고 말한 것 같은데.")
+				goto END6_
+				}
+			}
+		    	CmpQuestNumStep(51,390)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,391)
+			goto END6_
+			}
+			CmpQuestNumStep(51,391)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}	
+		;나무꾼
+		IsJobPC(4)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,490)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네는 나무꾼 초짜로군.")
+				SetQuestNumStep(51,401)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,401)
+				if( yes == 1)
+				{
+				D("흐~ 다른 차원의 동방에서는 선녀들에게 나무꾼이 인기가 많다고 하더군.")
+				SetQuestNumStep(51,402)
+				goto END6_
+				}
+				CmpQuestNumStep(51,402)
+				if( yes == 1)
+				{
+				D("혹시 또 아나? 숲에서 한적하니 나무를 베다가, 이루릴같은 엘프라도 만나게 될지 말일세.")
+				SetQuestNumStep(51,403)
+				goto END6_
+				}
+				CmpQuestNumStep(51,403)
+				if( yes == 1)
+				{
+				D("암튼 나무꾼은 목공소에서 기술을 배워야 하는데, 목공소에 가서 주인장을 찾게나.")
+				SetQuestNumStep(51,404)
+				goto END6_
+				}
+				CmpQuestNumStep(51,404)
+				if( yes == 1)
+				{
+				D("우선 내가 목공소 앞으로 보내주지. 목공소 주인에게 말을 건네보게.▲』")
+				SetQuestNumStep(51,405)
+				goto END6_
+				}
+				CmpQuestNumStep(51,405)
+				if( yes == 1)
+				{
+				QuestTeleport(1,213,216)
+				SetQuestNumStep(51,410)
+				goto END6_
+				}
+				CmpQuestNumStep(51,409)
+				if( yes == 2)
+				{
+				D("목공소에 가보라고 말한 것 같은데.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,490)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,491)
+			goto END6_
+			}
+			CmpQuestNumStep(51,491)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}	
+		;도축자	
+		IsJobPC(5)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,590)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네는 도축자로군. 도축자는 동물의 고기를 다루지")
+				SetQuestNumStep(51,501)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,501)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에서의 고기 맛은 이제 자네의 손에 달렸네.")
+				SetQuestNumStep(51,502)
+				goto END6_
+				}
+				CmpQuestNumStep(51,502)
+				if( yes == 1)
+				{
+				D("자네는 요즘 세상을 살 맛이 나는가?")
+				SetQuestNumStep(51,503)
+				goto END6_
+				}
+				CmpQuestNumStep(51,503)
+				if( yes == 1)
+				{
+				D("고기를 씹어먹어야 살 맛이 나질 않겠는가?")
+				SetQuestNumStep(51,504)
+				goto END6_
+				}
+				CmpQuestNumStep(51,504)
+				if( yes == 1)
+				{
+				D("근데, 자네는 아직 도축자의 기술을 모르는 것 같군.")
+				SetQuestNumStep(51,505)
+				goto END6_
+				}
+				CmpQuestNumStep(51,505)
+				if( yes == 1)
+				{
+				D(" 도축자의 기술은 푸줏간에서 배울 수 있다네.")
+				SetQuestNumStep(51,506)
+				goto END6_
+				}
+				CmpQuestNumStep(51,506)
+				if( yes == 1)
+				{
+				D("우선 내가 푸줏간 앞으로 보내줄테니, 푸줏간 주인에게 말을 잘 해보게나.▲』")
+				SetQuestNumStep(51,507)
+				goto END6_
+				}
+				CmpQuestNumStep(51,507)
+				if( yes == 1)
+				{
+					random( 0, 2 );
+					if( ran == 0 )
+					{
+					QuestTeleport(1,137,91)
+					}
+					if( ran == 1 )
+					{
+					QuestTeleport(1,134,92)
+					}
+				SetQuestNumStep(51,510)
+				goto END6_
+				}
+				CmpQuestNumStep(51,509)
+				if( yes == 2)
+				{
+				D("내가 푸줏간 주인과 이야기 해보라고 하지 않았나?.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,590)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,591)
+			goto END6_
+			}
+			CmpQuestNumStep(51,591)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;심마니
+		IsJobPC(6)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,690)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네는 약초를 캐러 다녀야 겠군.")
+				SetQuestNumStep(51,601)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,601)
+				if( yes == 1)
+				{
+				D("좋은 약초는 몸에 좋은 효과를 내지. 또한 약초 가루는 각종 포션의 재료가 된다네.")
+				SetQuestNumStep(51,602)
+				goto END6_
+				}
+				CmpQuestNumStep(51,602)
+				if( yes == 1)
+				{
+				D("화이트 드래곤 캇셀프라임은 민트향이 담긴 음식이 아니면, 음식을 먹지 않는다는군.")
+				SetQuestNumStep(51,603)
+				goto END6_
+				}
+				CmpQuestNumStep(51,603)
+				if( yes == 1)
+				{
+				D("드래곤이 먹을 약초를 마련하기 위해서는 엄청난 약초가 필요할텐데..")
+				SetQuestNumStep(51,604)
+				goto END6_
+				}
+				CmpQuestNumStep(51,604)
+				if( yes == 1)
+				{
+				D("마을 남쪽에 가면 약초점이 있으니, 그 곳 주인장에게 가서 약초 캐는 기술을 배우게나.")
+				SetQuestNumStep(51,605)
+				goto END6_
+				}
+				CmpQuestNumStep(51,605)
+				if( yes == 1)
+				{
+				D("우선 내가 약초점 앞으로 보내줄테니, 약초점 주인에게 말을 잘 해보게나.▲』")
+				SetQuestNumStep(51,606)
+				goto END6_
+				}
+				CmpQuestNumStep(51,606)
+				if( yes == 1)
+				{
+					random( 0, 2 );
+					if( ran == 0 )
+					{
+					QuestTeleport(1,240,282)
+					}
+					if( ran == 1 )
+					{
+					QuestTeleport(1,233,281)
+					}
+				SetQuestNumStep(51,610)
+				goto END6_
+				}
+				CmpQuestNumStep(51,609)
+				if( yes == 2)
+				{
+				D("내가 약초점에 가보라고 말 한 것 같은데.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,690)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,691)
+			goto END6_
+			}
+			CmpQuestNumStep(51,691)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;목동 
+		IsJobPC(7)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,790)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 목동이로군.")
+				SetQuestNumStep(51,701)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,701)
+				if( yes == 1)
+				{
+				D("목동은 목장옆에 있는 농장 주인에게서 기술을 배울 수 있지.")
+				SetQuestNumStep(51,702)
+				goto END6_
+				}
+				CmpQuestNumStep(51,702)
+				if( yes == 1)
+				{
+				D("농장 주인도 목동 기술에 대해 잘 알 지 못한 다는 게 문제 일세.")
+				SetQuestNumStep(51,703)
+				goto END6_
+				}
+				CmpQuestNumStep(51,703)
+				if( yes == 1)
+				{
+				D("일단 내가 농장 주인이 살 고 있는 집앞으로 보내 줄테니 농장 주인과 이야기 해보게나.▲』")
+				SetQuestNumStep(51,704)
+				goto END6_
+				}
+				CmpQuestNumStep(51,704)
+				if( yes == 1)
+				{
+					random( 0, 2 );
+					if( ran == 0 )
+					{
+	       				QuestTeleport(1,185,67)
+					}
+					if( ran == 1 )
+					{
+	       				QuestTeleport(1,184,70)
+					}
+				SetQuestNumStep(51,710)
+				goto END6_
+				}
+				CmpQuestNumStep(51,709)
+				if( yes == 2)
+				{
+				D("내가 농장 주인에게 보내 주지 않았나. 빨리 농장 주인에게 가보게나.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,790)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,791)
+			goto END6_
+			}
+			CmpQuestNumStep(51,791)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;목수
+		IsJobPC(8)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,890)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 목수로군.")
+				SetQuestNumStep(51,801)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,801)
+				if( yes == 1)
+				{
+				D("목수는 목재로 여러 가지 물건을 만들어 내지.")
+				SetQuestNumStep(51,802)
+				goto END6_
+				}
+				CmpQuestNumStep(51,802)
+				if( yes == 1)
+				{
+				D("목공 기술은 목공소에서 배워야 하네")
+				SetQuestNumStep(51,803)
+				goto END6_
+				}
+				CmpQuestNumStep(51,803)
+				if( yes == 1)
+				{
+				D("우리 마을에는 목공소가 두군데 있지. 중거리 연습장 위쪽에 있는 목공소에 가보게나.▲』")
+				SetQuestNumStep(51,804)
+				goto END6_
+				}
+				CmpQuestNumStep(51,804)
+				if( yes == 1)
+				{
+				QuestTeleport(1,210,216)
+				SetQuestNumStep(51,810)
+				goto END6_
+				}
+				CmpQuestNumStep(51,809)
+				if( yes == 2)
+				{
+				D("중거리 연습장 위쪽에 있는 목공소에 가보라고 했던것 같은데 왜 다시 왔나?")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,890)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,891)
+			goto END6_
+			}
+			CmpQuestNumStep(51,891)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+			
+		}
+		;대장장이
+		IsJobPC(9)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,990)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 대장장이군.")
+				SetQuestNumStep(51,901)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,901)
+				if( yes == 1)
+				{
+				D("광부가 캐내온 재료로 대장장이는 도구나 무기를 만들지.")
+				SetQuestNumStep(51,902)
+				goto END6_
+				}
+				CmpQuestNumStep(51,902)
+				if( yes == 1)
+				{
+				D("헬턴트 마을 안에 있는 철로 된 모든 제품은 대장장이가 만든다고 해도 과언이 아니지.")
+				SetQuestNumStep(51,903)
+				goto END6_
+				}
+				CmpQuestNumStep(51,903)
+				if( yes == 1)
+				{
+				D("대장장이의 철공기술은 대장간에서 배울 수가 있어. 대장간 주인과 이야기를 잘 해보게나.▲』")
+				SetQuestNumStep(51,904)
+				goto END6_
+				}
+				CmpQuestNumStep(51,904)
+				if( yes == 1)
+				{
+				QuestTeleport(1,193,213)
+				SetQuestNumStep(51,910)
+				goto END6_
+				}
+				CmpQuestNumStep(51,909)
+				if( yes == 2)
+				{
+				D("대장간에 가보라고 이야기 한것 같은데 왜 얘기를 다 하지 않고 왔나?")		
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,990)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,991)
+			goto END6_
+			}
+			CmpQuestNumStep(51,991)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;요리사
+		IsJobPC(10)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,1090)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 요리사군.")
+				SetQuestNumStep(51,1001)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,1001)
+				if( yes == 1)
+				{
+				D("요리사는 헬턴트 마을의 음식을 담당하지.")
+				SetQuestNumStep(51,1002)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1002)
+				if( yes == 1)
+				{
+				D("요리사는 농부가 정성들여 수확한 것들로 요리를 한다네.")
+				SetQuestNumStep(51,1003)
+				goto END6_
+				}
+	
+				CmpQuestNumStep(51,1003)
+				if( yes == 1)
+				{
+				D("음식은 먼 곳을 갈 때 없어서는 안 돼. 배가 고프면 꼼짝도 하기 싫거든.")
+				SetQuestNumStep(51,1004)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1004)
+				if( yes == 1)
+				{
+				D("내가 빵집 앞으로 보내 줄 테니 요리사와 이야기를 잘 해보게나 ▲』")
+				SetQuestNumStep(51,1005)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1005)
+				if( yes == 1)
+				{
+					random( 0, 2 );
+					if( ran == 0 )
+					{
+					QuestTeleport(1,274,128)
+					}
+					if( ran == 1 )
+					{
+					QuestTeleport(1,270,124)
+					}
+				SetQuestNumStep(51,1010)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1009)
+				if( yes == 2)
+				{
+				D("빵집 주인과 이야기 해보라고 한것 같은데 빨리 다시 가보게나.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,1090)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1091)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1091)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;재단사
+		IsJobPC(11)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,1190)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 재단사군.")
+				SetQuestNumStep(51,1101)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,1101)
+				if( yes == 1)
+				{
+				D("재단사는 헬턴트 마을의 의류를 담당하지.")
+				SetQuestNumStep(51,1102)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1102)
+				if( yes == 1)
+				{
+				D("우리가 입고 있는 옷과 신발들은 모두 재단사가 만든 것이지.")
+				SetQuestNumStep(51,1103)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1103)
+				if( yes == 1)
+				{
+				D("당신과 같은 재단사가 없다면 우리는 이렇게 멋진 옷들을 입지 못 할 것이야.")
+				SetQuestNumStep(51,1104)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1104)
+				if( yes == 1)
+				{
+				D("내가 의류점 앞으로 보내 줄테니 재단사와 이야기를 해보게나. ▲』")
+				SetQuestNumStep(51,1105)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1105)
+				if( yes == 1)
+				{
+				QuestTeleport(1,149,204)
+				SetQuestNumStep(51,1110)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1109)
+				if( yes == 2)
+				{
+				D("의류점에 가보라고 말 한 것 같은데...")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,1190)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1191)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1191)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;활제작사
+		IsJobPC(12)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,1290)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 활제작사군.")
+				SetQuestNumStep(51,1201)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,1201)
+				if( yes == 1)
+				{
+				D("활제작사는 헬턴트 마을의 궁수가 사용하는 활과 화살을 만들지.")
+				SetQuestNumStep(51,1202)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1202)
+				if( yes == 1)
+				{
+				D("궁수는 활제작사가 없다면 칼과 방패를 들고 전투를 해야 할 꺼야.")
+				SetQuestNumStep(51,1203)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1203)
+				if( yes == 1)
+				{
+				D("내가 활제작소 앞으로 보내 줄테니 활제작소 주인과 이야기를 해보게나. ▲』")
+				SetQuestNumStep(51,1205)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1205)
+				if( yes == 1)
+				{
+					random( 0, 2 );
+					if( ran == 0 )
+					{
+	       				QuestTeleport(1,167,65)
+					}
+					if( ran == 1 )
+					{
+	       				 QuestTeleport(1,169,63)
+					}
+				SetQuestNumStep(51,1210)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1209)
+				if( yes == 2)
+				{
+				D("활제작소에 가보라고 이야기 한 것 같은데. 왜 다시 온거지.")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,1290)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1291)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1291)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;연금술사
+		IsJobPC(13)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,1390)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 연금술사군.")
+				SetQuestNumStep(51,1301)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+	
+				CmpQuestNumStep(51,1301)
+				if( yes == 1)
+				{
+				D("연금술사는 각종 포션을 만들지.")
+				SetQuestNumStep(51,1302)
+				goto END6_
+				}
+	
+				CmpQuestNumStep(51,1302)
+				if( yes == 1)
+				{
+				D("연금술사의 집은 헬턴트 성 내부에 있다네.")
+				SetQuestNumStep(51,1303)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1303)
+				if( yes == 1)
+				{
+				D("내가 연금술사 집앞으로 보내줄테니. 그 곳에서 연금술사와 이야기를 해보게나.")
+				SetQuestNumStep(51,1304)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1304)
+				if( yes == 1)
+				{
+				D("연금술사는 가끔 약초와 신비한 재료를 구하기 위해 집을 비우곤 하지")
+				SetQuestNumStep(51,1305)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1305)
+				if( yes == 1)
+				{
+				D("그러니 집안에 없거든 집 주변을 잘 찾아 보게나. ▲』")
+				SetQuestNumStep(51,1306)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1306)
+				if( yes == 1)
+				{
+				MapMove( "K_Sung2", 250,32 )
+				SetQuestNumStep(51,1310)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1309)
+				if( yes == 2)
+				{
+				D("연금술사 집으로 가보라고 말한 것 같은데 왜 다시 왔나?")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,1390)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1391)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1391)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		}
+		;초장이
+		IsJobPC(14)
+		if(yes == 1)
+		{	
+			CmpQuestNumStep(51,1490)
+			if( yes == 0)
+			{
+				CmpQuestNumStep(51,0)
+				if( yes == 1)
+				{
+				D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 초장이군군.")
+				SetQuestNumStep(51,1401)
+				QuestSound(15000)
+				EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+				goto END6_
+				}
+				CmpQuestNumStep(51,1401)
+				if( yes == 1)
+				{
+				D("초장이는 마을에서 소모되어지는 초의 생산을 담당하고 있지.")
+				SetQuestNumStep(51,1402)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1402)
+				if( yes == 1)
+				{
+				D("밤에도 마을을 돌아 다닐 수 있는건 다 초장이가 등불을 만들어 주기 때문에 가능한 거지.")
+				SetQuestNumStep(51,1403)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1403)
+				if( yes == 1)
+				{
+				D("당신과 같은 초장이가 없다면 우리는 던젼에 갈 수도 없을 거야.")
+				SetQuestNumStep(51,1404)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1404)
+				if( yes == 1)
+				{
+				D("내가 양초점 앞으로 보내 줄테니 양초점 주인과 이야기를 해보게나. ▲』")
+				SetQuestNumStep(51,1405)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1405)
+				if( yes == 1)
+				{
+					;LHS Aftercheck need
+					;양초점 있는 곳으로 가기
+	        			random( 0, 2 );
+					if( ran == 0 )
+					{
+					QuestTeleport(1,92,176)
+					}
+					if( ran == 1 )
+					{
+					QuestTeleport(1,95,178)
+					}
+				SetQuestNumStep(51,1410)
+				goto END6_
+				}
+				CmpQuestNumStep(51,1409)
+				if( yes == 2)
+				{
+				D("양초점에 가서 이야기하란 말을 잊었나 보군")
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(51,1490)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1491)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1491)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1492)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1492)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			SetQuestNumStep(51,2000)
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			goto END6_
+			}
+		
+		}
+		;상인
+		IsJobPC(15)
+		if(yes == 1)
+		{
+			CmpQuestNumStep(51,0)
+			if( yes == 1)
+			{
+			D("헬턴트 마을에 온 것을 환영하네. 자네 직업은 상인이군")
+			SetQuestNumStep(51,1501)
+			QuestSound(15000)
+			EventMsg("초보자의 직업 퀘스트가 시작 되었습니다.")
+			goto END6_
+			}
+			CmpQuestNumStep(51,1501)
+			if( yes == 1)
+			{
+			D("어떻하지 아직 상인에게 지원되는 직업 기술이 없는데.")
+			SetQuestNumStep(51,1502)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1502)
+			if( yes == 1)
+			{
+			D("지금 상인의 기술에 대해 준비 중이니 곧 기술을 갖게 될 걸세.")
+			SetQuestNumStep(51,1503)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1503)
+			if( yes == 1)
+			{
+			D("대신 초보자의 직업 퀘스트는 완료 한걸로 해주겠네.")
+			SetQuestNumStep(51,1504)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1504)
+			if( yes == 1)
+			{
+			D("이건 내 미안한 마음의 표시네 받아 주게.")
+			SetQuestNumStep(51,1505)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1505)
+			if( yes == 1)
+			{
+				SetItemInvPC(0,10030,1000)
+				if(yes == 1)
+				{
+				EventMsg("당신의 배낭에 1000 Cell 이 추가 되었습니다.")
+				SetQuestNumStep(51,1590)
+				QuestSound(15003)
+				}
+				else
+				{
+				D("배낭에 공간을 좀 내주게나. 내가 선물을 줄 수가 없군.")
+				}		
+			goto END6_
+			}
+			CmpQuestNumStep(51,1590)
+			if( yes == 1)
+			{
+			D("자 이제 당신도 헨턴트 마을의 직업인이라네")
+			SetQuestNumStep(51,1591)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1591)
+			if( yes == 1)
+			{
+			D("백수 탈출과 더불어 첫번째 퀘스트의 성공을 축하하네")
+			SetQuestNumStep(51,1998)
+			goto END6_
+			}
+			CmpQuestNumStep(51,1998)
+			if( yes == 1)
+			{
+			D("축하하네.")
+			EventMsg(" 초보자의 백수 탈출 퀘스트 완료 ")
+			QuestSound(15008)
+			SetQuestNumStep(51,2000)
+			goto END6_
+			}
+		}
+		}
+		CmpQuestNumStep(52,2000)
+		if( yes == 0 )
+		{
+			IsClassPC(0)
+			if(yes==1)
+			{	
+				CmpQuestNumStep(52,200)
+				if( yes == 0 )
+				{
+				D("여관(250,90)에 한번 들러 보게나.")
+				goto END6_
+				}
+				CmpQuestNumStep(52,200)
+				if( yes == 1 )
+				{
+				D("그대는 이제 드래곤과 인간이 더불어 숨쉬는 이 세계에 발을 들여 놓았다.")
+				SetQuestNumStep(52,1980)
+				goto END6_
+				}
+			}
+			IsClassPC(2)
+			if(yes==1)
+			{	
+				CmpQuestNumStep(52,400)
+				if( yes == 0 )
+				{
+				D("여관(250,90)에 한번 들러 보게나.")
+				goto END6_
+				}
+				CmpQuestNumStep(52,400)
+				if( yes == 1 )
+				{
+				D("그대는 이제 드래곤과 인간이 더불어 숨쉬는 이 세계에 발을 들여 놓았다.")
+				SetQuestNumStep(52,1980)
+				goto END6_
+				}
+			}
+			IsClassPC(1)
+			if(yes==1)
+			{	
+				CmpQuestNumStep(52,600)
+				if( yes == 0 )
+				{
+				D("여관(250,90)에 한번 들러 보게나.")
+				goto END6_
+				}
+				CmpQuestNumStep(52,600)
+				if( yes == 1 )
+				{
+				D("그대는 이제 드래곤과 인간이 더불어 숨쉬는 이 세계에 발을 들여 놓았다.")
+				SetQuestNumStep(52,1980)
+				goto END6_
+				}
+			}
+			IsClassPC(3)
+			if(yes==1)
+			{	
+				CmpQuestNumStep(52,800)
+				if( yes == 0 )
+				{
+				D("여관(250,90)에 한번 들러 보게나.")
+				goto END6_
+				}
+				CmpQuestNumStep(52,800)
+				if( yes == 1 )
+				{
+				D("그대는 이제 드래곤과 인간이 더불어 숨쉬는 이 세계에 발을 들여 놓았다.")
+				SetQuestNumStep(52,1980)
+				goto END6_
+				}
+			}
+			IsClassPC(4)
+			if(yes==1)
+			{	
+				CmpQuestNumStep(52,1000)
+				if( yes == 0 )
+				{
+				D("여관(250,90)에 한번 들러 보게나.")
+				goto END6_
+				}
+				CmpQuestNumStep(52,1000)
+				if( yes == 1 )
+				{
+				D("그대는 이제 드래곤과 인간이 더불어 숨쉬는 이 세계에 발을 들여 놓았다.")
+				SetQuestNumStep(52,1980)
+				goto END6_
+				}
+			}
+			CmpQuestNumStep(52,1980)
+			if( yes == 1 )
+			{
+			D( "지금부터 내가 읽는 서약서를 잘 듣게.")
+			SetQuestNumStep(52,1981)
+			EventMsg("               << 서약서 >>           ")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1981)
+			if( yes == 1 )
+			{
+			D( " 나의 눈물은 대륙의 과거를 위해...")
+			SetQuestNumStep(52,1982)
+			EventMsg( "나의 눈물은 대륙의 과거를 위해...")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1982)
+			if( yes == 1 )
+			{
+			D( " 나의 땀은 대륙의 현재를 위해...")
+			SetQuestNumStep(52,1984)
+			EventMsg( "나의 땀은 대륙의 현재를 위해...")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1984)
+			if( yes == 1 )
+			{
+			D(  "나의 피는 대륙의 미래를 위해 바칠 것을")
+			SetQuestNumStep(52,1985)
+			EventMsg(  "나의 피는 대륙의 미래를 위해 바칠 것을")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1985)
+			if( yes == 1 )
+			{
+			D("유피넬과 헬카네스의 모든 신 앞에서")
+			SetQuestNumStep(52,1986)
+			EventMsg("유피넬과 헬카네스의 모든 신 앞에서")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1986)
+			if( yes == 1 )
+			{
+			D("내 자신의 의지만으로 서약하노라.")
+			SetQuestNumStep(52,1987)
+			EventMsg("내 자신의 의지만으로 서약하노라.")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1987)
+			if( yes == 1 )
+			{
+			D( "'유피넬과 헬카네스의 이름으로'라고 맹세하시오...")
+			SetQuestNumStep(52,1988)
+			EventMsg("'유피넬과 헬카네스의 이름으로'라고 맹세하시오...")
+			goto END6_
+			}
+			CmpQuestNumStep(52,1988)
+			if( yes == 1 )
+			{
+			D( "<<유피넬과 헬카네스의 이름으로>>라고 말하시오.")
+			goto END6_
+			}
+			CmpQuestNumStep(52,2000)
+			if( yes == 0 )
+			{
+			D( "<<유피넬과 헬카네스의 이름으로>>라고 말하시오.")
+			SetQuestNumStep(52,1998)
+			goto END6_
+			}
+					
+		}	
+	}
+:END6_
+end
+@Npc00007	
+end
+@Npc00008   
+end
+@Npc00009	
+; 은행
+	D( "어서 오세요 이곳은 헬턴트 은행입니다. 예금,출금,대출, 경매가 가능하죠 " );
+	CallSmallMenu( 0, 13 )
+	;IsItemHavePC(4006,0)
+	;if( yes == 1)
+	;{
+	;SetQuestNumStep(51,2000)
+	;SetQuestNumStep(52,0)
+	;}
+	;IsItemHavePC(4001,0)
+	;if( yes == 1)
+	;{
+	;SetQuestNumStep(51,2000)
+	;SetQuestNumStep(52,2000)
+	;}
+	
+end
+
+@Npc00010	
+; 가드 (마을외부 막힌곳)
+end
+@Npc00011	
+end
+@Npc00012	
+end
+@Npc00013	
+; 여관 퀘스트 52의 시작
+
+;class 0 전사 	52,101~52,300
+;class 1 도둑 	52,301~52,500
+;class 2 궁수  	52,501~52,700
+;class 3 마법사	52,701~52,900
+;class 4 성직자	52,901~52,1100
+CmpQuestNumStep(51,2000)
+if( yes == 1)
+{
+	;전사
+	IsClassPC(0)
+	if(yes==1)
+	{	
+		CmpQuestNumStep(52,2000)
+		if(yes == 0)
+		{	
+			CmpQuestNumStep(52,0);전사 퀘스트의 시작
+			if( yes	== 1)
+			{
+			D("안녕하시오. 아직 훈련중인 전사로군?")
+			QuestSound(15000)
+			EventMsg("클래스 초보 퀘스트가 시작 되었습니다.")
+			SetQuestNumStep(52,101)
+			goto END13_
+			}
+			CmpQuestNumStep(52,101)
+			if( yes == 1)
+			{
+			D("전사는 항상 최전선에서 몸으로 부태끼는 클래스라네.")
+			SetQuestNumStep(52,102)
+			goto END13_
+			}
+			CmpQuestNumStep(52,102)
+			if( yes	== 1)
+			{
+			D("왠만한 체력과 힘 가지고는 견뎌내기 힘들지.")
+			SetQuestNumStep(52,104)
+			goto END13_
+			}
+			CmpQuestNumStep(52,104)
+			if( yes	== 1)
+			{
+			D("하지만, 레벨만 올리기만 한다면, 접근전에서는 당할 자가 없는 클래스라네.")
+			SetQuestNumStep(52,110)
+			goto END13_
+			}
+			CmpQuestNumStep(52,110)
+			if( yes	== 1)
+			{
+			D("자네는 택틱을 무엇으로 선택했는가?")
+			SetQuestNumStep(52,112)
+			goto END13_
+			}
+			CmpQuestNumStep(52,112)
+			if( yes	== 1)
+			{
+			D("택틱이란 무기의 숙련도로 같은 무기를 오랫동안 쓰게 되면 강해진다네.")
+			SetQuestNumStep(52,113)
+			goto END13_
+			}
+			CmpQuestNumStep(52,113)
+			if( yes	== 1)
+			{
+			D("자네가 Crapple 주먹을 선택했다면, 건틀렛을 착용하면 좋지.")
+			SetQuestNumStep(52,114)
+			goto END13_
+			}
+			CmpQuestNumStep(52,114)
+			if( yes	== 1)
+			{
+			D("Swordmanship은 한손검술을 뜻하고, 대거를 사면 된다네..")
+			SetQuestNumStep(52,115)
+			goto END13_
+			}
+			CmpQuestNumStep(52,115)
+			if( yes	== 1)
+			{
+			D("Archery는 활쏘는 것을 말하고, 처음엔 쇼트보우로 훈련을 하면 돼.")
+			SetQuestNumStep(52,116)
+			goto END13_
+			}
+			CmpQuestNumStep(52,116)
+			if( yes	== 1)
+			{
+			D("Fencing(펜싱검술)은 여자들만 사용하는 것이지.")
+			SetQuestNumStep(52,117)
+			goto END13_
+			}
+			CmpQuestNumStep(52,117)
+			if( yes	== 1)
+			{
+			D("Mace Fighting(한손 도끼술)의 기본은 Axe부터 시작한다네.")
+			SetQuestNumStep(52,118)
+			goto END13_
+			}
+			CmpQuestNumStep(52,118)
+			if( yes	== 1)
+			{
+			D("Pierce(창술)의 기초는 파이크로 시작하게.")
+			SetQuestNumStep(52,120)
+			goto END13_
+			}
+			CmpQuestNumStep(52,120)
+			if( yes	== 1)
+			{
+			D("Whirl(봉술)은 스태프류를 다루는 것으로, 쇼트 스태프로 시작하는 게 좋을거야.")
+			SetQuestNumStep(52,122)
+			goto END13_
+			}
+			CmpQuestNumStep(52,122)
+			if( yes	== 1)
+			{
+			D( "Hurl(비검술)은 블랙잭으로 훈련을 해야 하지.")
+			SetQuestNumStep(52,124)
+			goto END13_
+			}
+			CmpQuestNumStep(52,124)
+			if( yes	== 1)
+			{
+			D("Parrying(방패술)은 방패를 다루는 기술로, 버클러가 기초라네.")
+			SetQuestNumStep(52,125)
+			goto END13_
+			}
+			CmpQuestNumStep(52,125)
+			if( yes	== 1)
+			{
+			D("Double Swordmanship(양손검술)이라면, 더블 대거를 추천하겠네.")
+			SetQuestNumStep(52,128)
+			goto END13_
+			}
+			CmpQuestNumStep(52,128)
+			if( yes	== 1)
+			{
+			D("Double Mace Fighting(두손도끼술)이라면, 라지 엑스 일명 큰도끼를 추천하겠네.")
+			SetQuestNumStep(52,129)
+			goto END13_
+			}
+			CmpQuestNumStep(52,129)
+			if( yes	== 1)
+			{
+			D("Majery(마법사 마법력)은 Wizard Spell을 선택했을 경우 생기는 택틱이네.")
+			SetQuestNumStep(52,130)
+			goto END13_
+			}
+			CmpQuestNumStep(52,130)
+			if( yes	== 1)
+			{
+			D("Orison(성직자 신법술)은 Priest Spell을 선택했을 경우 생기는 택틱이지.")
+			SetQuestNumStep(52,135)
+			goto END13_
+			}
+			CmpQuestNumStep(52,135)
+			if( yes	== 1)
+			{	
+				SetItemInvPC(0,10030,500)
+				if(yes ==1)
+				{
+				D("여기 500 Cell을 줄테니, 꼭 무기 사는데에 쓰도록 하게.")
+				EventMsg("당신의 배낭에 500 Cell이 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(52,136)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 돈을 넣을 공간이 없어.")
+				}			
+			goto END13_
+			}
+			CmpQuestNumStep(52,136)
+			if( yes	== 1)
+			{
+			D("이제 무기점으로 가보게, 그 곳 주인이 기다릴 것이네.")
+			SetQuestNumStep(52,137)
+			goto END13_
+			}
+			CmpQuestNumStep(52,137)
+			if( yes	== 1)
+			{
+			D("중거리 연습장 위에 있는 무기점에 가보게나.")
+			SetQuestNumStep(52,138)
+			goto END13_
+			}
+			CmpQuestNumStep(52,138)
+			if( yes	== 1)
+			{
+			D("중거리 연습장의 위치는 사람들에게 물어보면 잘 알려 줄걸세.")
+			SetQuestNumStep(52,139)
+			goto END13_
+			}
+			CmpQuestNumStep(52,139)
+			if( yes	== 1)
+			{
+			D("칼그림을 간판으로 내건 집 주인이라고 하던데. 한 번 찾아보게나.")
+			SetQuestNumStep(52,150)
+			goto END13_
+			}
+
+			CmpQuestNumStep(52,164) ;퀘스트 도중
+			if( yes	== 2)
+			{				
+			D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+			goto END13_
+			}
+			else
+			{
+				CmpQuestNumStep(52,149)
+				if( yes	== 2)
+				{				
+				D("무기점으로 가보게, 그 곳 주인이 당신을 찾던데")
+				goto END13_
+				}
+			}			
+		}
+		CmpQuestNumStep(52,2000)
+		if(yes == 1)
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+			}
+			if( ran == 1 )
+			{
+			D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+			}
+			CallSmallMenu( 0, 67 )
+			goto END13_
+		}	
+
+
+	}			
+	;궁수
+	IsClassPC(2)
+	if(yes==1)
+	{	
+		CmpQuestNumStep(52,2000)
+		if(yes == 0)
+		{	
+			CmpQuestNumStep(52,0);궁수 퀘스트의 시작
+			if( yes	== 1)
+			{
+			D("안녕하시오. 아직 훈련중인 궁수로군?")
+			QuestSound(15000)
+			EventMsg("클래스 초보 퀘스트가 시작 되었습니다.")
+			SetQuestNumStep(52,301)
+			goto END13_
+			}
+			CmpQuestNumStep(52,301)
+			if( yes == 1)
+			{
+			D("궁수는 그 뛰어난 민첩성을 이요해서 화살로 적을 저격하는 클래스라네.")
+			SetQuestNumStep(52,302)
+			goto END13_
+			}
+			CmpQuestNumStep(52,302)
+			if( yes	== 1)
+			{
+			D("처음에는 쉬지않고 뒤로 물러나며, 안전거리를 항상 확보해야 하는 어려움이 있지.")
+			SetQuestNumStep(52,304)
+			goto END13_
+			}
+			CmpQuestNumStep(52,304)
+			if( yes	== 1)
+			{
+			D("하지만, 레벨만 올리기만 한다면, 장거리 전투에서 당활 자가 없는 클래스지.")
+			SetQuestNumStep(52,310)
+			goto END13_
+			}
+			CmpQuestNumStep(52,310)
+			if( yes	== 1)
+			{
+			D("자네는 택틱을 무엇으로 선택했는가?")
+			SetQuestNumStep(52,312)
+			goto END13_
+			}
+			CmpQuestNumStep(52,312)
+			if( yes	== 1)
+			{
+			D("택틱이란 무기의 숙련도를 나타내는 말이야.")
+			SetQuestNumStep(52,313)
+			goto END13_
+			}
+			CmpQuestNumStep(52,313)
+			if( yes	== 1)
+			{
+			D("자네가 Crapple 주먹을 선택했다면, 건틀렛을 착용하면 좋지.")
+			SetQuestNumStep(52,314)
+			goto END13_
+			}
+			CmpQuestNumStep(52,314)
+			if( yes	== 1)
+			{
+			D("Swordmanship은 한손검술을 뜻하고, 대거를 사면 된다네..")
+			SetQuestNumStep(52,315)
+			goto END13_
+			}
+			CmpQuestNumStep(52,315)
+			if( yes	== 1)
+			{
+			D("Archery는 활쏘는 것을 말하고, 처음엔 쇼트보우로 훈련을 하면 돼.")
+			SetQuestNumStep(52,316)
+			goto END13_
+			}
+			CmpQuestNumStep(52,316)
+			if( yes	== 1)
+			{
+			D("Fencing(펜싱검술)은 여자들만 사용하는 것이지.")
+			SetQuestNumStep(52,317)
+			goto END13_
+			}
+			CmpQuestNumStep(52,317)
+			if( yes	== 1)
+			{
+			D("Mace Fighting(한손 도끼술)의 기본은 Axe부터 시작한다네.")
+			SetQuestNumStep(52,318)
+			goto END13_
+			}
+			CmpQuestNumStep(52,318)
+			if( yes	== 1)
+			{
+			D("Pierce(창술)의 기초는 파이크로 시작하게.")
+			SetQuestNumStep(52,320)
+			goto END13_
+			}
+			CmpQuestNumStep(52,320)
+			if( yes	== 1)
+			{
+			D("Whirl(봉술)은 스태프류를 다루는 것으로, 쇼트 스태프로 시작하는 게 좋을거야.")
+			SetQuestNumStep(52,322)
+			goto END13_
+			}
+			CmpQuestNumStep(52,322)
+			if( yes	== 1)
+			{
+			D( "Hurl(비검술)은 블랙잭으로 훈련을 해야 하지.")
+			SetQuestNumStep(52,324)
+			goto END13_
+			}
+			CmpQuestNumStep(52,324)
+			if( yes	== 1)
+			{
+			D("Parrying(방패술)은 방패를 다루는 기술로, 버클러는 대장간에서 판다네.")
+			SetQuestNumStep(52,325)
+			goto END13_
+			}
+			CmpQuestNumStep(52,325)
+			if( yes	== 1)
+			{
+			D("Double Swordmanship(양손검술)이라면, 투핸드 소드를 추천하겠네.")
+			SetQuestNumStep(52,328)
+			goto END13_
+			}
+			CmpQuestNumStep(52,328)
+			if( yes	== 1)
+			{
+			D( "Double Mace Fighting(두손도끼술)이라면, 라지 엑스 일명 큰도끼를 추천하겠네.")
+			SetQuestNumStep(52,329)
+			goto END13_
+			}
+			CmpQuestNumStep(52,329)
+			if( yes	== 1)
+			{
+			D("Majery(마법사 마법력)은 Wizard Spell을 선택했을 경우 생기는 택틱이네.")
+			SetQuestNumStep(52,330)
+			goto END13_
+			}
+			CmpQuestNumStep(52,330)
+			if( yes	== 1)
+			{
+			D("Orison(성직자 신법술)은 Priest Spell을 선택했을 경우 생기는 택틱이지.")
+			SetQuestNumStep(52,334)
+			goto END13_
+			}
+			CmpQuestNumStep(52,334)
+			if( yes	== 1)
+			{
+			D("궁수는 활쏘는 기술을 선택하는 것이 자연스럽겠지만, 다른 것을 선택했더라도 상관은 없네")
+			SetQuestNumStep(52,335)
+			goto END13_
+			}
+			CmpQuestNumStep(52,335)
+			if( yes	== 1)
+			{	
+				SetItemInvPC(0,10030,500)
+				if(yes ==1)
+				{
+				D("여기 500 Cell을 줄테니, 꼭 무기 사는데에 쓰도록 하게.")
+				EventMsg("당신의 배낭에 500 Cell이 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(52,336)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 돈을 넣을 공간이 없어.")
+				}			
+			goto END13_
+			}
+			CmpQuestNumStep(52,336)
+			if( yes	== 1)
+			{
+			D("이제 활제작소로 가보게, 그 곳 주인이 기다릴 것이네.")
+			SetQuestNumStep(52,337)
+			goto END13_
+			}
+			CmpQuestNumStep(52,337)
+			if( yes	== 1)
+			{
+			D("활제작소는 목장 밑에 있다네.")
+			SetQuestNumStep(52,338)
+			goto END13_
+			}
+			CmpQuestNumStep(52,338)
+			if( yes	== 1)
+			{
+			D("활제작소의 위치는 사람들에게 물어보면 잘 알려 줄걸세.")
+			SetQuestNumStep(52,339)
+			goto END13_
+			}
+			CmpQuestNumStep(52,339)
+			if( yes	== 1)
+			{
+			D("활그림을 간판으로 내건 집 주인이라고 하던데. 한 번 찾아보게나.")
+			SetQuestNumStep(52,350)
+			goto END13_
+			}
+
+			CmpQuestNumStep(52,364) ;퀘스트 도중
+			if( yes	== 2)
+			{				
+			D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+			goto END13_
+			}
+			else
+			{
+				CmpQuestNumStep(52,349)
+				if( yes	== 2)
+				{				
+				D("활제작소에 가보게, 그 곳 주인이 당신을 찾던데")
+				goto END13_
+				}			
+			}
+		goto END13_
+		}
+		CmpQuestNumStep(52,2000)
+		if(yes == 1)
+		{	
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+			}
+			if( ran == 1 )
+			{
+			D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+			}
+		CallSmallMenu( 0, 67 )
+		goto END13_
+		}
+	}
+	;도둑
+	IsClassPC(1)
+	if(yes==1)
+	{	
+		CmpQuestNumStep(52,2000)
+		if(yes == 0)
+		{	
+			CmpQuestNumStep(52,0);도둑 퀘스트의 시작
+			if( yes	== 1)
+			{
+			D("안녕하시오. 아직 훈련중인 도둑로군?")
+			QuestSound(15000)
+			EventMsg("클래스 초보 퀘스트가 시작 되었습니다.")
+			SetQuestNumStep(52,501)
+			goto END13_
+			}
+			CmpQuestNumStep(52,501)
+			if( yes == 1)
+			{
+			D("도둑은 그 재빠른 움직임과 잔기술이 특징인 클래스지.")
+			SetQuestNumStep(52,502)
+			goto END13_
+			}
+			CmpQuestNumStep(52,502)
+			if( yes	== 1)
+			{
+			D("또한, 비도로 적을 기습할 수 있는 클래스라네.")
+			SetQuestNumStep(52,503)
+			goto END13_
+			}
+			CmpQuestNumStep(52,503)
+			if( yes	== 1)
+			{
+			D("처음에는 레벨을 올리기 힘들지만...")
+			SetQuestNumStep(52,504)
+			goto END13_
+			}
+			CmpQuestNumStep(52,504)
+			if( yes	== 1)
+			{
+			D(" 레벨만 올리기만 한다면, 그 솜씨에는 당할 자가 없는 클래스지.")
+			SetQuestNumStep(52,510)
+			goto END13_
+			}
+			CmpQuestNumStep(52,510)
+			if( yes	== 1)
+			{
+			D("자네는 택틱을 무엇으로 선택했는가?")
+			SetQuestNumStep(52,512)
+			goto END13_
+			}
+			CmpQuestNumStep(52,512)
+			if( yes	== 1)
+			{
+			D("택틱이란 무기의 숙련도를 나타내는 말이야.")
+			SetQuestNumStep(52,513)
+			goto END13_
+			}
+			CmpQuestNumStep(52,513)
+			if( yes	== 1)
+			{
+			D("자네가 Crapple 주먹을 선택했다면, 건틀렛을 착용하면 좋지.")
+			SetQuestNumStep(52,514)
+			goto END13_
+			}
+			CmpQuestNumStep(52,514)
+			if( yes	== 1)
+			{
+			D("Swordmanship은 한손검술을 뜻하고, 대거를 사면 된다네..")
+			SetQuestNumStep(52,515)
+			goto END13_
+			}
+			CmpQuestNumStep(52,515)
+			if( yes	== 1)
+			{
+			D("Archery는 활쏘는 것을 말하고, 처음엔 쇼트보우로 훈련을 하면 돼.")
+			SetQuestNumStep(52,516)
+			goto END13_
+			}
+			CmpQuestNumStep(52,516)
+			if( yes	== 1)
+			{
+			D("Fencing(펜싱검술)은 여자들만 사용하는 것이지.")
+			SetQuestNumStep(52,517)
+			goto END13_
+			}
+			CmpQuestNumStep(52,517)
+			if( yes	== 1)
+			{
+			D("Mace Fighting(한손 도끼술)의 기본은 Axe부터 시작한다네.")
+			SetQuestNumStep(52,518)
+			goto END13_
+			}
+			CmpQuestNumStep(52,518)
+			if( yes	== 1)
+			{
+			D("Pierce(창술)의 기초는 파이크로 시작하게.")
+			SetQuestNumStep(52,520)
+			goto END13_
+			}
+			CmpQuestNumStep(52,520)
+			if( yes	== 1)
+			{
+			D("Whirl(봉술)은 스태프류를 다루는 것으로, 쇼트 스태프로 시작하는 게 좋을거야.")
+			SetQuestNumStep(52,522)
+			goto END13_
+			}
+			CmpQuestNumStep(52,522)
+			if( yes	== 1)
+			{
+			D( "Hurl(비검술)은 블랙잭으로 훈련을 해야 하지.")
+			SetQuestNumStep(52,524)
+			goto END13_
+			}
+			CmpQuestNumStep(52,524)
+			if( yes	== 1)
+			{
+			D("Parrying(방패술)은 방패를 다루는 기술로, 버클러는 대장간에서 판다네.")
+			SetQuestNumStep(52,525)
+			goto END13_
+			}
+			CmpQuestNumStep(52,525)
+			if( yes	== 1)
+			{
+			D("Double Swordmanship(양손검술)이라면, 더블 대거를 추천하겠네.")
+			SetQuestNumStep(52,528)
+			goto END13_
+			}
+			CmpQuestNumStep(52,528)
+			if( yes	== 1)
+			{
+			D(   "Double Mace Fighting(두손도끼술)이라면, 라지 엑스 일명 큰도끼를 추천하겠네.")
+			SetQuestNumStep(52,529)
+			goto END13_
+			}
+			CmpQuestNumStep(52,529)
+			if( yes	== 1)
+			{
+			D("Majery(마법사 마법력)은 Wizard Spell을 선택했을 경우 생기는 택틱이네.")
+			SetQuestNumStep(52,530)
+			goto END13_
+			}
+			CmpQuestNumStep(52,530)
+			if( yes	== 1)
+			{
+			D("Orison(성직자 신법술)은 Priest Spell을 선택했을 경우 생기는 택틱이지.")
+			SetQuestNumStep(52,534)
+			goto END13_
+			}
+			CmpQuestNumStep(52,534)
+			if( yes	== 1)
+			{
+			D("도둑은 비도를 던지는 기술을 선택하는 것이 자연스럽겠지만, 다른 것을 선택했더라도 상관은 없네")
+			SetQuestNumStep(52,535)
+			goto END13_
+			}
+			CmpQuestNumStep(52,535)
+			if( yes	== 1)
+			{	
+				SetItemInvPC(0,10030,500)
+				if(yes ==1)
+				{
+				D("여기 500 Cell을 줄테니, 꼭 무기 사는데에 쓰도록 하게.")
+				EventMsg("당신의 배낭에 500 Cell이 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(52,536)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 돈을 넣을 공간이 없어.")
+				}			
+			goto END13_
+			}
+			CmpQuestNumStep(52,536)
+			if( yes	== 1)
+			{
+			D("이제 활제작소로 가보게, 그 곳 주인이 기다릴 것이네.")
+			SetQuestNumStep(52,537)
+			goto END13_
+			}
+			CmpQuestNumStep(52,537)
+			if( yes	== 1)
+			{
+			D("활제작소는 목장 밑에 있다네.")
+			SetQuestNumStep(52,538)
+			goto END13_
+			}
+			CmpQuestNumStep(52,538)
+			if( yes	== 1)
+			{
+			D("활제작소의 위치는 사람들에게 물어보면 잘 알려 줄걸세.")
+			SetQuestNumStep(52,539)
+			goto END13_
+			}
+			CmpQuestNumStep(52,539)
+			if( yes	== 1)
+			{
+			D("활그림을 간판으로 내건 집 주인이라고 하던데. 한 번 찾아보게나.")
+			SetQuestNumStep(52,550)
+			goto END13_
+			}
+
+			CmpQuestNumStep(52,564) ;퀘스트 도중
+			if( yes	== 2)
+			{				
+			D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+			goto END13_
+			}
+			else
+			{
+				CmpQuestNumStep(52,549)
+				if( yes	== 2)
+				{				
+				D("활제작소에 가보게, 그 곳 주인이 당신을 찾던데")
+				goto END13_
+				}			
+			}
+		goto END13_
+		}
+		CmpQuestNumStep(52,2000)
+		if(yes == 1)
+		{	
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+			}
+			if( ran == 1 )
+			{
+			D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+			}
+		CallSmallMenu( 0, 67 )
+		goto END13_
+		}
+	}
+	;마법사
+	IsClassPC(3)
+	if(yes==1)
+	{	
+		CmpQuestNumStep(52,2000)
+		if(yes == 0)
+		{	
+			CmpQuestNumStep(52,0);마법사의 퀘스트의 시작
+			if( yes	== 1)
+			{
+			D("안녕하시오. 아직 기초단계의 마법사로군?")
+			QuestSound(15000)
+			EventMsg("클래스 초보 퀘스트가 시작 되었습니다.")
+			SetQuestNumStep(52,701)
+			goto END13_
+			}
+			CmpQuestNumStep(52,701)
+			if( yes == 1)
+			{
+			D( "마법사는 그 화려한 마법이 예술인 클래스지.")
+			SetQuestNumStep(52,702)
+			goto END13_
+			}
+			CmpQuestNumStep(52,702)
+			if( yes	== 1)
+			{
+			D("처음에는 마법공격도 약하고, 힘도 약하지만, 중렙 정도까지의 레벨업만 하면야...")
+			SetQuestNumStep(52,703)
+			goto END13_
+			}
+			CmpQuestNumStep(52,703)
+			if( yes	== 1)
+			{
+			D("그 화려하고 다양한 마법 공격은 대단해...")
+			SetQuestNumStep(52,704)
+			goto END13_
+			}
+			CmpQuestNumStep(52,704)
+			if( yes	== 1)
+			{
+			D("대마법사 핸드레이크는 우주창조마법까지 했다고 하는데...")
+			SetQuestNumStep(52,705)
+			goto END13_
+			}
+			CmpQuestNumStep(52,705)
+			if( yes	== 1)
+			{
+			D("그거야 검증되지 않은 얘기지.")
+			SetQuestNumStep(52,710)
+			goto END13_
+			}
+			CmpQuestNumStep(52,710)
+			if( yes	== 1)
+			{
+			D("자네는 택틱을 무엇으로 선택했는가?")
+			SetQuestNumStep(52,712)
+			goto END13_
+			}
+			CmpQuestNumStep(52,712)
+			if( yes	== 1)
+			{
+			D("택틱이란 무기의 숙련도를 나타내는 말이야.")
+			SetQuestNumStep(52,713)
+			goto END13_
+			}
+			CmpQuestNumStep(52,713)
+			if( yes	== 1)
+			{
+			D("자네가 Crapple 주먹을 선택했다면, 건틀렛을 착용하면 좋지.")
+			SetQuestNumStep(52,714)
+			goto END13_
+			}
+			CmpQuestNumStep(52,714)
+			if( yes	== 1)
+			{
+			D("Swordmanship은 한손검술을 뜻하고, 대거를 사면 된다네..")
+			SetQuestNumStep(52,715)
+			goto END13_
+			}
+			CmpQuestNumStep(52,715)
+			if( yes	== 1)
+			{
+			D("Archery는 활쏘는 것을 말하고, 처음엔 쇼트보우로 훈련을 하면 돼.")
+			SetQuestNumStep(52,716)
+			goto END13_
+			}
+			CmpQuestNumStep(52,716)
+			if( yes	== 1)
+			{
+			D("Fencing(펜싱검술)은 여자들만 사용하는 것이지.")
+			SetQuestNumStep(52,717)
+			goto END13_
+			}
+			CmpQuestNumStep(52,717)
+			if( yes	== 1)
+			{
+			D("Mace Fighting(한손 도끼술)의 기본은 Axe부터 시작한다네.")
+			SetQuestNumStep(52,718)
+			goto END13_
+			}
+			CmpQuestNumStep(52,718)
+			if( yes	== 1)
+			{
+			D("Pierce(창술)의 기초는 파이크로 시작하게.")
+			SetQuestNumStep(52,720)
+			goto END13_
+			}
+			CmpQuestNumStep(52,720)
+			if( yes	== 1)
+			{
+			D("Whirl(봉술)은 스태프류를 다루는 것으로, 쇼트 스태프로 시작하는 게 좋을거야.")
+			SetQuestNumStep(52,722)
+			goto END13_
+			}
+			CmpQuestNumStep(52,722)
+			if( yes	== 1)
+			{
+			D( "Hurl(비검술)은 블랙잭으로 훈련을 해야 하지.")
+			SetQuestNumStep(52,724)
+			goto END13_
+			}
+			CmpQuestNumStep(52,724)
+			if( yes	== 1)
+			{
+			D("Parrying(방패술)은 방패를 다루는 기술로, 버클러는 대장간에서 판다네.")
+			SetQuestNumStep(52,725)
+			goto END13_
+			}
+			CmpQuestNumStep(52,725)
+			if( yes	== 1)
+			{
+			D("Double Swordmanship(양손검술)이라면, 더블 대거를 추천하겠네.")
+			SetQuestNumStep(52,728)
+			goto END13_
+			}
+			CmpQuestNumStep(52,728)
+			if( yes	== 1)
+			{
+			D(   "Double Mace Fighting(두손도끼술)이라면, 라지 엑스 일명 큰도끼를 추천하겠네.")
+			SetQuestNumStep(52,729)
+			goto END13_
+			}
+			CmpQuestNumStep(52,729)
+			if( yes	== 1)
+			{
+			D("Majery(마법사 마법력)은 Wizard Spell을 선택했을 경우 생기는 택틱이네.")
+			SetQuestNumStep(52,730)
+			goto END13_
+			}
+			CmpQuestNumStep(52,730)
+			if( yes	== 1)
+			{
+			D("Orison(성직자 신법술)은 Priest Spell을 선택했을 경우 생기는 택틱이지.")
+			SetQuestNumStep(52,734)
+			goto END13_
+			}
+			CmpQuestNumStep(52,734)
+			if( yes	== 1)
+			{
+			D("궁수는 활쏘는 기술을 선택하는 것이 자연스럽겠지만, 다른 것을 선택했더라도 상관은 없네")
+			SetQuestNumStep(52,735)
+			goto END13_
+			}
+			CmpQuestNumStep(52,735)
+			if( yes	== 1)
+			{	
+				SetItemInvPC(0,10030,500)
+				if(yes ==1)
+				{
+				D("여기 500 Cell을 줄테니, 꼭 무기 사는데에 쓰도록 하게.")
+				EventMsg("당신의 배낭에 500 Cell이 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(52,736)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 돈을 넣을 공간이 없어.")
+				}			
+			goto END13_
+			}
+			CmpQuestNumStep(52,736)
+			if( yes	== 1)
+			{
+			D("이제 목공소로 가보게, 그 곳 주인이 기다릴 것이네.")
+			SetQuestNumStep(52,737)
+			goto END13_
+			}
+			CmpQuestNumStep(52,737)
+			if( yes	== 1)
+			{
+			D("목공소는 점성술사 집 밑에 있다네.")
+			SetQuestNumStep(52,738)
+			goto END13_
+			}
+			CmpQuestNumStep(52,738)
+			if( yes	== 1)
+			{
+			D("점성술사 집 근처에 있는 목공소를 찾게나.")
+			SetQuestNumStep(52,739)
+			goto END13_
+			}
+			CmpQuestNumStep(52,739)
+			if( yes	== 1)
+			{
+			D("목공소가 마을에 두개 있으니 헷갈리지 말게나. ")
+			SetQuestNumStep(52,750)
+			goto END13_
+			}
+			
+			CmpQuestNumStep(52,764) ;퀘스트 도중
+			if( yes	== 2)
+			{				
+			D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+			goto END13_
+			}
+			else
+			{
+				CmpQuestNumStep(52,749)
+				if( yes	== 2)
+				{				
+				D("목공소에 가보게, 그 곳 주인이 당신을 찾던데")
+				goto END13_
+				}			
+			}
+		goto END13_
+		}
+		CmpQuestNumStep(52,2000)
+		if(yes == 1)
+		{	
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+			}
+			if( ran == 1 )
+			{
+			D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+			}
+		CallSmallMenu( 0, 67 )
+		goto END13_
+		}
+	}
+	;성직자
+	IsClassPC(4)
+	if(yes==1)
+	{	
+		CmpQuestNumStep(52,2000)
+		if(yes == 0)
+		{	
+			CmpQuestNumStep(52,0);성직자 퀘스트의 시작
+			if( yes	== 1)
+			{
+			D("안녕하시오. 아직 수행중인 성직자로군?")
+			QuestSound(15000)
+			EventMsg("클래스 초보 퀘스트가 시작 되었습니다.")
+			SetQuestNumStep(52,901)
+			goto END13_
+			}
+			CmpQuestNumStep(52,901)
+			if( yes == 1)
+			{
+			D("성직자는 신의 권능을 이어받은 클래스지.")
+			SetQuestNumStep(52,902)
+			goto END13_
+			}
+			CmpQuestNumStep(52,902)
+			if( yes	== 1)
+			{
+			D("레벨만 오르면, 멋지게 신의 마법을 펼치는 클래스지.")
+			SetQuestNumStep(52,904)
+			goto END13_
+			}
+			CmpQuestNumStep(52,904)
+			if( yes	== 1)
+			{
+			D("그 회복력 또한 대단한 클래스라네.")
+			SetQuestNumStep(52,910)
+			goto END13_
+			}
+			CmpQuestNumStep(52,910)
+			if( yes	== 1)
+			{
+			D("자네는 택틱을 무엇으로 선택했는가?")
+			SetQuestNumStep(52,912)
+			goto END13_
+			}
+			CmpQuestNumStep(52,912)
+			if( yes	== 1)
+			{
+			D("택틱이란 무기의 숙련도를 나타내는 말이야.")
+			SetQuestNumStep(52,913)
+			goto END13_
+			}
+			CmpQuestNumStep(52,913)
+			if( yes	== 1)
+			{
+			D("자네가 Crapple 주먹을 선택했다면, 건틀렛을 착용하면 좋지.")
+			SetQuestNumStep(52,914)
+			goto END13_
+			}
+			CmpQuestNumStep(52,914)
+			if( yes	== 1)
+			{
+			D("Swordmanship은 한손검술을 뜻하고, 대거를 사면 된다네..")
+			SetQuestNumStep(52,915)
+			goto END13_
+			}
+			CmpQuestNumStep(52,915)
+			if( yes	== 1)
+			{
+			D("Archery는 활쏘는 것을 말하고, 처음엔 쇼트보우로 훈련을 하면 돼.")
+			SetQuestNumStep(52,916)
+			goto END13_
+			}
+			CmpQuestNumStep(52,916)
+			if( yes	== 1)
+			{
+			D("Fencing(펜싱검술)은 여자들만 사용하는 것이지.")
+			SetQuestNumStep(52,917)
+			goto END13_
+			}
+			CmpQuestNumStep(52,917)
+			if( yes	== 1)
+			{
+			D("Mace Fighting(한손 도끼술)의 기본은 Axe부터 시작한다네.")
+			SetQuestNumStep(52,918)
+			goto END13_
+			}
+			CmpQuestNumStep(52,918)
+			if( yes	== 1)
+			{
+			D("Pierce(창술)의 기초는 파이크로 시작하게.")
+			SetQuestNumStep(52,920)
+			goto END13_
+			}
+			CmpQuestNumStep(52,920)
+			if( yes	== 1)
+			{
+			D("Whirl(봉술)은 스태프류를 다루는 것으로, 쇼트 스태프로 시작하는 게 좋을거야.")
+			SetQuestNumStep(52,922)
+			goto END13_
+			}
+			CmpQuestNumStep(52,922)
+			if( yes	== 1)
+			{
+			D( "Hurl(비검술)은 블랙잭으로 훈련을 해야 하지.")
+			SetQuestNumStep(52,924)
+			goto END13_
+			}
+			CmpQuestNumStep(52,924)
+			if( yes	== 1)
+			{
+			D("Parrying(방패술)은 방패를 다루는 기술로, 버클러는 대장간에서 판다네.")
+			SetQuestNumStep(52,925)
+			goto END13_
+			}
+			CmpQuestNumStep(52,925)
+			if( yes	== 1)
+			{
+			D("Double Swordmanship(양손검술)이라면, 더블 대거를 추천하겠네.")
+			SetQuestNumStep(52,928)
+			goto END13_
+			}
+			CmpQuestNumStep(52,928)
+			if( yes	== 1)
+			{
+			D("Double Mace Fighting(두손도끼술)이라면, 라지 엑스 일명 큰도끼를 추천하겠네.")
+			SetQuestNumStep(52,929)
+			goto END13_
+			}
+			CmpQuestNumStep(52,929)
+			if( yes	== 1)
+			{
+			D("Majery(마법사 마법력)은 Wizard Spell을 선택했을 경우 생기는 택틱이네.")
+			SetQuestNumStep(52,930)
+			goto END13_
+			}
+			CmpQuestNumStep(52,930)
+			if( yes	== 1)
+			{
+			D("Orison(성직자 신법술)은 Priest Spell을 선택했을 경우 생기는 택틱이지.")
+			SetQuestNumStep(52,934)
+			goto END13_
+			}
+			CmpQuestNumStep(52,934)
+			if( yes	== 1)
+			{	
+				SetItemInvPC(0,10030,500)
+				if(yes ==1)
+				{
+				D("여기 500 Cell을 줄테니, 꼭 무기 사는데에 쓰도록 하게.")
+				EventMsg("당신의 배낭에 500 Cell이 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(52,936)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 돈을 넣을 공간이 없어.")
+				}			
+			goto END13_
+			}
+			CmpQuestNumStep(52,936)
+			if( yes	== 1)
+			{
+			D("이제 목공소에 가보게, 그 곳 주인이 기다릴 것이네.")
+			SetQuestNumStep(52,937)
+			goto END13_
+			}
+			CmpQuestNumStep(52,937)
+			if( yes	== 1)
+			{
+			D("목공소는 점성술사의 집 밑에 있다네.")
+			SetQuestNumStep(52,938)
+			goto END13_
+			}
+			CmpQuestNumStep(52,938)
+			if( yes	== 1)
+			{
+			D("점성술사의 집 위치는 사람들에게 물어보면 잘 알려 줄걸세.")
+			SetQuestNumStep(52,939)
+			goto END13_
+			}
+			CmpQuestNumStep(52,939)
+			if( yes	== 1)
+			{
+			D("마을에 목공소가 두개 있으니 헷갈리지 말게나.")
+			SetQuestNumStep(52,950)
+			goto END13_
+			}
+
+			CmpQuestNumStep(52,964) ;퀘스트 도중
+			if( yes	== 2)
+			{				
+			D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+			goto END13_
+			}
+			else
+			{
+				CmpQuestNumStep(52,949)
+				if( yes	== 2)
+				{				
+				D("목공소에 가보게, 그 곳 주인이 당신을 찾던데")
+				goto END13_
+				}			
+			}
+		goto END13_
+		}
+		CmpQuestNumStep(52,2000)
+		if(yes == 1)
+		{	
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+			}
+			if( ran == 1 )
+			{
+			D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+			}
+		CallSmallMenu( 0, 67 )
+		goto END13_
+		}
+	}
+}
+CmpQuestNumStep(51,2000)
+if( yes == 0)
+{
+		random( 0, 3 )
+		if( ran == 0 )
+		{
+		D( "편안한 휴식과 수면을 하면 Life와 Health가 올라 가지요." );
+		}
+		if( ran == 1 )
+		{
+		D( "마법사라면 메모라이즈를 위해서 수면이 꼭 필요합니다. " );
+		}
+		if( ran == 2 )
+		{
+		D( "아직 마을 회관에 들러보지 않았군 한번 들러 보게나." );
+		}
+	CallSmallMenu( 0, 67 )
+	goto END13_
+}
+:END13_	
+end
+@Npc00014	
+; 빵집 식당 인터페이스 다음대사 랜덤
+
+	;요리사~~
+	IsJobPC(10)
+	if( yes == 1)
+	{
+		
+		CmpQuestNumStep(51,1010)
+		if( yes == 1)
+		{
+			D("음 마을회관 소개로 왔군? 얘기는 이미 들었네.")
+			SetQuestNumStep(51,1011)
+			goto END17_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데..")
+			goto END17_
+		}
+		CmpQuestNumStep(51,1011)
+		if( yes == 1)
+		{
+			D("요리사는 능숙해 짐에 따라, 모든 음식을 만들 수가 있지.")
+			SetQuestNumStep(51,1012)
+			goto END17_
+		}
+		CmpQuestNumStep(51,1012)
+		if( yes == 1)
+		{
+			D("재료만 충분하다면, 못 만드는 음식은 거의 없다고 봐야지. 자네도 열심히 해")
+			SetQuestNumStep(51,1013)
+			goto END17_
+		}
+		CmpQuestNumStep(51,1013)
+		if( yes == 1)
+		{
+		D("자네 요리 기술은 가지고 있나. 어디 한 번 볼까?")
+		SetQuestNumStep(51,1015)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,1015)
+		if( yes == 1)
+		{
+			IsSkillHavePC(43)
+			if(yes == 1)
+			{
+     			D("이미 요리 기술을 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 요리 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(43,1)
+			EventMsg("요리 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,1020)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1020)
+		if( yes == 1)
+		{
+		D("자네는 쿠커는 가지고 있나? 요리를 하기 위해서는 쿠커가 필요하지.")
+		SetQuestNumStep(51,1031)
+		goto END17_
+		}		
+	
+		CmpQuestNumStep(51,1031)
+		if( yes == 1)
+		{
+			IsInvHavePC(5018)
+			if( yes == 1)
+			{
+			D("자네는 이미 쿠커를 가지고 있군 없다면 내가 줬을 텐데.")
+			SetQuestNumStep(51,1035)
+			}
+			else
+			{
+				SetItemInvPC(0,5018,820)
+				if(yes ==1)
+				{
+				D("이거 받게나. 별건 아니고 요리 기술을 사용할 때 쓰는 쿠커야! 이 쿠커를 선물하지.")
+				EventMsg("당신의 배낭에 쿠커가 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(51,1035)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 쿠커를 넣을 공간이 없어.")
+				}
+			}
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,1035)
+		if( yes == 1)
+		{
+		D("요리의 재료는 농부,도축자,그리고 어부가 제공하지.")
+		SetQuestNumStep(51,1036)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1036)
+		if( yes == 1)
+		{
+		D("기술을 사용할 때 연장을 손에 장착하고 있어야 기술이 성공 할 수 있지.")
+		SetQuestNumStep(51,1041)
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,1041)
+		if( yes == 1)
+		{
+			D("쿠커를 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,1042)
+			goto END24_
+		}
+
+		CmpQuestNumStep(51,1042)
+		if( yes == 1)
+		{
+			IsItemHavePC(5018,0)
+			if(yes == 1)
+			{
+			D("쿠커를 손에 들고 있군, 그 쿠커를 손에 들어야 요리 기술을 성공 시킬 수 있다네.")
+			SetQuestNumStep(51,1043)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("쿠커를 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 쿠커를 들기 싫은가? 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D( "쿠커를 손에 든 당신이 멋질 것 같군" );
+				}
+			}
+		
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,1043)
+		if( yes == 1)
+		{
+		D("우선 내가 요리 기술에 사용될 밀가루 반죽을 주지.")
+		SetQuestNumStep(51,1044)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1044)
+		if( yes == 1)
+		{
+		SetItemInvPC(0,3005,820)
+		SetItemInvPC(0,3005,820)
+		SetItemInvPC(0,3005,820)
+		SetItemInvPC(0,3005,820)
+		SetItemInvPC(0,3005,820)
+		SetItemInvPC(0,3005,820)
+		D("내가 밀가루 반죽을 넣었네, 다음 부터는 직접 사게나.")
+		EventMsg("당신의 배낭에 밀가루 반죽이 추가되었습니다.")
+		QuestSound(15003)
+		SetQuestNumStep(51,1045)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1045)
+		if( yes == 1)
+		{
+		D("지금 요리 기술을 사용해 보게나. 밀가루 반죽으로 빵을 만들 수 있지.")
+		SetQuestNumStep(51,1046)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1046)
+		if( yes == 1)
+		{
+		D("요리 기술을 사용해서 빵을 만들어 보게나.")
+		SetQuestNumStep(51,1050)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1050)
+		if( yes == 1)
+		{
+		D("빵을 만들어 왔나?")
+		SetQuestNumStep(51,1051)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1051)
+		if( yes == 1)
+		{
+			IsInvHavePC(3007)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(3007,10030,500)
+			SetQuestNumStep(51,1054)
+			EventMsg("빵집 주인이 빵을 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			goto END17_
+			}
+			else
+			{
+			D("빵을 만들어 오게나?")
+			}
+		goto END17_
+		}
+		CmpQuestNumStep(51,1054) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 요리사가  된거야.")
+		SetQuestNumStep(51,1055)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1055) 
+		if( yes == 1)
+		{
+		D("이제 내 이야기는 끝났네. 마을 회관에 가보게나")
+		SetQuestNumStep(51,1090)
+		goto END17_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 3 )
+			if( ran == 0 )
+			{
+			D("다양한 요리가 준비되어 있습니다.")
+			}	
+			if( ran == 1)
+			{
+			D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+			}	
+			if( ran == 2 )
+			{
+			D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+			}
+			CallSmallMenu( 0, 20 )
+		goto END17_
+		}
+	}
+	else
+	{
+		random( 0, 3 )
+		if( ran == 0 )
+		{
+		D("다양한 요리가 준비되어 있습니다.")
+		}	
+		if( ran == 1)
+		{
+		D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+		}	
+		if( ran == 2 )
+		{
+		D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+		}
+		CallSmallMenu( 0, 20 )
+	goto END17_
+	}
+
+end
+
+@Npc00015	
+; 주점	인터페이스,  다음메뉴 랜덤 발생 
+	random( 0, 2 )
+	if( ran == 0 )
+	{
+	D( "여기는 술을 마시며 이야기를 나눌 수 있는 곳이지." );
+	}
+	if( ran == 1 )
+	{
+	D( "이 술집을 모르고 헬턴트를 말할순 없을걸. 자 어떤 메뉴를 주문하시겠소" );
+	}
+	CallSmallMenu( 0, 57 )	
+end
+@Npc00016
+; 방어구점	
+	D( "여긴 전문적으로 방어구를 파는 곳이지만 철로 만든물건은 뭐든지 팔고 삽니다. " );
+; 대장간 인터페이스 
+	CallSmallMenu( 0, 18 )
+end
+@Npc00017	
+; 대장간 인터페이스 
+	IsJobPC(2)
+	if( yes == 1)
+	{
+		CmpQuestNumStep(51,210)
+		if( yes == 1)
+		{
+			D("마을 회관 소개로 왔군? 새로 온 광부라는 얘기는 이미 들었네.")
+			SetQuestNumStep(51,211)
+			goto END17_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서  초보자에게 도움 줄 말을 한다던데")
+			goto END17_
+		}
+		CmpQuestNumStep(51,211)
+		if( yes == 1)
+		{
+			D("음 이제 처음 하나 보군 내가 광부의 길에 대해 설명해 주지.")
+			SetQuestNumStep(51,212)
+			goto END17_
+		}
+		CmpQuestNumStep(51,212)
+		if( yes == 1)
+		{
+			D("광부는 땅에 묻혀있는 광물을 찾고, 캐고, 제련할 수 있지.")
+			SetQuestNumStep(51,213)
+			goto END17_
+		}
+		CmpQuestNumStep(51,213)
+		if( yes == 1)
+		{
+		D("광부는 일단 땅 속에 있는 광물을 알아챌 수 있어야 한다네")
+		SetQuestNumStep(51,214)
+		goto END17_
+		}
+		CmpQuestNumStep(51,214)
+		if( yes == 1)
+		{
+		D("자네는 광물탐지 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,215)
+		goto END17_
+		}
+		CmpQuestNumStep(51,215)
+		if( yes == 1)
+		{
+			IsSkillHavePC(25)
+			if(yes == 1)
+			{
+     			D("이미 광물탐지 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 광물탐지 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(25,1)
+			EventMsg("광물탐지 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,220)
+		goto END17_
+		}
+		CmpQuestNumStep(51,220)
+		if( yes == 1)
+		{
+		D("광물 탐지는 광부만의 필~ 로 하는 거라네, 도구는 필요 없지..")
+		SetQuestNumStep(51,225)
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,225)
+		if( yes == 1)
+		{
+		D("광물 탐지에 성공하면, 그곳에서 광물을 캘 수 있다네. 그런데 자네 광물 채취 기술을 가지고 있나?")
+		SetQuestNumStep(51,226)
+		goto END17_
+		}
+		CmpQuestNumStep(51,226)
+		if( yes == 1)
+		{
+		D("자네는 광물채취 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,227)
+		goto END17_
+		}
+		CmpQuestNumStep(51,227)
+		if( yes == 1)
+		{
+			IsSkillHavePC(26)
+			if(yes == 1)
+			{
+     			D("이미 광물채취 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 광물채취 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(26,1)
+			EventMsg("광물채취 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,231)
+		goto END17_
+		}		
+	
+		CmpQuestNumStep(51,231)
+		if( yes == 1)
+		{
+			IsInvHavePC(5004)
+			if( yes == 1)
+			{
+			D("자네는 이미 곡괭이를 가지고 있군 없다면 내가 줬을 텐데.")
+			}
+			else
+			{
+			SetItemInvPC(0,5004,820)
+			D("이거 받게나. 별건 아니고 광물을 캘 때 꼭 필요한 곡괭이야! 이 곡괭이를 선물하지.")
+			EventMsg("당신의 배낭에 곡괭이이 추가되었습니다.")
+			QuestSound(15003)
+			}
+					
+		SetQuestNumStep(51,235)
+		goto END17_
+		}
+		CmpQuestNumStep(51,235)
+		if( yes == 1)
+		{
+		D("자네는 광물제련 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,236)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,236)
+		if( yes == 1)
+		{
+			IsSkillHavePC(27)
+			if(yes == 1)
+			{
+     			D("이미 광물제련 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 광물제련 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(27,1)
+			EventMsg("광물제련 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,240)
+		goto END17_
+		}
+	
+		CmpQuestNumStep(51,240)
+		if( yes == 1)
+		{
+		D("제련은 제련 메뉴가 있지, 메뉴가 뜨면 그곳에 광석을 올려 놓으면 된다네.")
+		SetQuestNumStep(51,241)
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,241)
+		if( yes == 1)
+		{
+			D("곡괭이를 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,242)
+			goto END24_
+		}
+
+		CmpQuestNumStep(51,242)
+		if( yes == 1)
+		{
+			IsItemHavePC(5004,0)
+			if(yes == 1)
+			{
+			D("곡괭이를 손에 들고 있군, 그 곡괭이를 손에 들어야 광물을 채석할 수 있다네")
+			SetQuestNumStep(51,243)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("곡괭이를 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 곡괭이를 들기 싫은가? 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D( "곡괭이를 손에 든 당신이 멋질 것 같군" );
+				}
+			}
+		
+		goto END17_
+		}
+		CmpQuestNumStep(51,243)
+		if( yes == 1)
+		{
+		D("우선 내가 광산 앞으로 보내 줄테니 광석을 캐보게나. 광석을 캔 다음 마을로 돌아오게나")
+		SetQuestNumStep(51,244)
+		goto END17_
+		}
+		CmpQuestNumStep(51,244)
+		if( yes == 1)
+		{
+		D("구리 광석을 캔다음 제련하고 나서 제련한 구리괴를 가져오게나.")
+		SetQuestNumStep(51,245)
+		goto END17_
+		}
+		CmpQuestNumStep(51,245)
+		if( yes == 1)
+		{
+		D( "구리 광석 하나로 구리괴 하나를 만들 수 있지. 명심하게.")
+		SetQuestNumStep(51,246)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,246)
+		if( yes == 1)
+		{
+		MapMove( "Hu_Vm", 245,52 )
+		SetQuestNumStep(51,250)
+		goto END17_
+    		}		
+		CmpQuestNumStep(51,250)
+		if( yes == 1)
+		{
+		D("구리괴를 만들어 왔나?")
+		SetQuestNumStep(51,251)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,251)
+		if( yes == 1)
+		{
+			IsInvHavePC(1006)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(1006,10030,1000)
+			SetQuestNumStep(51,255)
+			EventMsg("대장장이가 구리괴를 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("구리괴를 만들어 오게나?")
+			}
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,255) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 광부가 된거야. 마을회관에 한번 가보게나")
+		SetQuestNumStep(51,290)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,289)
+		if( yes == 2)
+		{
+		D("자네 아직도 마을회관에 안 갔나?")
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random(0,3)
+			if( ran == 0 )
+			{
+			D( "돈만 준다면  철을 이용해서 만들 수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+       	        	}
+			if( ran == 1 )
+			{
+			D( "철광석을 얻기 위해서는 곡괭이와 mining 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지.")
+	                }
+			if( ran == 2 )
+			{
+	                D( "광물은 주로 바위에서 얻을수 있지, 곡괭이로 바위를 내려치면 광맥이 보일꺼야.")  
+        	        }
+			CallSmallMenu( 0, 18 )
+		goto END17_
+		}
+	
+	}
+	;대장장이
+	IsJobPC(9)
+	if( yes == 1)
+	{
+		
+		CmpQuestNumStep(51,910)
+		if( yes == 1)
+		{
+			D("음 마을회관 소개로 왔군? 얘기는 이미 들었네.")
+			SetQuestNumStep(51,911)
+			goto END17_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나. 그곳에서 초보자에게 도움 줄 말을 한다던데..")
+			goto END17_
+		}
+		CmpQuestNumStep(51,911)
+		if( yes == 1)
+		{
+			D("대장장이는 철공 기술을 이용해서 철로 된 거의 모든 도구와 무기를 만들 수 있다네.")
+			SetQuestNumStep(51,912)
+			goto END17_
+		}
+		CmpQuestNumStep(51,912)
+		if( yes == 1)
+		{
+			D(" 대장장이는 광부가 만들어주는 철괴나 구리괴등을 이용해서 물건을 만들지.")
+			SetQuestNumStep(51,913)
+			goto END17_
+		}
+		CmpQuestNumStep(51,913)
+		if( yes == 1)
+		{
+		D("자네는 철공 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,915)
+		goto END17_
+		}
+		CmpQuestNumStep(51,915)
+		if( yes == 1)
+		{
+			IsSkillHavePC(43)
+			if(yes == 1)
+			{
+     			D("이미 철공 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 철공 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(43,1)
+			EventMsg("철공 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,920)
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,920)
+		if( yes == 1)
+		{
+		D("자네는 망치를 가지고 있나? 철공 기술을 위해서는 망치가 필요하지.")
+		SetQuestNumStep(51,931)
+		goto END17_
+		}	
+		CmpQuestNumStep(51,931)
+		if( yes == 1)
+		{
+			IsInvHavePC(5017)
+			if( yes == 1)
+			{
+			D("자네는 이미 망치를 가지고 있군 없다면 내가 줬을 텐데.")
+			SetQuestNumStep(51,935)
+			}
+			else
+			{
+				SetItemInvPC(0,5017,820)
+				if(yes ==1)
+				{
+				D("이거 받게나. 별건 아니고 철공 기술을 사용할 때 쓰는 망치야! 이 망치를 선물하지.")
+				EventMsg("당신의 배낭에 망치가 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(51,935)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군..")
+				}
+			}
+		goto END17_
+		}
+		CmpQuestNumStep(51,935)
+		if( yes == 1)
+		{
+		D("철공 기술에 사용하는 망치는 전투용 해머와는 전혀 다른 것이지.")
+		SetQuestNumStep(51,936)
+		goto END17_
+		}
+		CmpQuestNumStep(51,936)
+		if( yes == 1)
+		{
+		D("기술을 사용할 때 연장을 손에 장착하고 있어야 기술이 성공 할 수 있지.")
+		SetQuestNumStep(51,941)
+		goto END17_
+		}
+		
+		CmpQuestNumStep(51,941)
+		if( yes == 1)
+		{
+			D("망치를 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,942)
+			goto END17_
+		}
+
+		CmpQuestNumStep(51,942)
+		if( yes == 1)
+		{
+			IsItemHavePC(5017,0)
+			if(yes == 1)
+			{
+			D("망치를 손에 들고 있군, 그 망치를 손에 들어야 철공 기술을 성공 시킬 수 있다네.")
+			SetQuestNumStep(51,943)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("망치를 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 망치를 들기 싫은가? 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D( "망치를 손에 든 당신이 멋질 것 같군" );
+				}
+			}
+		
+		goto END17_
+		}
+		CmpQuestNumStep(51,943)
+		if( yes == 1)
+		{
+		D("우선 내가 기술에 사용될 철괴를 주지. 다음 부터는 광부에게 사거나 나에게 사야 할 걸세.")
+		SetQuestNumStep(51,944)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,944)
+		if( yes == 1)
+		{
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		SetItemInvPC(0,1007,820)
+		
+		D("내가 철괴를 넣었네, 다음 부터는 직접 사게나.")
+		EventMsg("당신의 배낭에 철괴가 추가되었습니다.")
+		QuestSound(15003)
+		SetQuestNumStep(51,945)
+		goto END17_
+		}
+		CmpQuestNumStep(51,945)
+		if( yes == 1)
+		{
+		D("지금 철공 기술을 사용해 보게나. 철괴 하나를 사용해서 가위를 만들 수 있지.")
+		SetQuestNumStep(51,946)
+		goto END17_
+		}
+		CmpQuestNumStep(51,946)
+		if( yes == 1)
+		{
+		D("철공 기술을 사용해서 가위를 만들어 보게나.")
+		SetQuestNumStep(51,950)
+		goto END17_
+		}
+		CmpQuestNumStep(51,950)
+		if( yes == 1)
+		{
+		D("가위를 만들어 왔나?")
+		SetQuestNumStep(51,951)
+		goto END17_
+		}
+
+		CmpQuestNumStep(51,951)
+		if( yes == 1)
+		{
+			IsInvHavePC(5019)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(5019,10030,1000)
+			SetQuestNumStep(51,954)
+			EventMsg("대장장이가 가위를 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			goto END17_
+			}
+			else
+			{
+			D("가위를 만들어 오게나?")
+			}
+		goto END17_
+		}
+		CmpQuestNumStep(51,954) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 대장장이가  된거야. 마을회관에 한번 가보게나")
+		SetQuestNumStep(51,955)
+		goto END17_
+		}
+		CmpQuestNumStep(51,955) 
+		if( yes == 1)
+		{
+		D("이제 내 이야기는 끝났네. 마을회관에 한번 가보게나")
+		SetQuestNumStep(51,990)
+		goto END17_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random(0,3)
+			if( ran == 0 )
+			{
+			D( "돈만준다면  철을 이용해서 만들수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+       	        	}
+			if( ran == 1 )
+			{
+			D( "철광석을 얻기 위해서는 곡괭이와 mining 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지.")
+	                }
+			if( ran == 2 )
+			{
+	                D( "광물은 주로 바위에서 얻을수 있지, 곡괭이로 바위를 내려치면 광맥이 보일꺼야.")  
+        	        }
+			CallSmallMenu( 0, 18 )
+		goto END17_
+		}
+	
+	}
+	else
+	{
+		random(0,3)
+		if( ran == 0 )
+		{
+		D( "돈만준다면  철을 이용해서 만들수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+       	        }
+		if( ran == 1 )
+		{
+		D( "철광석을 얻기 위해서는 곡괭이와 mining 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지.")
+                }
+		if( ran == 2 )
+		{
+                D( "광물은 주로 바위에서 얻을수 있지, 곡괭이로 바위를 내려치면 광맥이 보일꺼야.")  
+                }
+
+		CallSmallMenu( 0, 18 )
+	}
+:END17_
+end
+@Npc00018   
+;무기점 인터페이스 없음
+;51번 직업 퀘스트를 끝낸 유저
+	CmpQuestNumStep(51,2000)
+	if( yes == 1)
+	{
+		;전사
+		IsClassPC(0)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,150);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END18_
+			}
+
+			CmpQuestNumStep(52,150)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 무기점을 운영하는 무기 전문가지.")
+			SetQuestNumStep(52,151)
+			goto END18_
+			}
+			CmpQuestNumStep(52,151)
+			if( yes == 1)
+			{
+			D("자네가 어떤 무기를 잘 쓰고 싶은지 말해 보게나.")
+			SetQuestNumStep(52,152)
+			goto END18_
+			}
+			CmpQuestNumStep(52,152)
+			if( yes == 1)
+			{
+			D("음.. 처음이니 잘 모를테지?")
+			SetQuestNumStep(52,153)
+			goto END18_
+			}
+			CmpQuestNumStep(52,153);
+			if( yes == 1)
+			{
+			D("그냥 초보 전사에 어울리는 칼을 하나 추천하지.")
+			SetQuestNumStep(52,154)
+			goto END18_
+			}
+			CmpQuestNumStep(52,154)
+			if( yes == 1)
+			{
+			D("돈은 마을 회관에서 받아 왔겠지?")
+			SetQuestNumStep(52,155)
+			goto END18_
+			}
+			CmpQuestNumStep(52,155)
+			if( yes == 1)
+			{
+			D("꼭~! 자네 힘에 맞는 걸로 하나 사야 되네")
+			SetQuestNumStep(52,156)
+			goto END18_
+			}
+			CmpQuestNumStep(52,156)
+			if( yes == 1)
+			{
+			D("잘 모르겠으면, 물건 중에서 밝게 빛나는 아이템들 중에서 고르게나.")
+			SetQuestNumStep(52,157)
+			goto END18_
+			}
+			CmpQuestNumStep(52,157)
+			if( yes == 1)
+			{
+			D("나중에 자네가 좀 더 레벨이 오르면, 더 좋은 아이템을 착용 할 수 있지.")
+			SetQuestNumStep(52,158)
+			CallSmallMenu( 0, 18 )
+			goto END18_		
+			}
+			CmpQuestNumStep(52,158)
+			if( yes == 1)
+			{
+			D("자 무기를 한번 사보게나?");
+			SetQuestNumStep(52,159)
+			CallSmallMenu( 0, 18 )
+			goto END18_		
+			}
+			CmpQuestNumStep(52,159)
+			if( yes == 1)
+			{
+				IsItemHavePC(0,0);오른 손에 아무것도 안들고 있당.
+				if(yes == 1)
+				{
+					random( 0, 3 )
+					if( ran == 0 )
+					{
+					D("방금산 무기를 손에 들어 보게나")
+					}	
+					if( ran == 1)
+					{
+					D("전사라면 무기를 손에 쥐고 있을때 가장 멋있지")
+					}	
+					if( ran == 2 )
+					{
+					D( "무기를 손에 들어 보게나" )
+					}
+				}
+				else
+				{
+					IsItemHavePC(0,1)
+					if(yes == 1)
+					{
+						SetItemInvPC(0,8001,820)
+						if( yes == 1)
+						{
+						D("자네 왼손이 허전하군 내가 방패를 하나 주지.")
+						EventMsg("당신의 배낭에 나무 방패가 추가 되었습니다.")
+						QuestSound(15003)
+						SetQuestNumStep(52,160)
+						goto END18_
+						}
+					}
+					SetQuestNumStep(52,162)
+				}
+			goto END18_		
+			}
+			CmpQuestNumStep(52,160)
+			if( yes == 1)
+			{
+			D("방금전에 준 방패는 내 친구인 목공소 주인이 주는 거야.")
+			SetQuestNumStep(52,162)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,162)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,165)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,164)
+			if( yes == 2)
+			{
+			D( "여긴 전문적으로 무기를 파는 곳이지만 철로 만든물건은 뭐든지 팔고 삽니다. " );
+			CallSmallMenu( 0, 18 )	
+			goto END18_		
+			}
+	
+		}
+		else
+		{	
+		D( "여긴 전문적으로 무기를 파는 곳이지만 철로 만든물건은 뭐든지 팔고 삽니다. " );
+		CallSmallMenu( 0, 18 )	
+		}
+		}
+	}
+	else
+	{	
+	D( "여긴 전문적으로 무기를 파는 곳이지만 철로 만든물건은 뭐든지 팔고 삽니다. " );
+	CallSmallMenu( 0, 18 )	
+	}
+:END18_
+end
+@Npc00019
+;의류점 
+	;재단사
+	IsJobPC(11)
+	if( yes == 1)
+	{
+		
+		CmpQuestNumStep(51,1110)
+		if( yes == 1)
+		{
+			D("음 마을회관 소개로 왔군? 얘기는 이미 들었네.")
+			SetQuestNumStep(51,1111)
+			goto END19_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데..")
+			goto END19_
+		}
+		CmpQuestNumStep(51,1111)
+		if( yes == 1)
+		{
+			D("재단사는 기술이 능숙해 짐에 따라, 더 많은 옷을 만들 수가 있지.")
+			SetQuestNumStep(51,1112)
+			goto END19_
+		}
+		CmpQuestNumStep(51,1112)
+		if( yes == 1)
+		{
+			D("고급 로브와 같은 것들은 재단 기술이 뛰어난 재단사만이 만들 수 있다네")
+			SetQuestNumStep(51,1113)
+			goto END19_
+		}
+		CmpQuestNumStep(51,1113)
+		if( yes == 1)
+		{
+		D("자네 천만들기 기술은 있나. 어디 한 번 볼까?")
+		SetQuestNumStep(51,1115)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1115)
+		if( yes == 1)
+		{
+			IsSkillHavePC(45)
+			if(yes == 1)
+			{
+     			D("이미 천만들기 기술을 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 천만들기 기술을 가르쳐 주지 자!")
+			SetSkillPC(45,1)
+			EventMsg("천만들기 기술이 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,1120)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1120)
+		if( yes == 1)
+		{
+		D("자네 옷만들기 기술은 있나. 어디 한 번 볼까?")
+		SetQuestNumStep(51,1121)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1121)
+		if( yes == 1)
+		{
+			IsSkillHavePC(47)
+			if(yes == 1)
+			{
+     			D("이미 옷만들기 기술을 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 옷만들기 기술을 가르쳐 주지 자!")
+			SetSkillPC(47,1)
+			EventMsg("옷만들기 기술이 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,1122)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1122)
+		if( yes == 1)
+		{
+		D("자네는 가위는 가지고 있나? 옷을 만들기 위해서는 가위가 필요하지.")
+		SetQuestNumStep(51,1131)
+		goto END19_
+		}		
+		CmpQuestNumStep(51,1131)
+		if( yes == 1)
+		{
+			IsInvHavePC(5019)
+			if( yes == 1)
+			{
+			D("자네는 이미 가위를 가지고 있군. 없다면 내가 줬을 텐데.")
+			SetQuestNumStep(51,1135)
+			}
+			else
+			{
+				SetItemInvPC(0,5019,820)
+				if(yes ==1)
+				{
+				D("이거 받게나. 별건 아니고 재단 기술을 사용할 때 쓰는 가위야! 이 가위를 선물하지.")
+				EventMsg("당신의 배낭에 가위가 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(51,1135)
+				}
+				else
+				{
+				D("배낭이 가득 찼나보군... 가위를 넣을 공간이 없어.")
+				}
+			}
+		goto END19_
+		}
+		CmpQuestNumStep(51,1135)
+		if( yes == 1)
+		{
+		D("옷의 재료는 목동과 도축자가 제공하지.")
+		SetQuestNumStep(51,1136)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1136)
+		if( yes == 1)
+		{
+		D("기술을 사용할 때 연장을 손에 장착하고 있어야 기술이 성공 할 수 있지.")
+		SetQuestNumStep(51,1141)
+		goto END19_
+		}
+		
+		CmpQuestNumStep(51,1141)
+		if( yes == 1)
+		{
+			D("가위를 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,1142)
+			goto END24_
+		}
+
+		CmpQuestNumStep(51,1142)
+		if( yes == 1)
+		{
+			IsItemHavePC(5019,0)
+			if(yes == 1)
+			{
+			D("가위를 손에 들고 있군, 그 가위를 손에 들어야 재단 기술을 성공 시킬 수 있다네.")
+			SetQuestNumStep(51,1143)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("가위를 손에 들어야 기술을 사용할 수 있지 한번 들어 보게나")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 가위를 들기 싫은가? 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D( "가위를 손에 든 당신이 멋질 것 같군" );
+				}
+			}
+		
+		goto END19_
+		}
+		
+		CmpQuestNumStep(51,1143)
+		if( yes == 1)
+		{
+		D("우선 내가 로브 만드는데에 필요할 실과 천을 주지.")
+		SetQuestNumStep(51,1144)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1144)
+		if( yes == 1)
+		{
+		D("다음부터는 돈을 주고 사거나, 직접 만들게.")
+		SetQuestNumStep(51,1145)
+		goto END19_
+		}
+		;실과 천 1대1로 넣어주기
+		CmpQuestNumStep(51,1145)
+		if( yes == 1)
+		{
+		SetItemInvPC(0,10015,20)
+		SetItemInvPC(0,10016,20)
+		SetItemInvPC(0,10015,20)
+		SetItemInvPC(0,10016,20)
+		SetItemInvPC(0,10015,20)
+		SetItemInvPC(0,10016,20)
+		SetItemInvPC(0,10015,20)
+		SetItemInvPC(0,10016,20)
+				
+		D("내가 실과 천을 넣었네, 다음 부터는 직접 사게나.")
+		EventMsg("당신의 배낭에 실과 천이 추가되었습니다.")
+		QuestSound(15003)
+		SetQuestNumStep(51,1146)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1146)
+		if( yes == 1)
+		{
+		D("지금 옷만들기 기술을 사용해 보게나. 로브를 만드는 일은 옷만들기 중 가장 기본이지.")
+		SetQuestNumStep(51,1147)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1147)
+		if( yes == 1)
+		{
+		D("옷만들기 기술을 사용해서 로브를 만들어 보게나.")
+		SetQuestNumStep(51,1148)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1158)
+		if( yes == 1)
+		{
+		D("옷만들기 기술을 사용해서 로브를 만들어 보게나.")
+		SetQuestNumStep(51,1147)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1148)
+		if( yes == 1)
+		{
+		D("로브를 만들려면 실과 천이 각각 1개가 필요하다네.")
+		SetQuestNumStep(51,1150)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1150)
+		if( yes == 1)
+		{
+		D("로브 만들어 왔나?")
+		SetQuestNumStep(51,1151)
+		goto END19_
+		}
+		CmpQuestNumStep(51,1151)
+		if( yes == 1)
+		{
+			IsInvHavePC(8020)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(8020,10030,500)
+			SetQuestNumStep(51,1155)
+			EventMsg("의류점 주인이 로브를 1000 Cell 에 구입하였습니다.")
+			QuestSound(15003)
+			goto END19_
+			}
+			else
+			{
+			D("로브를 만들어 오지?")
+			}
+		goto END19_
+		}
+		
+		CmpQuestNumStep(51,1155) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 재단사가 된거야. 마을회관에 한번 가보게나")
+		SetQuestNumStep(51,1190)
+		goto END19_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 3 )
+			if( ran == 0 )
+			{
+			D("옷감의 재료를 구하려 왔나.")
+			}	
+			if( ran == 1)
+			{
+			D( "자자, 다들 좋은 옷을 골라 보게, 우리 집에선 좋은 천만 쓴다네." )
+			}	
+			if( ran == 2 )
+			{
+			D( "옷을 입지 않고 다니는 사람들은 미개인 같지 않나? " );
+			}
+			CallSmallMenu( 0, 24 )
+		goto END19_
+		}
+	
+	}
+	else
+	{	
+	D( "자자, 다들 좋은 옷을 골라 보게, 우리 집에선 좋은 천만 쓴다네..." );
+	CallSmallMenu( 0, 24 )	
+	}
+:END19_
+end
+@Npc00020	
+; 양초 제작소 인터페이스 
+;
+	IsJobPC(14)
+	if( yes == 1)
+	{
+		
+		CmpQuestNumStep(51,1410)
+		if( yes == 1)
+		{
+			D("마을회관 소개로 왔군? 이미 자네의 얘기는 들었지.")
+			SetQuestNumStep(51,1411)
+			goto END20_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데")
+			goto END20_
+		}
+		CmpQuestNumStep(51,1411)
+		if( yes == 1)
+		{
+			D("초장이는 밀납을 이용해서 초를 만들지.")
+			SetQuestNumStep(51,1414)
+			goto END20_
+		}
+		CmpQuestNumStep(51,1414)
+		if( yes == 1)
+		{
+		D("자네는 양초 제작기술은 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,1415)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1415)
+		if( yes == 1)
+		{
+			IsSkillHavePC(53)
+			if(yes == 1)
+			{
+     			D("이미 양초 제작기술은 가지고 있군")
+			}
+			else
+			{
+			D("음.. 내가 양초 제작기술을 가르쳐 주지. 자!")
+			SetSkillPC(53,1)
+			EventMsg("양초 제작기술이 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,1420)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1420)
+		if( yes == 1)
+		{
+		D("양초 제작기술을 이용하기 위해서 필요한 도구는 아직 없다네")
+		SetQuestNumStep(51,1425)
+		goto END20_
+		}
+		
+		CmpQuestNumStep(51,1425)
+		if( yes == 1)
+		{
+		D("밀납을 가공하서 초를 만들면, 그 초는 비싸게 팔 수 있다네.")
+		SetQuestNumStep(51,1442)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1442)
+		if( yes == 1)
+		{
+		D("그런데 가공할 밀납은 가지고 있나?")
+		SetQuestNumStep(51,1443)
+		goto END20_
+		}		
+		CmpQuestNumStep(51,1443)
+		if( yes == 1)
+		{
+		D("나중에 밀납은 이곳에서 돈을 주고 사게나.")
+		SetQuestNumStep(51,1445)
+		goto END20_
+		}		
+		CmpQuestNumStep(51,1445)
+		if( yes == 1)
+		{
+			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10041,10)
+      			SetItemInvPC(0,10041,10)
+			SetItemInvPC(0,10039,10)
+			D("이 밀납으로 초를 만들어 보게나")
+			EventMsg("당신의 배낭에 밀납이 추가되었습니다.")
+			QuestSound(15003)
+		SetQuestNumStep(51,1451)
+		goto END20_
+		}
+		
+		CmpQuestNumStep(51,1451)
+		if( yes == 1)
+		{
+		D("초만들기 기술을 사용할때는 아무것도 장비 하지 않아도 된다네.")
+		SetQuestNumStep(51,1462)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1462)
+		if( yes == 1)
+		{
+		D("초만들기 기술은 밀납만 있으면 어느 곳에서든 할 수 있지")
+		SetQuestNumStep(51,1463)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1463)
+		if( yes == 1)
+		{
+		D("한번 초를 만들어 보게나. 초를 만들려면 밀납 2개가 필요하다는걸 명심하게.")
+		SetQuestNumStep(51,1464)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1464)
+		if( yes == 1)
+		{
+		D("초를 밀납 2개를 사용해서 만든다는 사실을 잊진 않았겠지?")
+		SetQuestNumStep(51,1465)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1465)
+		if( yes == 1)
+		{
+		D("초를 만들었거든 나에게 가져오게나 자네 솜씨를 보고 싶군. ")
+		SetQuestNumStep(51,1466)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1466)
+		if( yes == 1)
+		{
+		D("초를 가져왔나?")
+		SetQuestNumStep(51,1471)
+		goto END20_
+		}
+		CmpQuestNumStep(51,1471)
+		if( yes == 1)
+		{
+			IsInvHavePC(10039)
+			if( yes == 1)
+			{
+			D("오..역시 뛰어난 솜씨군. 나는 처음 만든 초를 수집한다네. 비싸게 계산해주지.")
+			SetItemInvPC(10039,10030,1000)
+			SetQuestNumStep(51,1475)
+			EventMsg("양초점 주인이 초를 1000 Cell 에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("자네 실력을 보여주기 싫은가? 빨리 초를 만들어 오게나.")
+			}
+		goto END20_
+		}
+		CmpQuestNumStep(51,1475) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 초장이가 된거야. 마을회관에 한번 가보게나.")
+		SetQuestNumStep(51,1490)
+		goto END20_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{	random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "던젼에서 양초만큼 필요한 도구는 없음 겁니다.  " );
+			}
+			if( ran == 1 )
+			{
+		        D( " 마을 외부로 나가면 던젼이 있는데 그곳에선 양초가 제몫을 하죠.")  
+			}
+			CallSmallMenu( 0, 23 )	
+			goto END20_
+		}
+	}
+	else
+	{
+		random( 0, 2 )
+		if( ran == 0 )
+		{
+		D( "던젼에서 양초만큼 필요한 도구는 없음 겁니다.  " );
+		}
+		if( ran == 1 )
+		{
+	        D( " 마을 외부로 나가면 던젼이 있는데 그곳에선 양초가 제몫을 하죠.")  
+		}
+		CallSmallMenu( 0, 23 )	
+	}
+:END20_
+end
+@Npc00021	
+; 푸줏간 인터페이스 
+	random( 0, 2 )
+	if( ran == 0 )
+	{
+	D( "Butchering Skill이 있으면 죽은 동물에게서 고기와 가죽을 얻을 수 있습니다." );
+	}
+	if( ran == 1 )
+	{
+	D( "동물의 시체는 보기 흉해도, 인간에게 좋은 먹거리라오.")
+	}
+	CallSmallMenu( 0, 22 )	
+end
+@Npc00022	
+;목공소.
+	;나무꾼
+	IsJobPC(4)
+	if( yes == 1)
+	{
+		CmpQuestNumStep(51,410)
+		if( yes == 1)
+		{
+		D("마을회관 소개로 왔군? 이미 자네의 얘기는 들었지.")
+		SetQuestNumStep(51,411)
+		goto END32_
+		}
+		if( yes == 0)
+		{
+		D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데")
+		goto END32_
+		}
+		CmpQuestNumStep(51,411)
+		if( yes == 1)
+		{
+		D("나무꾼은 나무를 베어 통나무를 얻을 수 있고, 통나무를 가공해 목재로 만들 수 있다네.")
+		SetQuestNumStep(51,413)
+		goto END32_
+		}
+		CmpQuestNumStep(51,413)
+		if( yes == 1)
+		{
+		D("목재는 무엇을 만들던지 중요한 재료가 되거든.")
+		SetQuestNumStep(51,414)
+		goto END32_
+		}
+		CmpQuestNumStep(51,414)
+		if( yes == 1)
+		{
+		D("자네는 나무베기 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,415)
+		goto END32_
+		}
+		CmpQuestNumStep(51,415)
+		if( yes == 1)
+		{
+			IsSkillHavePC(32)
+			if( yes == 1)
+			{
+     			D("이미 나무베기 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음. 내가 나무베기 기술을 가르쳐 주지.")
+			QuestSound(15003)
+			SetSkillPC(32,1)
+			EventMsg("나무베기 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,420)
+		goto END32_
+		}
+		CmpQuestNumStep(51,420)
+		if( yes == 1)
+		{
+		D("나무꾼이 나무를 벨 때에는 나무꾼 전용 도끼가 필요하지.")
+		SetQuestNumStep(51,425);
+		goto END32_
+		}
+		CmpQuestNumStep(51,425)
+		if( yes == 1)
+		{
+		D("나무꾼 도끼는 전투용 도끼와는 그 모양새가 많이 다르다네. 헷갈리지 말게나.")
+		SetQuestNumStep(51,426)
+		goto END32_
+		}
+		CmpQuestNumStep(51,426)
+		if( yes == 1)
+		{
+		D("이번엔 처음이니, 내가 도끼 하나는 선물로 줄 수 있지.")
+		SetQuestNumStep(51,431)
+		goto END32_
+		}
+		CmpQuestNumStep(51,431)
+		if( yes == 1)
+		{
+			IsInvHavePC(5008)
+			if( yes == 1)
+			{
+			D("자네는 이미 도끼를 가지고 있군. 없다면 내가 줬을 텐데.")
+			SetQuestNumStep(51,440)
+			}
+			else
+			{
+				SetItemInvPC(0,5008,820)
+				if(yes == 1)
+				{
+				D("잘 간직했다가 유용하게 써 주게.")
+				EventMsg("당신의 배낭에 나무꾼 도끼가 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(51,434)
+				}
+	  			else
+				{
+				D("배낭 좀 비워 주겠나?")
+				}
+			}				
+		goto END32_
+		}
+		CmpQuestNumStep(51,434)
+		if( yes == 1)
+		{
+		D("누구처럼 어디 호수에다가 빠뜨리지 말게나. 이 세계에는 신선이란 종족은 없거든.")
+		SetQuestNumStep(51,440)
+		goto END32_
+		}
+		CmpQuestNumStep(51,440)
+		if( yes == 1)
+		{
+		D("나무꾼은 베어낸 통나무를 가공해서 목재로 만들 수 있는 기술도 가지고 있지.")
+		SetQuestNumStep(51,441)
+		goto END32_
+		}
+		CmpQuestNumStep(51,441)
+		if( yes == 1)
+		{
+		D("목재로 가공해서 팔면, 통나무보다 더 비싸게 팔 수 있거든.")
+		SetQuestNumStep(51,445);
+		goto END32_
+		}		
+		CmpQuestNumStep(51,445)
+		if( yes == 1)
+		{
+			IsSkillHavePC(33)
+			if(yes == 1)
+			{
+     			D("자네 이미 목재 가공 기술을 가지고 있었군?")
+			}
+			else
+			{
+			D("내가 목재 가공 기술을 가르쳐 주지.")
+			SetSkillPC(33,1)
+			EventMsg("목재 가공 기술이 직업기술에 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,450)
+		goto END32_
+		}
+		CmpQuestNumStep(51,450)
+		if( yes == 1)
+		{
+		D("통나무를 목재로 가공하기 위해서는 톱이 필요하다네.")
+		SetQuestNumStep(51,451)
+		goto END32_
+		}
+		CmpQuestNumStep(51,451)
+		if( yes == 1)
+		{	
+			IsInvHavePC(5009)
+			if( yes == 1)
+			{
+			D("자네는 이미 톱을 가지고 있군. ")
+			}
+			else
+			{
+			SetItemInvPC(0,5009,820)
+			D("다음부터는 공짜는 절대 없을걸세.")
+			EventMsg("당신의 배낭에 톱이 추가되었습니다.")
+			QuestSound(15003)
+			}			
+		SetQuestNumStep(51,455)
+		goto END32_
+		}
+		CmpQuestNumStep(51,455)
+		if( yes == 1)
+		{
+		D("목재 가공은 통나무를 바닥에 내려 놓고, 목재가공 기술을 사용하면 된다네.")
+		SetQuestNumStep(51,456)
+		goto END32_
+		}
+		CmpQuestNumStep(51,456)
+		if( yes == 1)
+		{
+		D("목재를 가공할때 톱을 착용하고 있어야 된다는 것쯤은 알고 있겠지?")
+		SetQuestNumStep(51,460)
+		goto END32_
+		}
+		CmpQuestNumStep(51,460)
+		if( yes == 1)
+		{
+		D("나무꾼 도끼를 손에 들어 보지 않겠나?")
+		SetQuestNumStep(51,461)
+		goto END32_
+		}
+		CmpQuestNumStep(51,461)
+		if( yes == 1)
+		{
+			IsItemHavePC(5008,0)
+			if(yes == 1)
+			{
+			D("지금처럼 도끼를 손에 들고 있어야 나무를 벨 수 있다네")
+			SetQuestNumStep(51,462)
+			}
+			else
+			{	
+				random( 0, 2 )
+				if( ran == 0 )
+				{
+				D("도끼를 허리춤에 찬 당신의 옆모습은 뿅 갈 것 같군" )
+				}	
+				if( ran == 1)
+				{
+				D("당신은 도끼가 무거운가. 한번 장착해 보게나")
+				}	
+			}
+		goto END32_
+		}
+		CmpQuestNumStep(51,462)
+		if( yes == 1)
+		{
+		D("우선 내가 나무가 있는 곳으로 보내줄테니 나무를 베어 보게나.")
+		SetQuestNumStep(51,463)
+		goto END32_
+		}
+		CmpQuestNumStep(51,463)
+		if( yes == 1)
+		{
+		D("통나무를 베고 나서 목재로 가공해 보게나.")
+		SetQuestNumStep(51,464)
+		goto END32_
+		}
+		CmpQuestNumStep(51,464)
+		if( yes == 1)
+		{
+		D("통나무를 벨 때에는 나무꾼 도끼를, 목재로 가공할 때에는 톱을 사용하지.")
+		SetQuestNumStep(51,465)
+		goto END32_
+		}
+		CmpQuestNumStep(51,465)
+		if( yes == 1)
+		{
+		D("항상 명심해주게. 그럼 목재를 가공해서 여기로 꼭 가지고 오게나.")
+		SetQuestNumStep(51,466)
+		goto END32_
+		}
+		CmpQuestNumStep(51,466)
+		if( yes == 1)
+		{
+			QuestTeleport(1,100,231)
+			SetQuestNumStep(51,470)
+			goto END32_
+		}
+		CmpQuestNumStep(51,470)
+		if( yes == 1)
+		{
+		D("목재를 가져왔나?")
+		SetQuestNumStep(51,471)
+		goto END32_
+		}
+		CmpQuestNumStep(51,471)
+		if( yes == 1)
+		{
+			IsInvHavePC(1012)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(1012,10030,1000)
+			SetQuestNumStep(51,475)
+			EventMsg("목공소 주인이 목재를 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("빨리 목재를 만들어 오게나.")
+			}
+		goto END32_
+		}
+		CmpQuestNumStep(51,475) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 나무꾼이 된거야. 마을회관에 한번 가보게나.")
+		SetQuestNumStep(51,490)
+		goto END32_
+		}	
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{	
+		D("나무꾼들이 베어온 나무로 무기와 가구, 도구를 만들 수 있습니다." )
+		CallSmallMenu( 0, 26 )	
+		goto END32_
+		}			
+	}
+	;목수
+	IsJobPC(8)
+	if( yes == 1)
+	{	
+		CmpQuestNumStep(51,810)
+		if( yes == 1)
+		{
+			D("마을회관 소개로 왔군? 이미 자네의 얘기는 들었지.")
+			SetQuestNumStep(51,811)
+			goto END32_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데")
+			goto END32_
+		}
+		CmpQuestNumStep(51,811)
+		if( yes == 1)
+		{	D("목수는 목재를 이용해서 낚시대, 목동 막대기와 같은 나무로 된 물건을 만들어 낼 수 있다네.")
+			SetQuestNumStep(51,814)
+			goto END32_
+		}
+		CmpQuestNumStep(51,814)
+		if( yes == 1)
+		{
+		D("자네는 목공 기술은 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,815)
+		goto END32_
+		}
+		CmpQuestNumStep(51,815)
+		if( yes == 1)
+		{
+			IsSkillHavePC(42)
+			if(yes == 1)
+			{
+     			D("이미 목공 기술은 가지고 있군")
+			}
+			if( yes == 0)
+			{
+			D("음. 내가 목공 기술을 가르쳐 주지.")
+			
+			SetSkillPC(42,1)
+			EventMsg("목공 기술이 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,820)
+		goto END32_
+		}
+		CmpQuestNumStep(51,820)
+		if( yes == 1)
+		{
+		D("목공기술을 이용하기 위해서는 장도리가 필요해, 장도리는 대장간에서 판다네.")
+		SetQuestNumStep(51,825)
+		goto END32_
+		}
+		CmpQuestNumStep(51,825)
+		if( yes == 1)
+		{
+		D("여기 내가 대장간 주인하고 친해서 장도리를 선물 받은게 있지?")
+		SetQuestNumStep(51,826)
+		goto END32_
+		}
+		CmpQuestNumStep(51,826)
+		if( yes == 1)
+		{
+		D("이번엔 처음이니, 내가 장도리를 그냥 주지 다른 사람에겐 돈을 주고 샀다고 하게나.")
+		SetQuestNumStep(51,831)
+		goto END32_
+		}
+		CmpQuestNumStep(51,831)
+		if( yes == 1)
+		{	IsInvHavePC(5016)
+			if( yes == 1)
+			{
+			D("자네는 이미 장도리를 가지고 있군. 있는데 내가 또 줄 필요는 없을 것 같군.")
+			SetQuestNumStep(51,840)
+			}
+			else
+			{
+				SetItemInvPC(0,5016,820)
+				if( yes == 1)
+				{
+				D("이거 받게나. 다음부터는 대장간 집에서 직접 사야될거야.")
+				EventMsg("당신의 배낭에 장도리가 추가되었습니다.")
+				SetQuestNumStep(51,834)
+				QuestSound(15003)
+				}
+				else
+				{
+				D("장도리를 넣게 배낭을 좀 비워주게나.")
+				}
+			}				
+		goto END32_
+		}
+		CmpQuestNumStep(51,834)
+		if( yes == 1)
+		{
+		D("기술을 사용할때 도구를 장착해야 한다는 사실은 알고 있나?")
+		SetQuestNumStep(51,840)
+		goto END32_
+		}
+		CmpQuestNumStep(51,840)
+		if( yes == 1)
+		{
+		D("목재를 가공해서 각종 도구를 만들면, 그 도구는 비싸게 팔 수 있다네.")
+		SetQuestNumStep(51,842)
+		goto END32_
+		}
+		CmpQuestNumStep(51,842)
+		if( yes == 1)
+		{
+		D("그런데 가공할 목재는 있나?")
+		SetQuestNumStep(51,843)
+		goto END32_
+		}		
+		CmpQuestNumStep(51,843)
+		if( yes == 1)
+		{
+		D("나중에는 이곳에서 돈을 주고 사거나, 나무꾼에게서 사야 할껄세.")
+		SetQuestNumStep(51,845)
+		goto END32_
+		}		
+		CmpQuestNumStep(51,845)
+		if( yes == 1)
+		{
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			D("이 목재로 도구를 만들어 보게나")
+			EventMsg("당신의 배낭에 목재가 추가되었습니다.")
+			QuestSound(15003)
+		SetQuestNumStep(51,851)
+		goto END32_
+		}
+		CmpQuestNumStep(51,851)
+		if( yes == 1)
+		{
+		D("목공 기술을 사용할 때 장도리를 손에 들어야 한다네.")
+		SetQuestNumStep(51,856)
+		goto END32_
+		}
+		CmpQuestNumStep(51,856)
+		if( yes == 1)
+		{
+		D("그럼, 이제 장도리를 손에 들어 보지 않겠나?")
+		SetQuestNumStep(51,861)
+		goto END32_
+		}
+		CmpQuestNumStep(51,861)
+		if( yes == 1)
+		{	IsItemHavePC(5016,0)
+			if(yes == 1)
+			{
+			D("지금처러 장도리를 손에 들고 있어야 목공 기술을 사용할 수 있다네")
+			SetQuestNumStep(51,862)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("장도리를 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 장도리가 무거운가? 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D("장도리 높이 들고 목공의 땀을 흘려 보게나" )
+				}
+			}
+		goto END32_
+		}
+		CmpQuestNumStep(51,862)
+		if( yes == 1)
+		{
+		D("목공 기술은 목재만 있으면 어느 곳에서든 할 수 있지")
+		SetQuestNumStep(51,863)
+		goto END17_
+		}
+		CmpQuestNumStep(51,863)
+		if( yes == 1)
+		{
+		D("한번 낚시대를 만들어 보게나. 낚시대를 만들려면 목재 3개가 필요하다네.")
+		SetQuestNumStep(51,864)
+		goto END32_
+		}
+		CmpQuestNumStep(51,864)
+		if( yes == 1)
+		{
+		D("낚시대를 목재 3개를 사용해서 만든다는 사실을 잊진 않았겠지?")
+		SetQuestNumStep(51,865)
+		goto END32_
+		}
+		CmpQuestNumStep(51,865)
+		if( yes == 1)
+		{
+		D("낚시대를 만들었거든 나에게 가져오게나 자네 솜씨를 보고 싶군.")
+		SetQuestNumStep(51,866)
+		goto END32_
+		}
+		CmpQuestNumStep(51,866)
+		if( yes == 1)
+		{
+		D("낚시대를 가져왔나?")
+		SetQuestNumStep(51,871)
+		goto END32_
+		}
+		CmpQuestNumStep(51,871)
+		if( yes == 1)
+		{	IsInvHavePC(1012)
+			if( yes == 1)
+			{
+			D("오. 역시 뛰어난 솜씨군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(5005,10030,1000)
+			SetQuestNumStep(51,875)
+			EventMsg("목공소 주인이 낚시대를 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			if( yes == 0 )
+			{
+			D("빨리 낚시대를 만들어 오게나.")
+			}
+		goto END32_
+		}
+		CmpQuestNumStep(51,875) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 목수가 된거야. 마을회관에 한번 가보게나.")
+		SetQuestNumStep(51,890)
+		goto END32_
+		}
+		
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "나무꾼들이 만든 목재로 가구와 도구를 만들 수 있습니다." )
+			}
+			if( ran == 1 )
+			{
+			D( "나무는 헬턴트 주위에 많이 있어서 구하기 쉬운 물건중의 하나지요.")
+			}
+		CallSmallMenu( 0, 26 )	
+		goto END32_
+		}
+		CmpQuestNumStep(51,889) 
+		if( yes == 2)
+		{
+		D("마을회관에 어서 가보게나.")
+		goto END32_
+		}
+	}
+	else
+	{
+		random( 0, 2 )
+		if( ran == 0 )
+		{
+		D( "헬텐트주위를 둘러싼 숲의 나무는 영주님의 것이지." )
+		}
+		if( ran == 1 )
+		{
+		D( "좋은 나무는 스태프를 만드는 데에 있어서 필수 재료라네." )
+		CallSmallMenu( 0, 26 )
+		goto END32_
+		}
+	}
+	
+
+
+:END32_	
+end
+@Npc00023	
+; 마법사 길드 , 마법책 인터터페이스 
+; 다음 대사 랜덤 발생
+	CmpQuestNumStep(51,2000)
+	if( yes == 1)
+	{
+		;전사
+		IsClassPC(0)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,150);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,165);아직 무기점에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 중거리 연습장 위에 있는 무기점에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,180);아직 빵집에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("의류점 밑에 있는 빵집 주인이 당신을 찾던것 같은데.")
+			goto END23_
+			}
+
+			CmpQuestNumStep(52,180)
+			if( yes == 1)
+			{
+			D("어서 오게나. 여관에 들렀을때 당신에 대한 이야기를 들었네만..")
+			SetQuestNumStep(52,181)
+			goto END23_
+			}
+			CmpQuestNumStep(52,181)
+			if( yes == 1)
+			{
+			D("여기에서는 각종 포션을 팔고, 마법을 가르치고 있다네.")
+			SetQuestNumStep(52,182)
+			goto END23_
+			}
+			CmpQuestNumStep(52,182)
+			if( yes == 1)
+			{
+			D("자네 힐링 포션은 가지고 있는가?")
+			SetQuestNumStep(52,183)
+			goto END23_
+			}
+			CmpQuestNumStep(52,183);
+			if( yes == 1)
+			{
+				IsInvHavePC(4001)
+				if( yes == 1)
+				{
+				D("이미 가지고 있었군.")
+				SetQuestNumStep(52,184)
+				goto END23_
+				}
+				else
+				{
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetQuestNumStep(52,185)
+				EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+				QuestSound(15003)
+				goto END23_
+				}
+			}
+			CmpQuestNumStep(52,184)
+			if( yes == 1)
+			{
+			D("그래도 이번엔 내가 힐링 포션을 좀 주지")
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetQuestNumStep(52,185)
+			EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")	
+			QuestSound(15003)
+			goto END23_
+			}
+			CmpQuestNumStep(52,185)
+			if( yes == 1)
+			{
+			D("힐링포션은 Life 수치, 빨간 게이지를 채워준다네.")
+			SetQuestNumStep(52,186)
+			goto END23_
+			}
+			CmpQuestNumStep(52,186)
+			if( yes == 1)
+			{
+			D("전투에 있어서 없어서는 안 될 포션이지.")
+			SetQuestNumStep(52,187)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,187)
+			if( yes == 1)
+			{
+			D("힐링 포션 외에도 마나 포션이라는 것이 있지.");
+			SetQuestNumStep(52,188)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,188)
+			if( yes == 1)
+			{
+			D("마나 포션은 마버사 마법을 사용하기 위한 마나를 채워준다네.")	
+			SetQuestNumStep(52,189)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,189)
+			if( yes == 1)
+			{
+			D("성직자 마법 에너지인 디바인과 구별된다네.")	
+			SetQuestNumStep(52,190)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,190)
+			if( yes == 1)
+			{
+			D("디바인은 초록색 게이지로 나타내지.")	
+			SetQuestNumStep(52,191)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,191)
+			if( yes == 1)
+			{
+			D("자네는 두가지 중에서 어떤 Spell(마법)을 선택했는가?")	
+			SetQuestNumStep(52,192)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,192)
+			if( yes == 1)
+			{
+			D("마법 배우기를 해보게. Learn Spell을 선택하면 될꺼야.")	
+			SetQuestNumStep(52,193)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,193)
+			if( yes == 1)
+			{
+			D("포션을 먹을때는 마우스 오른쪽 버튼을 눌러야 한다네.")	
+			SetQuestNumStep(52,194)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,194)
+			if( yes == 1)
+			{
+			D("자네한테 더 이상 가르쳐 줄 것이 없네. 마을 회관으로 돌아가 보게.")	
+			SetQuestNumStep(52,200)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,199)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 마을 회관으로 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+				}	
+				if( ran == 2 )
+				{
+				D( "마을 회관에서 당신을 애타게 찾던데." );
+				}
+				CallSmallMenu( 0, 71 )			
+			goto END23_		
+			}
+			
+		}
+		else
+		{
+		D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+		CallSmallMenu( 0, 71 )	
+		}
+		}
+
+		;궁수
+		IsClassPC(2)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,350);아직 여관에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("아직 여관에 한번 들러 보게. 당신을 찾던데.")
+			goto END23_
+			}
+			CmpQuestNumStep(52,365);아직 활제작소에
+			if( yes == 0)
+			{
+			D("자네 활제작소에 가 보았나? 활제작소에서 당신을 찾던데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,380);아직 무기점에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("의류점 밑에 빵집에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,380)
+			if( yes == 1)
+			{
+			D("어서 오게나. 여관에 들렀을때 당신에 대한 이야기를 들었네만..")
+			SetQuestNumStep(52,381)
+			goto END23_
+			}
+			CmpQuestNumStep(52,381)
+			if( yes == 1)
+			{
+			D("여기에서는 각종 포션을 팔고, 마법을 가르치고 있다네.")
+			SetQuestNumStep(52,382)
+			goto END23_
+			}
+			CmpQuestNumStep(52,382)
+			if( yes == 1)
+			{
+			D("자네 힐링 포션은 가지고 있는가?")
+			SetQuestNumStep(52,383)
+			goto END23_
+			}
+			CmpQuestNumStep(52,383);
+			if( yes == 1)
+			{
+				IsInvHavePC(4001)
+				if( yes == 1)
+				{
+				D("이미 가지고 있었군.")
+				SetQuestNumStep(52,384)
+				goto END23_
+				}
+				else
+				{
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetQuestNumStep(52,385)
+				EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+				QuestSound(15003)
+				goto END23_
+				}
+			}
+			CmpQuestNumStep(52,384)
+			if( yes == 1)
+			{
+			D("그래도 이번엔 내가 힐링 포션을 좀 주지")
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetQuestNumStep(52,385)
+			EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+			QuestSound(15003)	
+			goto END23_
+			}
+			CmpQuestNumStep(52,385)
+			if( yes == 1)
+			{
+			D("힐링포션은 Life 수치, 빨간 게이지를 채워준다네.")
+			SetQuestNumStep(52,386)
+			goto END23_
+			}
+			CmpQuestNumStep(52,386)
+			if( yes == 1)
+			{
+			D("전투에 있어서 없어서는 안 될 포션이지.")
+			SetQuestNumStep(52,387)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,387)
+			if( yes == 1)
+			{
+			D("힐링 포션 외에도 마나 포션이라는 것이 있지.");
+			SetQuestNumStep(52,388)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,388)
+			if( yes == 1)
+			{
+			D("마나 포션은 마버사 마법을 사용하기 위한 마나를 채워준다네.")	
+			SetQuestNumStep(52,389)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,389)
+			if( yes == 1)
+			{
+			D("성직자 마법 에너지인 디바인과 구별된다네.")	
+			SetQuestNumStep(52,390)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,390)
+			if( yes == 1)
+			{
+			D("디바인은 초록색 게이지로 나타내지.")	
+			SetQuestNumStep(52,391)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,391)
+			if( yes == 1)
+			{
+			D("자네는 두가지 중에서 어떤 Spell(마법)을 선택했는가?")	
+			SetQuestNumStep(52,392)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,392)
+			if( yes == 1)
+			{
+			D("마법 배우기를 해보게. Learn Spell을 선택하면 될꺼야.")	
+			SetQuestNumStep(52,393)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,393)
+			if( yes == 1)
+			{
+			D("포션을 먹을때는 마우스 오른쪽 버튼을 눌러야 한다네.")	
+			SetQuestNumStep(52,394)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,394)
+			if( yes == 1)
+			{
+			D("자네한테 더 이상 가르쳐 줄 것이 없네. 마을 회관으로 가보게.")	
+			SetQuestNumStep(52,400)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,399)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 마을 회관으로 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+				}	
+				if( ran == 2 )
+				{
+				D( "마을 회관에서 당신을 애타게 찾던데." );
+				}
+				CallSmallMenu( 0, 71 )			
+			goto END23_		
+			}
+			
+		}
+		else
+		{
+		D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+		CallSmallMenu( 0, 71 )	
+		}
+	
+		}
+		;도둑
+		IsClassPC(1)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,550);아직 여관에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("아직 여관에 한번 들러 보게. 당신을 찾던데.")
+			goto END23_
+			}
+			CmpQuestNumStep(52,565);아직 활제작소에
+			if( yes == 0)
+			{
+			D("자네 활제작소에 가 보았나? 활제작소에서 당신을 찾던데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,580);아직 빵집에.
+			if( yes == 0)
+			{
+			D("의류점 밑에 빵집에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,580)
+			if( yes == 1)
+			{
+			D("어서 오게나. 여관에 들렀을때 당신에 대한 이야기를 들었네만..")
+			SetQuestNumStep(52,581)
+			goto END23_
+			}
+			CmpQuestNumStep(52,581)
+			if( yes == 1)
+			{
+			D("여기에서는 각종 포션을 팔고, 마법을 가르치고 있다네.")
+			SetQuestNumStep(52,582)
+			goto END23_
+			}
+			CmpQuestNumStep(52,582)
+			if( yes == 1)
+			{
+			D("자네 힐링 포션은 가지고 있는가?")
+			SetQuestNumStep(52,583)
+			goto END23_
+			}
+			CmpQuestNumStep(52,583);
+			if( yes == 1)
+			{
+				IsInvHavePC(4001)
+				if( yes == 1)
+				{
+				D("이미 가지고 있었군.")
+				SetQuestNumStep(52,584)
+				goto END23_
+				}
+				else
+				{
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetQuestNumStep(52,585)
+				EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+				QuestSound(15003)
+				goto END23_
+				}
+			}
+			CmpQuestNumStep(52,584)
+			if( yes == 1)
+			{
+			D("그래도 이번엔 내가 힐링 포션을 좀 주지")
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetQuestNumStep(52,585)
+			EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")	
+			QuestSound(15003)
+			goto END23_
+			}
+			CmpQuestNumStep(52,585)
+			if( yes == 1)
+			{
+			D("힐링포션은 Life 수치, 빨간 게이지를 채워준다네.")
+			SetQuestNumStep(52,586)
+			goto END23_
+			}
+			CmpQuestNumStep(52,586)
+			if( yes == 1)
+			{
+			D("전투에 있어서 없어서는 안 될 포션이지.")
+			SetQuestNumStep(52,587)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,587)
+			if( yes == 1)
+			{
+			D("힐링 포션 외에도 마나 포션이라는 것이 있지.");
+			SetQuestNumStep(52,588)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,588)
+			if( yes == 1)
+			{
+			D("마나 포션은 마버사 마법을 사용하기 위한 마나를 채워준다네.")	
+			SetQuestNumStep(52,589)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,589)
+			if( yes == 1)
+			{
+			D("성직자 마법 에너지인 디바인과 구별된다네.")	
+			SetQuestNumStep(52,590)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,590)
+			if( yes == 1)
+			{
+			D("디바인은 초록색 게이지로 나타내지.")	
+			SetQuestNumStep(52,591)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,591)
+			if( yes == 1)
+			{
+			D("자네는 두가지 중에서 어떤 Spell(마법)을 선택했는가?")	
+			SetQuestNumStep(52,592)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,592)
+			if( yes == 1)
+			{
+			D("마법 배우기를 해보게. Learn Spell을 선택하면 될꺼야.")	
+			SetQuestNumStep(52,593)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,593)
+			if( yes == 1)
+			{
+			D("포션을 먹을때는 마우스 오른쪽 버튼을 눌러야 한다네.")	
+			SetQuestNumStep(52,594)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,594)
+			if( yes == 1)
+			{
+			D("자네한테 더 이상 가르쳐 줄 것이 없네. 마을 회관으로 가보게.")	
+			SetQuestNumStep(52,600)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,599)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 마을 회관으로 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+				}	
+				if( ran == 2 )
+				{
+				D( "마을 회관에서 당신을 애타게 찾던데." );
+				}
+				CallSmallMenu( 0, 71 )			
+			goto END23_		
+			}
+			
+		}
+		else
+		{
+		D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+		CallSmallMenu( 0, 71 )	
+		}
+	
+		}
+		;마법사
+		IsClassPC(3)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,750);아직 여관에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("아직 여관에 한번 들러 보게. 당신을 찾던데.")
+			goto END23_
+			}
+			CmpQuestNumStep(52,765);아직 목공소에에
+			if( yes == 0)
+			{
+			D("자네 밑에 있는 목공소에 가 보았나? 목공소에서 당신을 찾던데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,780);아직 빵집에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("의류점 밑에 빵집에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,780)
+			if( yes == 1)
+			{
+			D("어서 오게나. 여관에 들렀을때 당신에 대한 이야기를 들었네만..")
+			SetQuestNumStep(52,781)
+			goto END23_
+			}
+			CmpQuestNumStep(52,781)
+			if( yes == 1)
+			{
+			D("여기에서는 각종 포션을 팔고, 마법을 가르치고 있다네.")
+			SetQuestNumStep(52,782)
+			goto END23_
+			}
+			CmpQuestNumStep(52,782)
+			if( yes == 1)
+			{
+			D("자네 힐링 포션은 가지고 있는가?")
+			SetQuestNumStep(52,783)
+			goto END23_
+			}
+			CmpQuestNumStep(52,783);
+			if( yes == 1)
+			{
+				IsInvHavePC(4001)
+				if( yes == 1)
+				{
+				D("이미 가지고 있었군.")
+				SetQuestNumStep(52,784)
+				goto END23_
+				}
+				else
+				{
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetQuestNumStep(52,785)
+				EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+				QuestSound(15003)
+				goto END23_
+				}
+			}
+			CmpQuestNumStep(52,784)
+			if( yes == 1)
+			{
+			D("그래도 이번엔 내가 힐링 포션을 좀 주지")
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetQuestNumStep(52,785)
+			EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")	
+			QuestSound(15003)
+			goto END23_
+			}
+			CmpQuestNumStep(52,785)
+			if( yes == 1)
+			{
+			D("힐링포션은 Life 수치, 빨간 게이지를 채워준다네.")
+			SetQuestNumStep(52,786)
+			goto END23_
+			}
+			CmpQuestNumStep(52,786)
+			if( yes == 1)
+			{
+			D("전투에 있어서 없어서는 안 될 포션이지.")
+			SetQuestNumStep(52,787)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,787)
+			if( yes == 1)
+			{
+			D("힐링 포션 외에도 마나 포션이라는 것이 있지.");
+			SetQuestNumStep(52,788)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,788)
+			if( yes == 1)
+			{
+			D("마나 포션은 마버사 마법을 사용하기 위한 마나를 채워준다네.")	
+			SetQuestNumStep(52,789)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,789)
+			if( yes == 1)
+			{
+			D("성직자 마법 에너지인 디바인과 구별된다네.")	
+			SetQuestNumStep(52,790)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,790)
+			if( yes == 1)
+			{
+			D("디바인은 초록색 게이지로 나타내지.")	
+			SetQuestNumStep(52,791)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,791)
+			if( yes == 1)
+			{
+			D("자네는 두가지 중에서 어떤 Spell(마법)을 선택했는가?")	
+			SetQuestNumStep(52,792)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,792)
+			if( yes == 1)
+			{
+			D("마법 배우기를 해보게. Learn Spell을 선택하면 될꺼야.")	
+			SetQuestNumStep(52,793)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,793)
+			if( yes == 1)
+			{
+			D("포션을 먹을때는 마우스 오른쪽 버튼을 눌러야 한다네.")	
+			SetQuestNumStep(52,794)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,794)
+			if( yes == 1)
+			{
+			D("자네한테 더 이상 가르쳐 줄 것이 없네. 마을 회관으로 가보게.")	
+			SetQuestNumStep(52,800)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,799)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 마을 회관으로 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+				}	
+				if( ran == 2 )
+				{
+				D( "마을 회관에서 당신을 애타게 찾던데." );
+				}
+				CallSmallMenu( 0, 71 )			
+			goto END23_		
+			}
+			
+		}
+		else
+		{
+		D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+		CallSmallMenu( 0, 71 )	
+		}
+		}
+		
+		;성직자
+		IsClassPC(4)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,950);아직 여관에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("아직 여관에 한번 들러 보게. 당신을 찾던데.")
+			goto END23_
+			}
+			CmpQuestNumStep(52,965);아직 목공소에
+			if( yes == 0)
+			{
+			D("자네 목공소에 가 보았나? 목공소에서 당신을 찾던데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,980);아직 무기점에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("의류점 밑에 빵집에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+			CmpQuestNumStep(52,980)
+			if( yes == 1)
+			{
+			D("어서 오게나. 여관에 들렀을때 당신에 대한 이야기를 들었네만..")
+			SetQuestNumStep(52,981)
+			goto END23_
+			}
+			CmpQuestNumStep(52,981)
+			if( yes == 1)
+			{
+			D("여기에서는 각종 포션을 팔고, 마법을 가르치고 있다네.")
+			SetQuestNumStep(52,982)
+			goto END23_
+			}
+			CmpQuestNumStep(52,982)
+			if( yes == 1)
+			{
+			D("자네 힐링 포션은 가지고 있는가?")
+			SetQuestNumStep(52,983)
+			goto END23_
+			}
+			CmpQuestNumStep(52,983);
+			if( yes == 1)
+			{
+				IsInvHavePC(4001)
+				if( yes == 1)
+				{
+				D("이미 가지고 있었군.")
+				SetQuestNumStep(52,984)
+				goto END23_
+				}
+				else
+				{
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetItemInvPC(0,4001,10)
+				SetQuestNumStep(52,985)
+				EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")
+				QuestSound(15003)
+				goto END23_
+				}
+			}
+			CmpQuestNumStep(52,984)
+			if( yes == 1)
+			{
+			D("그래도 이번엔 내가 힐링 포션을 좀 주지")
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetItemInvPC(0,4001,10)
+			SetQuestNumStep(52,985)
+			EventMsg("당신의 배낭에 힐링 포션이 추가 되었습니다.")	
+			QuestSound(15003)
+			goto END23_
+			}
+			CmpQuestNumStep(52,985)
+			if( yes == 1)
+			{
+			D("힐링포션은 Life 수치, 빨간 게이지를 채워준다네.")
+			SetQuestNumStep(52,986)
+			goto END23_
+			}
+			CmpQuestNumStep(52,986)
+			if( yes == 1)
+			{
+			D("전투에 있어서 없어서는 안 될 포션이지.")
+			SetQuestNumStep(52,987)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,987)
+			if( yes == 1)
+			{
+			D("힐링 포션 외에도 마나 포션이라는 것이 있지.");
+			SetQuestNumStep(52,988)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,988)
+			if( yes == 1)
+			{
+			D("마나 포션은 마버사 마법을 사용하기 위한 마나를 채워준다네.")	
+			SetQuestNumStep(52,989)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,989)
+			if( yes == 1)
+			{
+			D("성직자 마법 에너지인 디바인과 구별된다네.")	
+			SetQuestNumStep(52,990)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,990)
+			if( yes == 1)
+			{
+			D("디바인은 초록색 게이지로 나타내지.")	
+			SetQuestNumStep(52,991)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,991)
+			if( yes == 1)
+			{
+			D("자네는 두가지 중에서 어떤 Spell(마법)을 선택했는가?")	
+			SetQuestNumStep(52,992)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,992)
+			if( yes == 1)
+			{
+			D("마법 배우기를 해보게. Learn Spell을 선택하면 될꺼야.")	
+			SetQuestNumStep(52,993)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,993)
+			if( yes == 1)
+			{
+			D("포션을 먹을때는 마우스 오른쪽 버튼을 눌러야 한다네.")	
+			SetQuestNumStep(52,994)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,994)
+			if( yes == 1)
+			{
+			D("자네한테 더 이상 가르쳐 줄 것이 없네. 마을 회관으로 가보게.")	
+			SetQuestNumStep(52,1000)
+			goto END23_		
+			}
+			CmpQuestNumStep(52,999)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 마을 회관으로 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+				}	
+				if( ran == 2 )
+				{
+				D( "마을 회관에서 당신을 애타게 찾던데." );
+				}
+				CallSmallMenu( 0, 71 )			
+			goto END23_		
+			}
+			
+		}
+		else
+		{
+		D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+		CallSmallMenu( 0, 71 )	
+		}
+		}
+	}
+	else
+	{
+	D( "세상에는 보이지 않는 힘이 존재하는데 이를 대자연의 힘 이라고 부르지...  " );
+	CallSmallMenu( 0, 71 )	
+	}
+:END23_
+end
+@Npc00024
+;농장주인
+	; 농부 초보 퀘스트
+	IsJobPC(1)
+	if( yes == 1)
+	{
+		CmpQuestNumStep(51,110)
+		if( yes == 1)
+		{
+			D("음 이제 처음 하나 보군 내가 농부의 길에 대해 설명해 주지")
+			SetQuestNumStep(51,111)
+			goto END24_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서  초보자에게 도움 줄 말을 한다던데")
+			goto END24_
+		}
+		CmpQuestNumStep(51,111)
+		if( yes == 1)
+		{
+			D("마을 회관 소개로 왔군? 새로 오신 농부님이라고, 농부는 참 중요한 직업중의 하나야")
+			SetQuestNumStep(51,112)
+			goto END24_
+		}
+		CmpQuestNumStep(51,112)
+		if( yes == 1)
+		{
+			D("농부는 땅을 개간하고, 씨를 뿌려서 농작물을 기를 수 있다네, 다 성장한 식물은 추수할 수 있다네.")
+			SetQuestNumStep(51,113)
+			goto END24_
+		}
+		CmpQuestNumStep(51,113)
+		if( yes == 1)
+		{
+		D("농부는 일단 땅을 개간하는 기술이 있어야 한다네")
+		SetQuestNumStep(51,114)
+		goto END24_
+		}
+		CmpQuestNumStep(51,114)
+		if( yes == 1)
+		{
+		D("자네는 개간 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,115)
+		goto END24_
+		}
+		CmpQuestNumStep(51,115)
+		if( yes == 1)
+		{
+			IsSkillHavePC(21)
+			if(yes == 1)
+			{
+     			D("이미 개간 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 개간 기술을 가르쳐 주지 자!")
+			SetSkillPC(21,1)
+			EventMsg("개간 기술이 추가되었습니다.")
+			QuestSound(15003)
+			}	
+		SetQuestNumStep(51,117)
+		goto END24_
+		}	
+		CmpQuestNumStep(51,117)
+		if( yes == 1)
+		{
+		D("개간 기술이 있군 그럼 개간에 사용할 삽은 가지고 있나?")
+		SetQuestNumStep(51,118)
+		goto END24_
+		}
+		CmpQuestNumStep(51,118)
+		if( yes == 1)
+		{
+			IsInvHavePC(5001)
+			if( yes == 1)
+			{
+			D("이미 삽을 가지고 있군 없다면 내가 줬을 텐데")
+			}
+			else
+			{
+			SetItemInvPC(0,5001,820)
+			D("배낭을 열어 보게나  삽을 넣었네,나중엔 돈을 주고 사게나")
+			EventMsg("당신의 배낭에 삽이 추가되었습니다.")
+			QuestSound(15003)
+			}
+		SetQuestNumStep(51,120)
+		goto END24_
+		}
+		CmpQuestNumStep(51,120)
+		if( yes == 1)
+		{
+		D("농부는 씨를 땅에 뿌릴 수 있는 씨뿌리기 기술이 있어야 한다네")
+		SetQuestNumStep(51,121)
+		goto END24_
+		}
+		CmpQuestNumStep(51,121)
+		if( yes == 1)
+		{
+		D("자네는 씨뿌리기 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,122)
+		goto END24_
+		}
+		CmpQuestNumStep(51,122)
+		if( yes == 1)
+		{
+			IsSkillHavePC(22)
+			if(yes == 1)
+			{
+     			D("이미 씨뿌리기 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 씨뿌리기 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(22,1)
+			EventMsg("씨뿌리기 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,123)
+		goto END24_
+		}	
+		CmpQuestNumStep(51,123)
+		if( yes == 1)
+		{
+		D("씨앗을 뿌릴 때는 그냥 맨손으로 뿌리지..")
+		SetQuestNumStep(51,124)
+		goto END24_
+		}
+		CmpQuestNumStep(51,124)
+		if( yes == 1)
+		{
+		D("농부는 농작물을 기를 수 있는 경작 기술이 있어야 한다네")
+		SetQuestNumStep(51,125)
+		goto END24_
+		}
+		CmpQuestNumStep(51,125)
+		if( yes == 1)
+		{
+		D("자네는 경작 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,126)
+		goto END24_
+		}
+		CmpQuestNumStep(51,126)
+		if( yes == 1)
+		{
+			IsSkillHavePC(23)
+			if(yes == 1)
+			{
+     			D("이미 경작 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 경작 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(23,1)
+			EventMsg("경작 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,130)
+		goto END24_
+		}	
+		CmpQuestNumStep(51,130)
+		if( yes == 1)
+		{
+		D("농부는 농작물을 추수 할 수 있는 추수 기술이 있어야 한다네")
+		SetQuestNumStep(51,132)
+		goto END24_
+		}
+		CmpQuestNumStep(51,132)
+		if( yes == 1)
+		{
+		D("자네는 추수 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,133)
+		goto END24_
+		}
+		CmpQuestNumStep(51,133)
+		if( yes == 1)
+		{
+			IsSkillHavePC(24)
+			if(yes == 1)
+			{
+     			D("이미 추수 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 추수 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(24,1)
+			EventMsg("추수 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,140)
+		goto END24_
+		}			
+		CmpQuestNumStep(51,140)
+		if( yes == 1)
+		{
+		D("자네는 농부의 모든 기술이 있군 그럼 추수에 사용할 낫은 가지고 있나?")
+		SetQuestNumStep(51,141)
+		goto END24_
+		}
+		CmpQuestNumStep(51,141)
+		if( yes == 1)
+		{
+			IsInvHavePC(5003)
+			if( yes == 1)
+			{
+			D("이미 낫을 가지고 있군 없다면 내가 줬을 텐데")
+			}
+			else
+			{
+			SetItemInvPC(0,5003,820)
+			D("배낭을 열어 보게나 낫을 넣었네, 나중엔 돈을 주고 사게나")
+			EventMsg("농장주인이 당신의 배낭에 낫을 넣어 드렸습니다.")
+			QuestSound(15003)
+			}
+		SetQuestNumStep(51,150)
+		goto END24_
+		}	
+		CmpQuestNumStep(51,150)
+		if( yes == 1)
+		{
+			D("삽을 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,151)
+			goto END24_
+		}
+		CmpQuestNumStep(51,151)
+		if( yes == 1)
+		{
+			IsItemHavePC(5001,0)
+			if(yes == 1)
+			{
+			D("개간용 삽을 손에 들고 있군, 그 삽을 손에 들구 기술을 사용해야 되네")
+			SetQuestNumStep(51,152)
+			}
+			else
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("빨리 삽을 들게나")
+				}	
+				if( ran == 1)
+				{
+				D("당신은 삽을 들기 싫은가?")
+				}	
+				if( ran == 2 )
+				{
+				D( "삽을 손에 들어야 다음 대사가 나온다네" );
+				}
+			}
+		goto END24_
+		}
+		CmpQuestNumStep(51,152)
+		if( yes == 1)
+		{
+		D("황무지에 가서 곡식을 길러 보게나")
+		SetQuestNumStep(51,153)
+		goto END24_
+		}
+		CmpQuestNumStep(51,153)
+		if( yes == 1)
+		{
+		SetItemInvPC(0,6,10)
+		D("배낭을 열어 보게나 보리 씨앗을 넣었네, 나중엔 돈을 주고 사게나")
+		EventMsg("농장주인이 당신의 배낭에 보리씨앗을 넣어 드렸습니다.")
+		QuestSound(15003)
+		SetQuestNumStep(51,155)
+		goto END24_
+		}
+		CmpQuestNumStep(51,155)
+		if( yes == 1)
+		{
+		D("곡식을 기르는데는 많은 시간이 걸리지 인내심을 가지고 한번 길러 보게나")
+		SetQuestNumStep(51,156)
+		goto END24_
+		}
+		CmpQuestNumStep(51,156)
+		if( yes == 1)
+		{
+		D("일단 황무지에 가서 보리를 수확해 보게나. 수확한 다음 나에게 꼭 돌아오게")
+		SetQuestNumStep(51,157)
+		goto END24_
+		}
+		CmpQuestNumStep(51,157)
+		if( yes == 1)
+		{
+		QuestTeleport(1,113,52)
+		SetQuestNumStep(51,160)
+		goto END24_
+		}
+		CmpQuestNumStep(51,160)
+		if( yes == 1)
+		{
+		D("보리를 수확해 왔나?")
+		SetQuestNumStep(51,161)
+		goto END24_
+		}
+		CmpQuestNumStep(51,161)
+		if( yes == 1)
+		{
+			IsInvHavePC(0002)
+			if( yes == 1)
+			{
+			D("보리를 수확해 왔군, 배낭을 열어 보게 이번엔 아주 비싸게 값을 쳐주지")
+			SetItemInvPC(0002,10030,1000)
+			SetQuestNumStep(51,162)
+			}
+			else
+			{
+			D("보리를 수확해 오게나 어서?")
+			}
+		goto END24_
+		}
+		CmpQuestNumStep(51,162)
+		if( yes == 1)
+		{
+		D("이제 자네도 진정한 농부가 된걸세,")
+		SetQuestNumStep(51,163)
+		goto END24_
+		}
+		CmpQuestNumStep(51,163)
+		if( yes == 1)
+		{
+		D("이제 마을 회관에 가보게나. 직업인의 서약을 해야 한다네.")
+		SetQuestNumStep(51,190)
+		goto END24_
+		}
+		CmpQuestNumStep(51,189)
+		if( yes == 2)
+		{
+			random( 0, 2)
+			if ( ran == 0 )
+			{			
+			D("어서 마을회관으로 가보게.")
+			}
+			if ( ran == 1 )
+			{
+			D("자네 귀가 먹었나? 마을회관으로 빨리 가보게.")
+			}
+		goto END24_
+		}		
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "땅에서 나는 모든 산물은 그랑엘베르의 영광이 깃들어 있지 " );
+		 	}
+			if( ran == 1)
+			{
+			D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고..." );
+			}     
+		CallSmallMenu( 0, 19 )			
+		goto END24_
+		}
+	}
+	;목동
+	IsJobPC(7)
+	if( yes == 1)
+	{
+		CmpQuestNumStep(51,710)
+		if( yes == 1)
+		{
+			D("마을회관 소개로 왔군? 이미 자네의 얘기는 들었지.")
+			SetQuestNumStep(51,711)
+			goto END24_
+		}
+		if( yes == 0)
+		{
+			D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데")
+			goto END24_
+		}
+		CmpQuestNumStep(51,711)
+		if( yes == 1)
+		{
+			D("내 본업은 목동이 아니라 농부지. 하지만 목동 길드에 대한 안내도 맡고 있지.")
+			SetQuestNumStep(51,714)
+			goto END24_
+		}
+		CmpQuestNumStep(51,714)
+		if( yes == 1)
+		{
+		D("목장을 담당하던 목동이 어딘가로 갔다고 하던군 역마살이 끼었나봐.")
+		SetQuestNumStep(51,715)
+		goto END24_
+		}
+		CmpQuestNumStep(51,715)
+		if( yes == 1)
+		{
+		D("목동은 양에서 양털을 얻거나 소에서 우유를 짤 수 있지.")
+		SetQuestNumStep(51,716)
+		goto END24_
+		}
+		CmpQuestNumStep(51,716)
+		if( yes == 1)
+		{
+		D("자네 양털깎는 기술은 가지고 있나. 목동이라면 그 기술이 있어야지.")
+		SetQuestNumStep(51,717)
+		goto END24_
+		}
+		CmpQuestNumStep(51,717)
+		if( yes == 1)
+		{
+			;kjs Aftercheck
+			IsSkillHavePC(38)
+			if(yes == 1)
+			{
+     			D("이미 양털깍기 기술은  가지고 있군")
+			}
+			else
+			{
+			D("음.. 내가 양털깎기 기술을 가르쳐 주지. 자!")
+			QuestSound(15003)
+			SetSkillPC(38,1)
+			EventMsg("양털깎기 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,720)
+		goto END24_
+		}
+		CmpQuestNumStep(51,720)
+		if( yes == 1)
+		{
+		D("양털깎기 기술을 이용하기 위해서는 가위가 필요해.")
+		SetQuestNumStep(51,725)
+		goto END24_
+		}
+		CmpQuestNumStep(51,725)
+		if( yes == 1)
+		{
+		D("이번엔 처음이니, 내가 가위를 그냥 주지 다른 사람에겐 돈을 주고 샀다고 하게나.")
+		SetQuestNumStep(51,731)
+		goto END24_
+		}
+		CmpQuestNumStep(51,731)
+		if( yes == 1)
+		{
+			IsInvHavePC(5019)
+			if( yes == 1)
+			{
+			D("자네는 이미 가위를 가지고 있군. 있는데 내가 또 줄 필요는 없을 것 같군.")
+			SetQuestNumStep(51,734)
+			}
+			else
+			{
+			SetItemInvPC(0,5019,820)
+				if(yes ==1)
+				{
+				D("이거 받게나. 다음부터는 돈을 주고 사야될거야.")
+				EventMsg("당신의 배낭에 가위를 추가되었습니다.")
+				QuestSound(15003)
+				SetQuestNumStep(51,734)
+				}
+				else
+				{
+				D("배낭이 다 차서 가위를 넣을 수가 없군. 배낭을 좀 비워 주겠나?")
+				}
+			}				
+		goto END24_
+		}
+		CmpQuestNumStep(51,734)
+		if( yes == 1)
+		{
+		D("기술을 사용할때 도구를 장착해야 한다는 사실은 알고 있나?")
+		SetQuestNumStep(51,740)
+		goto END24_
+		}
+		CmpQuestNumStep(51,740)
+		if( yes == 1)
+		{
+		D("도구를 장착하지 않고 기술을 쓰면 재료만 낭비하게 되지")
+		SetQuestNumStep(51,741);
+		goto END24_
+		}
+		CmpQuestNumStep(51,741)
+		if( yes == 1)
+		{
+		D("재단사는 양털을 가지고 실을 만들지.")
+		SetQuestNumStep(51,751)
+		goto END24_
+		}
+		CmpQuestNumStep(51,751)
+		if( yes == 1)
+		{
+		D("양털깎기 기술을 사용할 때 가위를 손에 들어야 한다네.")
+		SetQuestNumStep(51,756)
+		goto END24_
+		}
+		CmpQuestNumStep(51,756)
+		if( yes == 1)
+		{
+		D("그럼, 이제 가위를 손에 들어 보지 않겠나?")
+		SetQuestNumStep(51,761)
+		goto END24_
+		}
+		CmpQuestNumStep(51,761)
+		if( yes == 1)
+		{
+			IsItemHavePC(5019,0)
+			if(yes == 1)
+			{
+			D("가위를 손에 들고 있군, 그 가위를 손에 들고 있어야 양털깎기 기술을 사용할 수 있다네")
+			SetQuestNumStep(51,762)
+			}
+			if(yes == 0)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("가위를 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("가위를 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D("가위를 양손에 쥐고 내앞에 서 보게나" );
+				}
+			}
+		goto END24_
+		}
+		CmpQuestNumStep(51,762)
+		if( yes == 1)
+		{
+		D("양털깎기 기술은 살아있는 양만 있다면 어느 곳에서든 할 수 있지")
+		SetQuestNumStep(51,763)
+		goto END17_
+		}
+		CmpQuestNumStep(51,763)
+		if( yes == 1)
+		{
+		D("위쪽에 목장이 있지 그곳에는 양들이 많다고 하는군.")
+		SetQuestNumStep(51,764)
+		goto END24_
+		}
+    		CmpQuestNumStep(51,764)
+		if( yes == 1)
+    		{
+    		D("양털은 양 한마리에 몇 개씩 얻을 수 있네.")
+		SetQuestNumStep(51,765)
+		goto END24_
+		}
+		CmpQuestNumStep(51,765)
+		if( yes == 1)
+		{
+		D("양털을 구해 오게나. 자네 솜씨를 보고 싶군. ")
+		SetQuestNumStep(51,766)
+		goto END24_
+		}
+		CmpQuestNumStep(51,766)
+		if( yes == 1)
+		{
+		D("양털을 가져왔나?")
+		SetQuestNumStep(51,771)
+		goto END24_
+		}
+		CmpQuestNumStep(51,771)
+		if( yes == 1)
+		{
+			IsInvHavePC(10014)
+			if( yes == 1)
+			{
+			D("오..역시 뛰어난 솜씨군. 이번엔 내가 비싸게 계산해 주지.")
+      			SetItemInvPC(10014,10030,1000)
+			SetQuestNumStep(51,775)
+			EventMsg("농장 주인이 양털을 1000 Cell에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("자네 실력을 보여주기 싫은가? 빨리 양털을 깎아오게나.")
+			}
+		goto END24_
+		}
+		CmpQuestNumStep(51,775) 
+		if( yes == 1)
+		{
+		D("목동은 동물이나 몬스터를 길들일 수 있는 테이밍 기술이 있다네.")
+		SetQuestNumStep(51,776)
+		goto END24_
+		}
+		CmpQuestNumStep(51,776) 
+		if( yes == 1)
+		{
+		D("테이밍 기술을 사용하기 위해서는 목동 막대기가 필요하지.")
+		SetQuestNumStep(51,777)
+		goto END24_
+		}
+		CmpQuestNumStep(51,777)
+		if( yes == 1)
+		{
+			IsInvHavePC(5013)
+			if( yes == 1)
+			{
+			D("자네는 이미 목동 막대기를 가지고 있군. 있는데 내가 또 줄 필요는 없을 것 같군.")
+			SetQuestNumStep(51,779)
+			}
+			else
+			{
+				SetItemInvPC(0,5013,820)
+				if(yes ==1)
+				{
+				D("이거 받게나. 다음부터는 돈을 주고 사야될거야.")
+				EventMsg("당신의 배낭에 목동막대기가 추가되었습니다.")
+				SetQuestNumStep(51,779)
+				QuestSound(15003)
+				}
+				else
+				{
+				D("배낭이 다 차서 목동막대기를 넣을 수가 없군. 배낭을 좀 비워 주겠나?")
+				}
+			}				
+		
+		goto END24_
+		}
+		CmpQuestNumStep(51,779) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 목동이 된거야. 마을회관에 한번 가보게나.")
+		SetQuestNumStep(51,790)
+		goto END24_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D( "땅에서 나는 모든 산물은 그랑엘베르의 영광이 깃들어 있지 " );
+		 	}
+			if( ran == 1)
+			{
+			D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고..." );
+			}     
+		CallSmallMenu( 0, 19 )			
+		}
+	}
+	else
+	{
+		random( 0, 2 )
+		if( ran == 0 )
+		{
+		D( "땅에서 나는 모든 산물은 그랑엘베르의 영광이 깃들어 있지 " );
+	 	}
+		if( ran == 1)
+		{
+		D( "가축을 길러보고 싶지는 않은가? 아님 밭을 일구어 작물을 기를수도 있고" );
+		}     
+		CallSmallMenu( 0, 19 )			
+	}
+:END24_
+end
+@Npc00025	
+end
+@Npc00026
+end
+@Npc00027	
+; 대장간 
+; 대장간 인터페이스 
+random(0,3)
+	if( ran == 0 )
+	{
+	D( "돈만준다면  철을 이용해서 만들수 있는 것은 뭐든지 팔지. 또한 그 기술도 가르쳐 주지." );
+        }
+	if( ran == 1 )
+	{
+	D( "철광석을 얻기 위해서는 곡괭이와 채굴 스킬이 있어야만 해. 이곳에서 그 기술을 가르쳐주지")
+        }
+	if( ran == 2 )
+	{
+        D( "광물은 주로 바위에서 얻을수 있지, 곡괭이로 바위를 내려치면 광맥이 보일꺼야.")  
+        }
+	CallSmallMenu( 0, 18 )
+      
+end
+@Npc00028   
+;	D( "푸줏간2" );
+	IsJobPC(5)
+	if( yes == 1)
+	{	CmpQuestNumStep(51,510)
+		if( yes == 1)
+		{
+		D("음 이제 처음 하나 보군 내가 도축자의 길에 대해 설명해 주지")
+		SetQuestNumStep(51,511)
+		goto END28_
+		}		
+		CmpQuestNumStep(51,511)
+		if( yes == 1)
+		{
+		D("도축자는 일단 도축 기술이 있어야 한다네")
+		SetQuestNumStep(51,512)
+		goto END28_
+		}		
+		CmpQuestNumStep(51,512)
+		if( yes == 1)
+		{
+		D("자네는 도축 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,513)
+		goto END28_
+		}
+		CmpQuestNumStep(51,513)
+		if( yes == 1)
+		{	IsSkillHavePC(34)
+			if(yes == 1)
+			{
+     			D("이미 도축 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 도축 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(34,1)
+			EventMsg("도축 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,514)
+		goto END28_
+		}	
+		CmpQuestNumStep(51,514)
+		if( yes == 1)
+		{
+		D("자네는 도축 기술이 있군 그럼 도축에 사용할 수 있는 칼은 가지고 있나?")
+		SetQuestNumStep(51,515)
+		goto END28_
+		}
+		CmpQuestNumStep(51,515)
+		if( yes == 1)
+		{
+			IsInvHavePC(5010)
+			if( yes == 1)
+			{
+			D("이미 도축용 칼을 가지고 있군 없다면 내가 줬을 텐데")
+			}
+			else
+			{
+			SetItemInvPC(0,5010,820)
+			D("배낭을 열어 보게나 도축용 칼을 넣었네,나중엔 돈을 주고 사게나")
+			EventMsg("배낭에 도축용 칼이 추가 되었습니다.")
+			QuestSound(15003)
+			}
+		SetQuestNumStep(51,516)
+		goto END28_
+		}
+		CmpQuestNumStep(51,516)
+		if( yes == 1)
+		{
+		D("도축용 칼을 한번 손에 들어 보지 않겠나?")
+		SetQuestNumStep(51,517)
+		goto END28_
+		}
+		CmpQuestNumStep(51,517)
+		if( yes == 1)
+		{
+			IsItemHavePC(5010,0)
+			if(yes == 1)
+			{
+			D("도축용 칼을 손에 들고 있군, 그 칼을 손에 들구 기술을 사용해야 되네")
+			SetQuestNumStep(51,518)
+			}
+			else
+			{
+			D("도축용 칼을 손에 들어 보게나.")
+			}
+		goto END28_
+		}
+		CmpQuestNumStep(51,518)
+		if( yes == 1)
+		{
+		D("목장에서 소를 한번 잡아 보게나")
+		SetQuestNumStep(51,519)
+		goto END28_
+		}
+		CmpQuestNumStep(51,519)
+		if( yes == 1)
+		{
+		D("일단은 내가 목장으로 보내주지. 소를 잡아 구한 고기는 나에게 다시 가져오게")
+		SetQuestNumStep(51,520)
+		goto END28_
+		}
+		CmpQuestNumStep(51,520)
+		if( yes == 1)
+		{
+		D("꼭 다시 돌아 오게나")
+		SetQuestNumStep(51,521)
+		goto END28_
+		}
+		CmpQuestNumStep(51,521)
+		if( yes == 1)
+		{
+		QuestTeleport(1,195,35)
+		SetQuestNumStep(51,522)
+		goto END28_
+		}
+		CmpQuestNumStep(51,522)
+		if( yes == 1)
+		{
+		D("소고기를 얻어 왔나?")
+		SetQuestNumStep(51,523)
+		goto END28_
+		}
+		CmpQuestNumStep(51,523)
+		if( yes == 1)
+		{
+			IsInvHavePC(3001)
+			if( yes == 1)
+			{
+			D("소고기을 얻어 왔군, 이번엔 아주 비싸게 값을 쳐주지")
+			SetItemInvPC(3001,10030,1000)
+			SetQuestNumStep(51,524)
+			EventMsg("정육점 주인이 동물 가죽을 1000 Cell 샀습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("동물 가죽을 얻어 오게나 어서?")
+			}
+		goto END28_
+		}
+		CmpQuestNumStep(51,524)
+		if( yes == 1)
+		{
+		D("이제 자네도 진정한 도축자가 된걸세, 이제 마을 회관에 가보게나.")
+		SetQuestNumStep(51,590)
+		goto END28_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+		D("도축자여 오늘 고기와 가죽은 많이 구했나?")
+		CallSmallMenu( 0, 22 )
+		goto END28_
+		}
+	}
+	else
+	{
+	D("도축자가 고기와 가죽을 제공하고 있지?")
+	CallSmallMenu( 0, 22 )	
+	}
+:END28_
+end
+@Npc00029	
+; 식당 인터페이스 다음 대사 랜덤
+	random( 0, 2 )
+	if( ran == 0 )
+	{
+	D("다양한 요리가 준비되어 있습니다.")
+	}
+	if( ran == 1 )
+	{
+	D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+	}
+	CallSmallMenu( 0, 20 )	
+end
+@Npc00030	
+end
+@Npc00031	
+; 주점
+	CallSmallMenu( 0, 57 )
+end
+@Npc00032	
+; 점성술사 집 밑에 있는 목공소
+	CmpQuestNumStep(51,2000);직업 퀘스트를 마친 마법사
+	if( yes == 1)
+	{
+		;마법사
+		IsClassPC(3)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,750);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END22_
+			}
+
+			CmpQuestNumStep(52,750)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 목공소를 운영하는 목재 전문가지.")
+			SetQuestNumStep(52,751)
+			goto END22_
+			}
+			CmpQuestNumStep(52,751)
+			if( yes == 1)
+			{
+			D("자네가 어떤 무기를 잘 쓰고 싶은지 말해 보게나.")
+			SetQuestNumStep(52,752)
+			goto END22_
+			}
+			CmpQuestNumStep(52,752)
+			if( yes == 1)
+			{
+			D("음.. 처음이니 잘 모를테지?")
+			SetQuestNumStep(52,753)
+			goto END22_
+			}
+			CmpQuestNumStep(52,753);
+			if( yes == 1)
+			{
+			D("그냥 초보 마법사 클래스에 어울리는 지팡이를 하나 추천하지.")
+			SetQuestNumStep(52,754)
+			goto END22_
+			}
+			CmpQuestNumStep(52,754)
+			if( yes == 1)
+			{
+			D("돈은 마을 회관에서 받은게 있지?")
+			SetQuestNumStep(52,755)
+			goto END22_
+			}
+			CmpQuestNumStep(52,755)
+			if( yes == 1)
+			{
+			D("꼭~! 자네 수준에 맞는 지팡이를 하나 사게나")
+			SetQuestNumStep(52,756)
+			goto END22_
+			}
+			CmpQuestNumStep(52,756)
+			if( yes == 1)
+			{
+			D("아마 쇼트 스태프가 자네에게 적당할 거야?")
+			SetQuestNumStep(52,757)
+			goto END22_
+			}
+			CmpQuestNumStep(52,757)
+			if( yes == 1)
+			{
+			D("나중에 자네가 좀 더 레벨이 오르면, 더 좋은 아이템을 착용 할 수 있지.")
+			SetQuestNumStep(52,758)
+			CallSmallMenu( 0, 26 )	
+			goto END22_		
+			}
+			CmpQuestNumStep(52,758)
+			if( yes == 1)
+			{
+			D("무기를 한번 손에 들어 보겠나?");
+			SetQuestNumStep(52,759)
+			CallSmallMenu( 0, 26 )	
+			goto END22_		
+			}
+			CmpQuestNumStep(52,759)
+			if( yes == 1)
+			{
+				IsItemHavePC(6024,0);오른 손에 로드를 들고 있다.
+				if(yes == 1)
+				{
+				D( "쇼트 스태프를 손에 들고 있군" )
+				SetQuestNumStep(52,760)
+				goto END22_
+				}
+				IsItemHavePC(6024,0)
+				if(yes == 0)
+				{
+				D("쇼트 스태프를 손에 들어 보게나.")
+				CallSmallMenu( 0, 26 )	
+				goto END22_
+				}
+			goto END22_		
+			}
+			CmpQuestNumStep(52,760)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")
+			SetQuestNumStep(52,762)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,762)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,763)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,763)
+			if( yes == 1)
+			{
+			D("의류점 밑에 있는 빵집에 가보게나.")
+			SetQuestNumStep(52,765)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,764)
+			if( yes == 2)
+			{
+				random( 0, 2 )
+				if( ran == 0 )
+				{
+				D("어서 빵집에 가보게나." )
+				}
+				if( ran == 1 )
+				{
+			        D( "나무로 만든 물건들은 여기서 모두 판다네." )
+				}
+				CallSmallMenu( 0, 26 )	
+				goto END22_		
+			}
+	
+		}
+		}
+		;성직자
+		IsClassPC(4)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,950);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END22_
+			}
+
+			CmpQuestNumStep(52,950)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 목공소를 운영하는 목재 전문가지.")
+			SetQuestNumStep(52,951)
+			goto END22_
+			}
+			CmpQuestNumStep(52,951)
+			if( yes == 1)
+			{
+			D("자네가 어떤 무기를 잘 쓰고 싶은지 말해 보게나.")
+			SetQuestNumStep(52,952)
+			goto END22_
+			}
+			CmpQuestNumStep(52,952)
+			if( yes == 1)
+			{
+			D("음.. 처음이니 잘 모를테지?")
+			SetQuestNumStep(52,953)
+			goto END22_
+			}
+			CmpQuestNumStep(52,953);
+			if( yes == 1)
+			{
+			D("그냥 초보 성직자 클래스에 어울리는 지팡이를 하나 추천하지.")
+			SetQuestNumStep(52,954)
+			goto END22_
+			}
+			CmpQuestNumStep(52,954)
+			if( yes == 1)
+			{
+			D("돈은 마을 회관에서 받은게 있지?")
+			SetQuestNumStep(52,955)
+			goto END22_
+			}
+			CmpQuestNumStep(52,955)
+			if( yes == 1)
+			{
+			D("꼭~! 자네 수준에 맞는 지팡이를 하나 사게나")
+			SetQuestNumStep(52,956)
+			goto END22_
+			}
+			CmpQuestNumStep(52,956)
+			if( yes == 1)
+			{
+			D("아마 쇼트 스태프가 자네에게 적당할 거야?")
+			SetQuestNumStep(52,957)
+			goto END22_
+			}
+			CmpQuestNumStep(52,957)
+			if( yes == 1)
+			{
+			D("나중에 자네가 좀 더 레벨이 오르면, 더 좋은 아이템을 착용 할 수 있지.")
+			SetQuestNumStep(52,958)
+			CallSmallMenu( 0, 26 )	
+			goto END22_		
+			}
+			CmpQuestNumStep(52,958)
+			if( yes == 1)
+			{
+			D("한번 손에 들어 보겠나?");
+			SetQuestNumStep(52,959)
+			CallSmallMenu( 0, 26 )	
+			goto END22_		
+			}
+			CmpQuestNumStep(52,959)
+			if( yes == 1)
+			{
+				IsItemHavePC(6024,0);오른 손에 로드를 들고 있다.
+				if(yes == 1)
+				{
+				D( "쇼트 스태프를 손에 들고 있군" )
+				SetQuestNumStep(52,960)
+				goto END22_
+				}
+				IsItemHavePC(6024,0)
+				if(yes == 0)
+				{
+				D("쇼트 스태프를 손에 들어 보게나.")
+				CallSmallMenu( 0, 26 )	
+				goto END22_
+				}
+			goto END22_		
+			}
+			CmpQuestNumStep(52,960)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")
+			SetQuestNumStep(52,962)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,962)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,963)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,963)
+			if( yes == 1)
+			{
+			D("의류점 밑에 있는 빵집에 가보게나.")
+			SetQuestNumStep(52,965)
+			goto END22_		
+			}
+			CmpQuestNumStep(52,964)
+			if( yes == 2)
+			{
+				random( 0, 2 )
+				if( ran == 0 )
+				{
+				D("어서 빵집에 가보게나." )
+				}
+				if( ran == 1 )
+				{
+			        D( "나무로 만든 물건들은 여기서 모두 판다네." )
+				}
+				CallSmallMenu( 0, 26 )	
+				goto END22_		
+			}
+	
+		}
+		}
+		else
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D("헬턴트 마을에는 주위에 나무가 참 많다네." )
+			}
+			if( ran == 1 )
+			{
+		        D( "나무로 만든 도구들은 모두 이곳에서 팔지." )
+			}
+			CallSmallMenu( 0, 26 )	
+			goto END22_
+		}
+	}
+	else
+	{
+		random( 0, 2 )
+		if( ran == 0 )
+		{
+		D("헬턴트 마을에는 주위에 나무가 참 많다네." )
+		}
+		if( ran == 1 )
+		{
+	        D( "나무로 만든 도구들은 모두 이곳에서 팔지." )
+		}
+		CallSmallMenu( 0, 26 )	
+		goto END22_
+	}
+:END22_
+end
+
+@Npc00033	
+end
+@Npc00034	
+;테페리 신전 근처에 있는 식량 창고....운영자의 비밀퀘스트초기화
+IsItemHavePC(4006,0)
+if( yes == 1)
+{
+D("퀘스트52초기화" )
+SetQuestNumStep(52,0)
+goto END34_
+}
+IsItemHavePC(4009,0)
+if( yes == 1)
+{
+D("퀘스트51초기화" )
+SetQuestNumStep(51,0)
+goto END34_
+}
+IsItemHavePC(4001,0)
+if( yes == 1)
+{
+D("퀘스트51컴플릿트" )
+SetQuestNumStep(51,2000)
+goto END34_
+}
+IsItemHavePC(4003,0)
+if( yes == 1)
+{
+D("퀘스트52컴플릿트" )
+SetQuestNumStep(52,2000)
+goto END34_
+}
+
+		random( 0, 3 )
+		if( ran == 0 )
+		{
+		D("이곳은 종종 트롤들의 습격을 받곤 하지. 내가 왜 여기를 서성대냐곤 묻지 말게?" )
+		}
+		if( ran == 1 )
+		{
+	        D( "이곳에 오면 종종 트롤의 습격 장면과 전사들의 결투 장면을 볼 수 있다네." )
+		}
+		if( ran == 2 )
+		{
+	        D( "자넨 트롤이 습격 해오면 나서서 싸우게나~ 난 구경을 할테니." )
+		}
+
+:END34_
+end
+@Npc00035	
+end
+@Npc00036	
+end
+@Npc00037	
+end
+@Npc00038   
+end
+@Npc00039	
+end
+@Npc00040	
+; 약초점
+	IsJobPC(6)
+	if( yes == 1)
+	{
+		CmpQuestNumStep(51,610)
+		if( yes == 1)
+		{	D("음 이제 처음 하나 보군 내가 심마니의 길에 대해 설명해 주지")
+			SetQuestNumStep(51,611)
+			goto END40_
+		}
+		if( yes == 0)
+		{	D("자네는 마을 회관에 가보게나 그곳에서 초보자에게 도움 줄 말을 한다던데")
+			goto END40_
+		}
+		CmpQuestNumStep(51,611)
+		if( yes == 1)
+		{	D("마을 회관 소개로 왔군. 새로 온 심마니라는 얘기는 이미 들었네.")
+			SetQuestNumStep(51,612)
+			goto END40_
+		}
+		CmpQuestNumStep(51,612)
+		if( yes == 1)
+		{	
+			D("심마니는 남들이 찾을 수 없는 약초를 찾을 수 있지.")
+			SetQuestNumStep(51,613)
+			goto END40_
+		}
+		CmpQuestNumStep(51,613)
+		if( yes == 1)
+		{
+		D("약초를 캐서 가루로 만들면 약효가 강해지고 가격도 더 비싸진다네.")
+		SetQuestNumStep(51,614)
+		goto END40_
+		}
+		CmpQuestNumStep(51,614)
+		if( yes == 1)
+		{
+		D("자네는 약초탐지 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,615)
+		goto END40_
+		}
+		CmpQuestNumStep(51,615)
+		if( yes == 1)
+		{	IsSkillHavePC(35)
+			if(yes == 1)
+			{
+     			D("이미 약초탐지 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 약초탐지 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(35,1)
+			EventMsg("약초탐지 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,620)
+		goto END40_
+		}
+		CmpQuestNumStep(51,620)
+		if( yes == 1)
+		{
+		D("약초탐지는 심마니만의 느낌으로 하는 거라네.")
+		SetQuestNumStep(51,625)
+		goto END40_
+		}
+		CmpQuestNumStep(51,625)
+		if( yes == 1)
+		{
+		D("약초탐지에 성공하면, 약초를 캘 수 있다네. 약초채취 기술은 가지고 있나?")
+		SetQuestNumStep(51,626)
+		goto END40_
+		}
+		CmpQuestNumStep(51,626)
+		if( yes == 1)
+		{
+		D("자네는 약초채취 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,627)
+		goto END40_
+		}
+		CmpQuestNumStep(51,627)
+		if( yes == 1)
+		{	IsSkillHavePC(36)
+			if(yes == 1)
+			{
+     			D("이미 약초채취 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 약초채취 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(36,1)
+			EventMsg("약초채취 기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,631)
+		goto END40_
+		}
+		CmpQuestNumStep(51,631)
+		if( yes == 1)
+		{	IsInvHavePC(5011)
+			if( yes == 1)
+			{
+			D("자네는 이미 호미를 가지고 있군 없다면 내가 줬을 텐데.")
+			}
+			else
+			{
+			SetItemInvPC(0,5011,820)
+			D("이거 받게나. 약초를 캘 때 꼭 필요한 호미야. 남는게 있으니 내가 그냥 주지.")
+			EventMsg("당신의 배낭에 호미가 추가되었습니다.")
+			QuestSound(15003)
+			}
+		SetQuestNumStep(51,635)
+		goto END40_
+		}
+		CmpQuestNumStep(51,635)
+		if( yes == 1)
+		{
+		D("자네는 약초가루 제조 기술을 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,636)
+		goto END17_
+		}
+		CmpQuestNumStep(51,636)
+		if( yes == 1)
+		{	IsSkillHavePC(37)
+			if(yes == 1)
+			{
+     			D("이미 약초가루 제조 기술은 가지고 있군")
+			}
+			else
+			{
+			D("음 내가 약초가루 제조 기술을 가르쳐 주지 자!")
+			QuestSound(15003)
+			SetSkillPC(37,1)
+			EventMsg("약초가루 제조 기술이 직업기술에 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,638)
+		goto END40_
+		}
+		CmpQuestNumStep(51,638);
+		if( yes == 1)
+		{
+			IsInvHavePC(5012)
+			if( yes == 1)
+			{
+			D("자네는 이미 막자와 사발을 가지고 있군 없다면 내가 줬을 텐데.")
+			}
+			else
+			{
+			SetItemInvPC(0,5012,820)
+			D("막자와 사발을 받게 약초가루  만들때 필요한 걸세.")
+			EventMsg("당신의 배낭에 막자와 사발이 추가되었습니다.")
+			QuestSound(15003)
+			}
+		SetQuestNumStep(51,640)
+		goto END40_
+		}
+		CmpQuestNumStep(51,640)
+		if( yes == 1)
+		{
+		D("약초가루 제조는 제조 메뉴가 있지.")
+		SetQuestNumStep(51,641)
+		goto END40_
+		}
+		CmpQuestNumStep(51,641)
+		if( yes == 1)
+		{	D("호미를 손에 들어 보지 않겠나?")
+			SetQuestNumStep(51,642)
+			goto END40_
+		}
+		CmpQuestNumStep(51,642)
+		if( yes == 1)
+		{
+			IsItemHavePC(5011,0)
+			if(yes == 1)
+			{
+			D("호미를 손에 들고 있군, 그 호미를 손에 들어야 약초를 채취 할 수 있다네")
+			SetQuestNumStep(51,643)
+			}
+			else
+			{	random( 0, 2 )
+				if( ran == 0)
+				{
+				D("당신은 호미를 들기 싫은가? 한번 장착해 보게나")
+				}	
+				if( ran == 1 )
+				{
+				D( "호미를 손에 든 당신이 멋질 것 같군" );
+				}
+			}
+		goto END40_
+		}
+		CmpQuestNumStep(51,643)
+		if( yes == 1)
+		{
+		D("우선 내가 약초가 나올 법한 곳으로 보내줄테니 약초를 캐보게나.")
+		SetQuestNumStep(51,644)
+		goto END17_
+		}
+		CmpQuestNumStep(51,644)
+		if( yes == 1)
+		{
+		D("약초 중에서 민트를 캐낸 다음 민트를 가공해서 민트가루로 만들어 보게나.")
+		SetQuestNumStep(51,645)
+		goto END40_
+		}
+		CmpQuestNumStep(51,650)
+		if( yes == 0)
+		{
+		QuestTeleport(1,156,78)
+		SetQuestNumStep(51,650)
+		goto END40_
+    	       	}
+		CmpQuestNumStep(51,650)
+		if( yes == 1)
+		{
+		D("민트가루를 만들어 왔나?")
+		SetQuestNumStep(51,651)
+		goto END40_
+		}
+		CmpQuestNumStep(51,655)
+		if( yes == 0)
+		{
+			IsInvHavePC(2016)
+			if( yes == 1)
+			{
+			D("오..역시 해냈군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(2016,10030,1000)
+			SetQuestNumStep(51,655)
+			EventMsg("약초점 주인이 민트가루를 1000 Cell 에 구입하였습니다.")
+			QuestSound(15003)
+			goto END40_
+			}
+			IsInvHavePC(2019)
+			if( yes == 1)
+			{
+			D("오..민트 가루 대신 타임 가루를 가져왔군.")
+			SetItemInvPC(2019,10030,1000)
+			SetQuestNumStep(51,655)
+			EventMsg("약초점 주인이 타임가루를 1000 Cell 에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("민트가루를 만들어 오게나?")
+			}
+		goto END40_
+		}
+		CmpQuestNumStep(51,690) 
+		if( yes == 0)
+		{
+		D("자네는 이제 명실공히 심마니가 된거야. 마을회관에 한번 가보게나")
+		SetQuestNumStep(51,690)
+		goto END40_
+		}
+		CmpQuestNumStep(51,2000)
+		if( yes == 1)
+		{
+			random( 0, 4 )
+			if( ran == 0 )
+			{
+			D( "이곳에서 나는 약초는 신비한 힘을 가지고 있소. " );
+			}
+			if( ran == 1 )
+			{
+	        	D( "비가 풍부하고 햇빛이 좋은 헬턴트는 언제나 숲이 울창합니다. " );
+			}
+			if( ran == 2 )
+			{
+        	        D( "약초는 그 자체로서도 신비한 능력을 지녔지만 포션을 만드는 재료가 됩니다. " );
+			}
+			if( ran == 3 )
+			{
+                	D( "약초는 마을밖에 많지만 어디 있는지를 종잡을 수가 없지. " );
+			}
+		CallSmallMenu( 0, 21 )	
+		goto END40_
+		}
+	}
+	else
+	{
+		random( 0, 4 )
+		if( ran == 0 )
+		{
+		D( "이곳에서 나는 약초는 신비한 힘을 가지고 있소. " );
+		}
+		if( ran == 1 )
+		{
+        	D( "비가 풍부하고 햇빛이 좋은 헬턴트는 언제나 숲이 울창합니다. " );
+		}
+		if( ran == 2 )
+		{
+                D( "약초는 그 자체로서도 신비한 능력을 지녔지만 포션을 만드는 재료가 됩니다. " );
+		}
+		if( ran == 3 )
+		{
+                D( "약초는 마을밖에 많지만 어디 있는지를 종잡을 수가 없지. " );
+		}
+		CallSmallMenu( 0, 21 )	
+		goto END40_
+	}
+:END40_
+end
+@Npc00041	
+end
+@Npc00042	
+end
+@Npc00043	
+end
+@Npc00044	
+end
+@Npc00045	
+end
+@Npc00046	
+; 상점 	상점 인터페이스 
+	D( "다른 길드에서 팔지 않는다면 이곳에 다있지 자 한번 골라 보시게" );
+	CallSmallMenu( 0, 60 )	
+
+end
+@Npc00047
+;활제작소
+
+	;활제작사	
+	IsJobPC(12)
+	if( yes == 1)
+	{		
+		CmpQuestNumStep(51,1210)
+		if( yes == 0)
+		{
+		D("마을회관에서 당신을 찾고 있던데 서둘러서 가보게나.")
+		goto END47_
+		}
+		CmpQuestNumStep(51,1210)
+		if( yes == 1)
+		{
+		D("마을회관 소개로 왔군? 이미 자네의 얘기는 들었지.")
+		SetQuestNumStep(51,1211)
+		goto END47_
+		}
+		if( yes == 0)
+		{
+		D("자네는 마을 회관에 가보게나 초보자에게 도움 줄 말을 한다던데")
+		goto END47_
+		}
+		CmpQuestNumStep(51,1211)
+		if( yes == 1)
+		{
+			D("활제작사는 목재, 실, 깃털을 이용해서 활과 화살을 만들 수 있다네.")
+			SetQuestNumStep(51,1214)
+			goto END47_
+		}
+		CmpQuestNumStep(51,1214)
+		if( yes == 1)
+		{
+		D("자네는 활 제작기술은 가지고 있나? 어디 한번 볼까?")
+		SetQuestNumStep(51,1215)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1215)
+		if( yes == 1)
+		{	
+			IsSkillHavePC(48)
+			if(yes == 1)
+			{
+			D("이미 활 제작기술은  가지고 있군")
+			}
+			else
+			{
+			D("음.. 내가 활 제작기술을 가르쳐 주지.")
+			QuestSound(15003)
+			SetSkillPC(48,1)
+			EventMsg("활 제작기술이 추가되었습니다.")
+			}	
+		SetQuestNumStep(51,1220)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1220)
+		if( yes == 1)
+		{
+		D("활 제작기술을 이용하기 위해서는 다듬이칼이 필요해, 다듬이 칼은 내가 많이 가지고 있지.")
+		SetQuestNumStep(51,1225)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1225)
+		if( yes == 1)
+		{
+		D("다듬이 칼은 대장간에서도 팔고 있다네.")
+		SetQuestNumStep(51,1226)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1226)
+		if( yes == 1)
+		{
+		D("내가 다듬이칼을 그냥 주지 다른 사람에겐 돈을 주고 샀다고 하게나.")
+		SetQuestNumStep(51,1231)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1231)
+		if( yes == 1)
+		{
+			IsInvHavePC(5020)
+			if( yes == 1)
+			{
+			D("자네는 이미 다듬이칼를 가지고 있군. ")
+			SetQuestNumStep(51,1240)
+			}
+			else
+			{
+				SetItemInvPC(0,5020,820)
+				if( yes == 1)
+				{
+				D("이거 받게나. 다음부터는 돈을 주고 사야될거야.")
+				EventMsg("당신의 배낭에 다듬이칼이 추가되었습니다.")
+				SetQuestNumStep(51,1234)
+				QuestSound(15003)
+				}
+				else
+				{
+				D("배낭을 좀 비워 주겠나?")
+				}
+			}				
+		goto END47_
+		}
+		CmpQuestNumStep(51,1234)
+		if( yes == 1)
+		{
+		D("기술을 사용할때 도구를 장착해야 한다는 사실은 알고 있나?")
+		SetQuestNumStep(51,1240)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1240)
+		if( yes == 1)
+		{
+		D("도구를 장착하지 않고 기술을 쓰면 재료만 낭비하게 되지")
+		SetQuestNumStep(51,1241)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1241)
+		if( yes == 1)
+		{
+		D("활과 화살은 만들면 궁수들에게 비싸게 팔 수 있지.")
+		SetQuestNumStep(51,1242)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1242)
+		if( yes == 1)
+		{
+		D("그런데 활을 만들 목재와 실은 가지고 있나?")
+		SetQuestNumStep(51,1243);
+		goto END47_
+		}		
+		CmpQuestNumStep(51,1243)
+		if( yes == 1)
+		{
+		D("목재는 나중에는 이곳에서 돈을 주고 사거나, 나무꾼에게서 사야 할껄세.")
+		SetQuestNumStep(51,1244)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1244)
+		if( yes == 1)
+		{
+    		D("나중에는 이곳에서 사거나 재단사에게서 구해야 할 거야.")
+		SetQuestNumStep(51,1245)
+		goto END47_
+		}		
+		CmpQuestNumStep(51,1245)
+		if( yes == 1)
+		{	SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,10015,10)
+			SetItemInvPC(0,10015,10)
+			SetItemInvPC(0,10015,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,1012,10)
+			SetItemInvPC(0,10015,10)
+			SetItemInvPC(0,10015,10)
+			SetItemInvPC(0,10015,10)
+			
+			D("이 목재와 실로 활을 만들어 보게나")
+			EventMsg("당신의 배낭에 목재와 실이 추가되었습니다.")
+			QuestSound(15003)
+		SetQuestNumStep(51,1251)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1251)
+		if( yes == 1)
+		{
+		D("활제작 기술을 사용할 때 다듬이칼을 손에 들어야 한다네.")
+		SetQuestNumStep(51,1256)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1256)
+		if( yes == 1)
+		{
+		D("그럼, 이제 다듬이칼을 손에 들어 보지 않겠나?")
+		SetQuestNumStep(51,1261)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1261)
+		if( yes == 1)
+		{	IsItemHavePC(5020,0)
+			if(yes == 1)
+			{
+			D("다듬이칼을 손에 들고 있군, 그 다듬이칼을 손에 들고 있어야 기술을 사용할 수 있다네")
+			SetQuestNumStep(51,1262)
+			}
+			else
+			{	random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("다듬이칼을 손에 들어보라구 말 한 것 같은데")
+				}	
+				if( ran == 1)
+				{
+				D("다듬이칼을 한번 장착해 보게나")
+				}	
+				if( ran == 2 )
+				{
+				D("다듬이칼을 양손에 쥐고 내앞에 서 보게나" )
+				}
+			}
+		goto END47_
+		}
+		CmpQuestNumStep(51,1262)
+		if( yes == 1)
+		{
+		D("활 제작 기술은 목재와 실만 있으면 어느 곳에서든 할 수 있지")
+		SetQuestNumStep(51,1263)
+		goto END17_
+		}
+		CmpQuestNumStep(51,1263)
+		if( yes == 1)
+		{
+		D("쇼트보우를 만들어 보지 않겠나. 가장 만들기 쉬운 활인데.")
+		SetQuestNumStep(51,1264)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1264)
+		if( yes == 1)
+		{
+		D("쇼트보우는 목재 5개와 실 3개를 이용해서 만들지.")
+		SetQuestNumStep(51,1265)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1265)
+		if( yes == 1)
+		{
+		D("쇼트보우를 만들었거든 나에게 가져오게나 자네 솜씨를 보고 싶군. ")
+		SetQuestNumStep(51,1266)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1266)
+		if( yes == 1)
+		{
+		D("쇼트보우를 가져왔나?")
+		SetQuestNumStep(51,1271)
+		goto END47_
+		}
+		CmpQuestNumStep(51,1271)
+		if( yes == 1)
+		{
+			IsInvHavePC(6028)
+			if( yes == 1)
+			{
+			D("오..역시 뛰어난 솜씨군. 이번엔 내가 비싸게 계산해 주지.")
+			SetItemInvPC(6028,10030,1000)
+			SetQuestNumStep(51,1275);
+			EventMsg("활제작소 주인이 쇼트보우를 1000 Cell 에 구입하였습니다.")
+			QuestSound(15003)
+			}
+			else
+			{
+			D("자네 실력을 보여주기 싫은가? 빨리 쇼트 보우를 만들어 오게나.")
+			}
+		goto END47_
+		}
+		CmpQuestNumStep(51,1275) 
+		if( yes == 1)
+		{
+		D("자네는 이제 명실공히 활 제작사가 된거야. 마을회관에 한번 가보게나.")
+		SetQuestNumStep(51,1290)
+		goto END47_
+		}
+		CmpQuestNumStep(51,2000) 
+		if( yes == 1)
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D("궁수라면 당연히 활을 가지고 있어야지." )
+			}
+			if( ran == 1 )
+			{
+		        D( "닭의 깃털이나 독수리의 깃털은 화살의 재료가 되지." )
+			}
+			CallSmallMenu( 0, 27 )	
+		goto END47_
+		}
+	}
+
+	CmpQuestNumStep(51,2000);직업 퀘스트를 마친 궁수
+	if( yes == 1)
+	{
+		;궁수
+		IsClassPC(2)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,350);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END18_
+			}
+
+			CmpQuestNumStep(52,350)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 활제작소를 운영하는 활 전문가지.")
+			SetQuestNumStep(52,351)
+			goto END18_
+			}
+			CmpQuestNumStep(52,351)
+			if( yes == 1)
+			{
+			D("자네가 어떤 무기를 잘 쓰고 싶은지 말해 보게나.")
+			SetQuestNumStep(52,352)
+			goto END18_
+			}
+			CmpQuestNumStep(52,352)
+			if( yes == 1)
+			{
+			D("음.. 처음이니 잘 모를테지?")
+			SetQuestNumStep(52,353)
+			goto END18_
+			}
+			CmpQuestNumStep(52,353);
+			if( yes == 1)
+			{
+			D("그냥 초보 궁수에 어울리는 활을 하나 추천하지.")
+			SetQuestNumStep(52,354)
+			goto END18_
+			}
+			CmpQuestNumStep(52,354)
+			if( yes == 1)
+			{
+			D("돈은 마을 회관에서 받아 왔겠지?")
+			SetQuestNumStep(52,355)
+			goto END18_
+			}
+			CmpQuestNumStep(52,355)
+			if( yes == 1)
+			{
+			D("꼭~! 자네 수준에 맞는 쇼트보우로 하나 사게나")
+			SetQuestNumStep(52,356)
+			goto END18_
+			}
+			CmpQuestNumStep(52,356)
+			if( yes == 1)
+			{
+			D("잘 모르겠으면, 물건 중에서 밝게 빛나는 아이템들 중에서 고르게나.?")
+			SetQuestNumStep(52,357)
+			goto END18_
+			}
+			CmpQuestNumStep(52,357)
+			if( yes == 1)
+			{
+			D("나중에 자네가 좀 더 레벨이 오르면, 더 좋은 아이템을 착용 할 수 있지.")
+			SetQuestNumStep(52,358)
+			CallSmallMenu( 0, 27 )
+			goto END18_		
+			}
+			CmpQuestNumStep(52,358)
+			if( yes == 1)
+			{
+			D("한번 손에 들어 보겠나?");
+			SetQuestNumStep(52,359)
+			CallSmallMenu( 0, 27 )
+			goto END18_		
+			}
+			CmpQuestNumStep(52,359)
+			if( yes == 1)
+			{
+				IsItemHavePC(0,0);오른 손에 아무것도 안들고 있당.
+				if(yes == 1)
+				{
+					random( 0, 3 )
+					if( ran == 0 )
+					{
+					D("방금산 활을 손에 들어 보게나")
+					}	
+					if( ran == 1)
+					{
+					D("궁수라면 활을 손에 쥐고 있을때 가장 멋있지")
+					}	
+					if( ran == 2 )
+					{
+					D( "활을 손에 들어 보게나" )
+					}
+				}
+				else
+				{
+					IsItemHavePC(0,1)
+					if(yes == 1)
+					{
+						SetItemInvPC(0,7005,100)
+						if( yes == 1)
+						{
+						D("자네 왼손이 허전하군 내가 화살 100발을 덤으로 주지.")
+						EventMsg("당신의 배낭에 화살이 추가 되었습니다.")
+						QuestSound(15003)
+						SetQuestNumStep(52,360)
+						goto END18_
+						}
+					}
+					SetQuestNumStep(52,362)
+				}
+			goto END18_		
+			}
+			CmpQuestNumStep(52,360)
+			if( yes == 1)
+			{
+			D("활을 먼저 착용한 후 왼손에 화살을 쥐어야 한다네. ")
+			SetQuestNumStep(52,362)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,362)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,365)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,363)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,365)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,364)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,365)
+			goto END18_		
+			}
+			CmpQuestNumStep(52,364)
+			if( yes == 2)
+			{
+				random( 0, 2 )
+				if( ran == 0 )
+				{
+				D("궁수라면 당연히 활을 가지고 있어야지.." )
+				}
+				if( ran == 1 )
+				{
+			        D( "어서 빵집에 가보게나~" )
+				}
+				CallSmallMenu( 0, 27 )	
+				goto END47_		
+			}
+	
+		}
+		}
+
+		;도둑
+		IsClassPC(1)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,550);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END47_
+			}
+
+			CmpQuestNumStep(52,550)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 활제작소를 운영하는 활 전문가지. 또한 비도의 전문가라네")
+			SetQuestNumStep(52,551)
+			goto END47_
+			}
+			CmpQuestNumStep(52,551)
+			if( yes == 1)
+			{
+			D("자네가 어떤 무기를 잘 쓰고 싶은지 말해 보게나.")
+			SetQuestNumStep(52,552)
+			goto END47_
+			}
+			CmpQuestNumStep(52,552)
+			if( yes == 1)
+			{
+			D("음.. 처음이니 잘 모를테지?")
+			SetQuestNumStep(52,553)
+			goto END47_
+			}
+			CmpQuestNumStep(52,553);
+			if( yes == 1)
+			{
+			D("그냥 초보 도둑에 어울리는 무기를 하나 추천하지.")
+			SetQuestNumStep(52,554)
+			goto END47_
+			}
+			CmpQuestNumStep(52,554)
+			if( yes == 1)
+			{
+			D("돈은 마을 회관에서 받아 왔겠지?")
+			SetQuestNumStep(52,555)
+			goto END47_
+			}
+			CmpQuestNumStep(52,555)
+			if( yes == 1)
+			{
+			D("꼭~! 자네 수준에 맞는 블랙잭이나 티쓰를 사게나")
+			SetQuestNumStep(52,556)
+			goto END47_
+			}
+			CmpQuestNumStep(52,556)
+			if( yes == 1)
+			{
+			D("잘 모르겠으면, 물건 중에서 밝게 빛나는 아이템들 중에서 고르게나.?")
+			SetQuestNumStep(52,557)
+			goto END47_
+			}
+			CmpQuestNumStep(52,557)
+			if( yes == 1)
+			{
+			D("나중에 자네가 좀 더 레벨이 오르면, 더 좋은 아이템을 착용 할 수 있지.")
+			SetQuestNumStep(52,558)
+			CallSmallMenu( 0, 27 )
+			goto END47_		
+			}
+			CmpQuestNumStep(52,558)
+			if( yes == 1)
+			{
+			D("한번 손에 들어 보겠나?");
+			SetQuestNumStep(52,559)
+			CallSmallMenu( 0, 27 )
+			goto END47_		
+			}
+			CmpQuestNumStep(52,559)
+			if( yes == 1)
+			{
+				IsItemHavePC(0,0);오른 손에 아무것도 안들고 있당.
+				if(yes == 1)
+				{
+					random( 0, 3 )
+					if( ran == 0 )
+					{
+					D("방금 산 무기를 손에 들어 보게나")
+					}	
+					if( ran == 1)
+					{
+					D("티쓰나 블랙잭을 손에 들어야 한다네")
+					}	
+					if( ran == 2 )
+					{
+					D( "무기를 손에 들어 보게나" )
+					}
+				}
+				else
+				{
+					D("무기를 들고 있군.")
+					SetQuestNumStep(52,560)
+				}
+			goto END18_		
+			}
+			CmpQuestNumStep(52,560)
+			if( yes == 1)
+			{
+			D("비도나 티쓰는 수량만큼 던질 수 있다네.")
+			SetQuestNumStep(52,562)
+			goto END47_		
+			}
+			CmpQuestNumStep(52,562)
+			if( yes == 1)
+			{
+			D("빵집 주인도 할말이 있다고 하더군.. 한번 들러 보게나.")
+			SetQuestNumStep(52,565)
+			goto END47_		
+			}
+			CmpQuestNumStep(52,564)
+			if( yes == 2)
+			{
+				random( 0, 2 )
+				if( ran == 0 )
+				{
+				D("도둑이라면 당연히 비도를 가지고 있어야지." )
+				}
+				if( ran == 1 )
+				{
+			        D( "닭의 깃털이나 독수리의 깃털은 화살의 재료가 되지." )
+				}
+				CallSmallMenu( 0, 27 )	
+				goto END47_		
+			}
+	
+		}
+		}
+		else
+		{
+			random( 0, 2 )
+			if( ran == 0 )
+			{
+			D("궁수라면 당연히 활을 가지고 있어야지~" )
+			}
+			if( ran == 1 )
+			{
+		        D( "닭의 깃털이나 독수리의 깃털은 화살의 재료가 되지." )
+			}
+			CallSmallMenu( 0, 27 )	
+			goto END47_
+		}
+	}
+	else
+	{
+		random( 0, 2 )
+		if( ran == 0 )
+		{
+		D("궁수라면 당연히 활을 가지고 있어야지!" )
+		}
+		if( ran == 1 )
+		{
+	        D( "닭의 깃털이나 독수리의 깃털은 화살의 재료가 되지." )
+		}
+		CallSmallMenu( 0, 27 )	
+		goto END47_
+	}
+:END47_
+end
+@Npc00048 
+;밑에 사는 빵집 주인
+	CmpQuestNumStep(51,2000)
+	if( yes == 1)
+	{
+		;전사
+		IsClassPC(0)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,150);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,165);아직 무기점에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 중거리 연습장 위에 있는 무기점에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,165)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 빵집을 운영하는 요리사지.")
+			SetQuestNumStep(52,167)
+			goto END48_
+			}
+			CmpQuestNumStep(52,167)
+			if( yes == 1)
+			{
+			D("음식은 현재 Health를 올려주지.")
+			SetQuestNumStep(52,168)
+			goto END48_
+			}
+			CmpQuestNumStep(52,168)
+			if( yes == 1)
+			{
+			D("현재의 Health는 작은 노란색 게이지로 나타나 있지.")
+			SetQuestNumStep(52,169)
+			goto END48_
+			}
+			CmpQuestNumStep(52,169);
+			if( yes == 1)
+			{
+			D("Health가 0이 되면, 배가 고파서 캐릭터가 움직이지 못하게 된다네.")
+			SetQuestNumStep(52,171)
+			goto END48_
+			}
+			CmpQuestNumStep(52,171)
+			if( yes == 1)
+			{
+			D("여기에서는 항상 여러가지 음식을 준비해두고 있지.")
+			SetQuestNumStep(52,173)
+			goto END48_
+			}
+			CmpQuestNumStep(52,173)
+			if( yes == 1)
+			{
+			D("돈을 네고 한번 사볼텐가")
+			SetQuestNumStep(52,174)
+			CallSmallMenu( 0, 20 )
+			goto END48_
+			}
+			CmpQuestNumStep(52,174)
+			if( yes == 1)
+			{
+			D("buy를 선택하면, 살 수 있는 음식을 볼 수 있다네.")
+			SetQuestNumStep(52,175)
+			CallSmallMenu( 0, 20 )
+			goto END48_		
+			}
+			CmpQuestNumStep(52,175)
+			if( yes == 1)
+			{
+			D("내가 빵집에 들른 기념으로 빵을 몇개 선물하지.");
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			EventMsg("당신의 배낭에 빵이 추가 되었습니다.")
+			QuestSound(15003)
+			SetQuestNumStep(52,176)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,176)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")	
+			SetQuestNumStep(52,177)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,177)
+			if( yes == 1)
+			{
+			D("마을 서북쪽에 있는 점성술사의 집에 가보게..")	
+			SetQuestNumStep(52,180)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,179)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 점성술사의 집에 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+				}	
+				if( ran == 2 )
+				{
+				D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+				}
+				CallSmallMenu( 0, 20 )			
+			goto END48_		
+			}
+			else
+			{
+				CmpQuestNumStep(52,159)
+				if( yes	== 2)
+				{				
+				D("의류점 옆에 있는 빵집으로 가보게, 그곳 주인이 당신을 계속 기다리던데.")
+				goto END48_
+				}
+				else
+				{
+					CmpQuestNumStep(52,149)
+					if( yes	== 2)
+					{				
+					D("무기점으로 가보게, 그 곳 주인이 당신을 찾던데")
+					goto END48_
+					}			
+				}
+			}	
+		}
+		}
+		;궁수
+		IsClassPC(2)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,350);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,365);아직 활제작소에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 목장 밑에 있는 활제작소에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,365)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 빵집을 운영하는 요리사지.")
+			SetQuestNumStep(52,366)
+			goto END48_
+			}
+			CmpQuestNumStep(52,366)
+			if( yes == 1)
+			{
+			D("음식은 현재 Health를 올려주지.")
+			SetQuestNumStep(52,367)
+			goto END48_
+			}
+			CmpQuestNumStep(52,367)
+			if( yes == 1)
+			{
+			D("현재의 Health는 작은 노란색 게이지로 나타나 있지.")
+			SetQuestNumStep(52,369)
+			goto END48_
+			}
+			CmpQuestNumStep(52,369);
+			if( yes == 1)
+			{
+			D("Health가 0이 되면, 배가 고파서 캐릭터가 움직이지 못하게 된다네.")
+			SetQuestNumStep(52,371)
+			goto END48_
+			}
+			CmpQuestNumStep(52,371)
+			if( yes == 1)
+			{
+			D("여기에서는 항상 여러가지 음식을 준비해두고 있지.")
+			SetQuestNumStep(52,373)
+			goto END48_
+			}
+			CmpQuestNumStep(52,373)
+			if( yes == 1)
+			{
+			D("돈을 네고 한번 사볼텐가")
+			SetQuestNumStep(52,374)
+			CallSmallMenu( 0, 20 )
+			goto END48_
+			}
+			CmpQuestNumStep(52,374)
+			if( yes == 1)
+			{
+			D("buy를 선택하면, 살 수 있는 음식을 볼 수 있다네.")
+			SetQuestNumStep(52,375)
+			CallSmallMenu( 0, 20 )
+			goto END48_		
+			}
+			CmpQuestNumStep(52,375)
+			if( yes == 1)
+			{
+			D("내가 빵집에 들른 기념으로 빵을 몇개 선물하지.");
+			; LHS Aftercheck need KJS 돈 번호를 빵번호..
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			EventMsg("당신의 배낭에 빵이 추가 되었습니다.")
+			QuestSound(15003)
+			SetQuestNumStep(52,376)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,376)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")	
+			SetQuestNumStep(52,377)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,377)
+			if( yes == 1)
+			{
+			D("마을 서북쪽에 있는 점성술사의 집에 가보게..")	
+			SetQuestNumStep(52,380)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,379)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 점성술사의 집에 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+				}	
+				if( ran == 2 )
+				{
+				D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+				}
+				CallSmallMenu( 0, 20 )			
+			goto END48_		
+			}
+			
+		}
+		}
+		;도둑
+		IsClassPC(1)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,550);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,565);아직 활제작소에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 목장 밑에 있는 활제작소에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,565)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 빵집을 운영하는 요리사지.")
+			SetQuestNumStep(52,566)
+			goto END48_
+			}
+			CmpQuestNumStep(52,566)
+			if( yes == 1)
+			{
+			D("음식은 현재 Health를 올려주지.")
+			SetQuestNumStep(52,567)
+			goto END48_
+			}
+			CmpQuestNumStep(52,567)
+			if( yes == 1)
+			{
+			D("현재의 Health는 작은 노란색 게이지로 나타나 있지.")
+			SetQuestNumStep(52,569)
+			goto END48_
+			}
+			CmpQuestNumStep(52,569);
+			if( yes == 1)
+			{
+			D("Health가 0이 되면, 배가 고파서 캐릭터가 움직이지 못하게 된다네.")
+			SetQuestNumStep(52,571)
+			goto END48_
+			}
+			CmpQuestNumStep(52,571)
+			if( yes == 1)
+			{
+			D("여기에서는 항상 여러가지 음식을 준비해두고 있지.")
+			SetQuestNumStep(52,573)
+			goto END48_
+			}
+			CmpQuestNumStep(52,573)
+			if( yes == 1)
+			{
+			D("돈을 네고 한번 사볼텐가")
+			SetQuestNumStep(52,574)
+			CallSmallMenu( 0, 20 )
+			goto END48_
+			}
+			CmpQuestNumStep(52,574)
+			if( yes == 1)
+			{
+			D("buy를 선택하면, 살 수 있는 음식을 볼 수 있다네.")
+			SetQuestNumStep(52,575)
+			CallSmallMenu( 0, 20 )
+			goto END48_		
+			}
+			CmpQuestNumStep(52,575)
+			if( yes == 1)
+			{
+			D("내가 빵집에 들른 기념으로 빵을 몇개 선물하지.");
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			EventMsg("당신의 배낭에 빵이 추가 되었습니다.")
+			QuestSound(15003)
+			SetQuestNumStep(52,576)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,576)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")	
+			SetQuestNumStep(52,577)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,577)
+			if( yes == 1)
+			{
+			D("마을 서북쪽에 있는 점성술사의 집에 가보게..")	
+			SetQuestNumStep(52,580)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,579)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 점성술사의 집에 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+				}	
+				if( ran == 2 )
+				{
+				D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+				}
+				CallSmallMenu( 0, 20 )			
+			goto END48_		
+			}
+			
+		}
+		}
+		;마법사
+		IsClassPC(3)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,750);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,765);아직 목공소에 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 점성술사의 집 밑에 있는 목공소에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,765)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 빵집을 운영하는 요리사지.")
+			SetQuestNumStep(52,766)
+			goto END48_
+			}
+			CmpQuestNumStep(52,766)
+			if( yes == 1)
+			{
+			D("음식은 현재 Health를 올려주지.")
+			SetQuestNumStep(52,768)
+			goto END48_
+			}
+			CmpQuestNumStep(52,768)
+			if( yes == 1)
+			{
+			D("현재의 Health는 작은 노란색 게이지로 나타나 있지.")
+			SetQuestNumStep(52,769)
+			goto END48_
+			}
+			CmpQuestNumStep(52,769);
+			if( yes == 1)
+			{
+			D("Health가 0이 되면, 배가 고파서 캐릭터가 움직이지 못하게 된다네.")
+			SetQuestNumStep(52,770)
+			goto END48_
+			}
+			CmpQuestNumStep(52,770)
+			if( yes == 1)
+			{
+			D("여기에서는 항상 여러가지 음식을 준비해두고 있지.")
+			SetQuestNumStep(52,772)
+			goto END48_
+			}
+			CmpQuestNumStep(52,772)
+			if( yes == 1)
+			{
+			D("돈을 내고 한번 사볼텐가")
+			SetQuestNumStep(52,774)
+			CallSmallMenu( 0,20 )
+			goto END48_
+			}
+			CmpQuestNumStep(52,774)
+			if( yes == 1)
+			{
+			D("buy를 선택하면, 살 수 있는 음식을 볼 수 있다네.")
+			SetQuestNumStep(52,775)
+			CallSmallMenu( 0, 20 )
+			goto END48_		
+			}
+			CmpQuestNumStep(52,775)
+			if( yes == 1)
+			{
+			D("내가 빵집에 들른 기념으로 빵을 몇개 선물하지.");
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			EventMsg("당신의 배낭에 빵이 추가 되었습니다.")
+			QuestSound(15003)
+			SetQuestNumStep(52,776)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,776)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")	
+			SetQuestNumStep(52,777)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,777)
+			if( yes == 1)
+			{
+			D("마을 서북쪽에 있는 점성술사의 집에 가보게..")	
+			SetQuestNumStep(52,780)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,779)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 점성술사의 집에 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+				}	
+				if( ran == 2 )
+				{
+				D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+				}
+				CallSmallMenu( 0, 20 )			
+			goto END48_		
+			}
+			
+		}
+		}
+		;성직자
+		IsClassPC(4)
+		if(yes==1)
+		{	
+		CmpQuestNumStep(52,2000);52번 클래스 퀘스트를 끝내지 못한 유저 
+		if(yes == 0)
+		{
+			CmpQuestNumStep(52,950);아직 여관에 들러 퀘스트를 시작 하지 않았다.
+			if( yes == 0)
+			{
+			D("자네 여관에 가 보았나? 여관(250,90)에 한번 들러 보게..")
+			goto END48_
+			}
+			CmpQuestNumStep(52,965);아직 목공소 들르지 않았다.
+			if( yes == 0)
+			{
+			D("자네 점성술사 집 밑에 있는 목공소에서 당신을 찾던것 같은데.")
+			goto END48_
+			}
+
+			CmpQuestNumStep(52,965)
+			if( yes == 1)
+			{
+			D("어서 오게나. 난 빵집을 운영하는 요리사지.")
+			SetQuestNumStep(52,966)
+			goto END48_
+			}
+			CmpQuestNumStep(52,966)
+			if( yes == 1)
+			{
+			D("음식은 현재 Health를 올려주지.")
+			SetQuestNumStep(52,968)
+			goto END48_
+			}
+			CmpQuestNumStep(52,968)
+			if( yes == 1)
+			{
+			D("현재의 Health는 작은 노란색 게이지로 나타나 있지.")
+			SetQuestNumStep(52,969)
+			goto END48_
+			}
+			CmpQuestNumStep(52,969);
+			if( yes == 1)
+			{
+			D("Health가 0이 되면, 배가 고파서 캐릭터가 움직이지 못하게 된다네.")
+			SetQuestNumStep(52,970)
+			goto END48_
+			}
+			CmpQuestNumStep(52,970)
+			if( yes == 1)
+			{
+			D("여기에서는 항상 여러가지 음식을 준비해두고 있지.")
+			SetQuestNumStep(52,972)
+			goto END48_
+			}
+			CmpQuestNumStep(52,972)
+			if( yes == 1)
+			{
+			D("돈을 내고 한번 사볼텐가")
+			SetQuestNumStep(52,974)
+			CallSmallMenu( 0, 20 )
+			goto END48_
+			}
+			CmpQuestNumStep(52,974)
+			if( yes == 1)
+			{
+			D("buy를 선택하면, 살 수 있는 음식을 볼 수 있다네.")
+			SetQuestNumStep(52,975)
+			CallSmallMenu( 0, 20 )
+			goto END48_		
+			}
+			CmpQuestNumStep(52,975)
+			if( yes == 1)
+			{
+			D("내가 빵집에 들른 기념으로 빵을 몇개 선물하지.");
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			SetItemInvPC(0,3007,20)
+			EventMsg("당신의 배낭에 빵이 추가 되었습니다.")
+			QuestSound(15003)
+			SetQuestNumStep(52,976)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,976)
+			if( yes == 1)
+			{
+			D("이제 내가 할 얘기는 다 해주었네.")	
+			SetQuestNumStep(52,977)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,977)
+			if( yes == 1)
+			{
+			D("마을 서북쪽에 있는 점성술사의 집에 가보게..")	
+			SetQuestNumStep(52,980)
+			goto END48_		
+			}
+			CmpQuestNumStep(52,979)
+			if( yes == 2)
+			{
+				random( 0, 3 )
+				if( ran == 0 )
+				{
+				D("서둘러 점성술사의 집에 가보게나.")
+				}	
+				if( ran == 1)
+				{
+				D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+				}	
+				if( ran == 2 )
+				{
+				D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+				}
+				CallSmallMenu( 0, 20 )			
+			goto END48_		
+			}
+			
+		}
+		}
+		else
+		{	
+		random( 0, 3 )
+		if( ran == 0 )
+		{
+		D("다양한 요리가 준비되어 있습니다.")
+		}	
+		if( ran == 1)
+		{
+		D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+		}	
+		if( ran == 2 )
+		{
+		D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+		}
+		CallSmallMenu( 0, 20 )	
+		goto END48_		
+		}
+	}
+	else
+	{	
+		random( 0, 3 )
+		if( ran == 0 )
+		{
+		D("다양한 요리가 준비되어 있습니다.")
+		}	
+		if( ran == 1)
+		{
+		D("멀리 길을 떠나는 사람이 라면 미리 준비할 필요가 있지요.")
+		}	
+		if( ran == 2 )
+		{
+		D( "Health를 올려주는 음식과 그 음식을 만들 수 있는 기술을 가르쳐 줍니다. " );
+		}
+		CallSmallMenu( 0, 20 )			
+	}
+:END48_
+end
+@Npc00049	
+end
+
+
+
+
+@Event00000
+	MapMove( "Source", 270,8 )
+end
+
+@Event00001
+	MapMove( "K_Sung2", 344,224 )
+end
+
+@Event00002		
+	MapMove( "Hu_Vm", 9,10 )
+end
+
+@Event00003		
+	MapMove( "Gray", 346,349 )
+end
+
+@Event00004	
+	IsLevel(7)
+	if( yes == 1)
+	{
+	EventMsg("이곳은 초보자의 가이드를 위한 맵입니다. 당신은 초보가 아니군요")
+	QuestSound(15007)
+	}
+	else
+	{
+	MapMove( "Scholium", 47,169 )
+ 	}
+end
+
+@Event00005	
+	MapMove( "TRAINING", 128,93 )
+end
+
+@Event00006		
+end
+@Event00007		
+end
+@Event00008		
+end
+@Event00009		
+end
+@Event00010		
+end
+@Event00011		
+end
+@Event00012		
+end
+@Event00013		
+end
+@Event00014		
+end 
+@Event00015		
+end
+@Event00016		
+end
+@Event00017		
+end
+@Event00018		
+end
+@Event00019		
+end
