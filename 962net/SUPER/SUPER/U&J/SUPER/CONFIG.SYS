@@ -1,0 +1,8 @@
+DEVICE=C:\DOS\HIMEM.SYS
+REM 擴充記憶體設定，請確定DOS所在的路徑
+DEVICE=c:\windows\emm386.exe
+BUFFERS=40,0
+FILES=40
+REM DEVICE=C:\DRIVES\CD_ROM.SYS /D:MSCD000 /Q
+REM DRIVES是光碟驅動程式所在的路徑，請修改成您的光碟驅動程式所在的路徑
+REM CD_ROM.SYS 是光碟的驅動程式，請自行改成您的光碟驅動程式的名稱

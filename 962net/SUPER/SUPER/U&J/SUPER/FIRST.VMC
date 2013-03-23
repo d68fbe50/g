@@ -1,0 +1,5 @@
+minmem=512
+maxmem=16384
+virtualsize=4096
+deleteswap
+swapname=first.swp
