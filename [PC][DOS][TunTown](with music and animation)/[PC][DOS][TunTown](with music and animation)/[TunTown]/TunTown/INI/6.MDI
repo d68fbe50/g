@@ -1,0 +1,10 @@
+;
+;Miles Design Audio Interface Library V3.03 of 18-Jun-95
+;
+
+DEVICE      Creative Labs AWE-32(TM) General MIDI
+DRIVER      SBAWE32.MDI
+IO_ADDR     620h
+IRQ         -1
+DMA_8_BIT   -1
+DMA_16_BIT  -1

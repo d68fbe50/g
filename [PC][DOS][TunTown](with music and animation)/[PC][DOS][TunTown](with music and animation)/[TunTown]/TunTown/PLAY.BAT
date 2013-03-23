@@ -1,0 +1,3 @@
+@ECHO OFF
+TunTown.EXE
+EXIT
